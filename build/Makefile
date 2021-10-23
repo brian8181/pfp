@@ -24,7 +24,7 @@ INCLUDES = -I/usr/local/include/cppunit/
 # add addtional libs here
 
 # Makefile settings - Can be customized.
-APPNAME = a444
+APPNAME = pfp
 EXT = cpp
 ROOTDIR  = ..
 BUILDDIR = .
@@ -32,7 +32,7 @@ SRCDIR = $(ROOTDIR)/src
 OBJDIR = .
 
 # compile & link for debug
-debug: CXXFLAGS += -DDEBUG -g
+#debug: CXXFLAGS += -DDEBUG -g
 debug: all
 
 # compile & link for debug GDBversion variable
