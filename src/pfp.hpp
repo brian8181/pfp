@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <list>
+#include <stack>
 
 using std::string;
 
@@ -25,7 +26,6 @@ public:
         Operator
     };
 
-
     class Token
     {
 
@@ -39,7 +39,6 @@ public:
         int id;
         TokenType type = TokenType::Number;
         string value;
-        
     };
 
     class Node
@@ -53,7 +52,6 @@ public:
     private:
 
         Node* parent = 0;
-
     };
 
     class TerminalNode
@@ -70,7 +68,6 @@ public:
     private:
 
         Token* token = 0;
-
     };
 
 
@@ -85,15 +82,23 @@ public:
 
         TerminalNode* left;
         TerminalNode* right;
-
     };
 
     static std::list<Token>& Parse(string input);
-    // {
-    //     // List<TerminalNode> nodes = Tokenize(input);
-    //     // Parse(nodes);
-    //     // return PostFix((BinaryNode)nodes[0]);
-    // }
+
+    static std::list<TerminalNode>& Parse(std::list<TerminalNode> tokens);
+
+    static std::list<Token> PostFix(BinaryNode node);
+
+    //static string PostFixString(List<Token> postfix, char s = ' ')
+
+    static std::list<TerminalNode> Tokenize(string input);
+
+    static void SubParse(std::list<TerminalNode> nodes, int i, std::stack<TerminalNode> stack);
+
+    static void ParseTokens(std::list<TerminalNode> nodes);
+
+    //static void OperatorPass(std::list<TerminalNode> nodes, char[] ops);
 
 private:
 
