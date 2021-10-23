@@ -27,8 +27,8 @@ public:
 
 private:
 
-    	const static int last_id = 0;
-    	int id;
+    const static int last_id = 0;
+    int id;
 	TokenType type = TokenType::Number;
 	string value;
 	

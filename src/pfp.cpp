@@ -21,8 +21,8 @@ TerminalNode::TerminalNode(string& token)
     
 }
 
-// BinaryNode::BinaryNode(Token* token, TerminalNode* left, TerminalNode* right)
-// {
+BinaryNode::BinaryNode(Token* token, TerminalNode* left, TerminalNode* right) : TerminalNode(token)
+{
 
-// }
+}
 
