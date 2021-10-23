@@ -24,3 +24,12 @@ Parser::BinaryNode::BinaryNode(Token* token, TerminalNode* left, TerminalNode* r
 
 }
 
+// static std::list<Token>& Parser::Parse(string input);
+// {
+//     // std::list<TerminalNode> nodes = Tokenize(input);
+//     // Parse(nodes);
+//     // return PostFix((BinaryNode)nodes[0]);
+//     return std::list<Token>();
+// }
+
+

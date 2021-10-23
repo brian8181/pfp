@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <list>
 
 using std::string;
 
@@ -87,7 +88,21 @@ public:
 
     };
 
+    static std::list<Token>& Parse(string input);
+    // {
+    //     // List<TerminalNode> nodes = Tokenize(input);
+    //     // Parse(nodes);
+    //     // return PostFix((BinaryNode)nodes[0]);
+    // }
+
 private:
+
+    // static char plevels[][] = new char[3][] 
+    // { 
+    //     new char[1] { '^' }, 
+    //     new char[2] { '*', '/' }, 
+    //     new char[2] { '+', '-' }
+    // };
 
 };
 
