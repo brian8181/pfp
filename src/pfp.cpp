@@ -1,27 +1,25 @@
 #include <iostream>
 #include <string>
 // #include <regex>
-// #include <getopt.h>
 // #include "main.hpp"
 #include "pfp.hpp"
 
-Token::Token(string& value)
+Parser::Token::Token(string& value)
 {
 
 }
 
-TerminalNode::TerminalNode(Token* token)
+Parser::TerminalNode::TerminalNode(Token* token)
 {
 
 }
 
-
-TerminalNode::TerminalNode(string& token)
+Parser::TerminalNode::TerminalNode(string& token)
 {
     
 }
 
-BinaryNode::BinaryNode(Token* token, TerminalNode* left, TerminalNode* right) : TerminalNode(token)
+Parser::BinaryNode::BinaryNode(Token* token, TerminalNode* left, TerminalNode* right) : TerminalNode(token)
 {
 
 }

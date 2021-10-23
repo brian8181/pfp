@@ -12,78 +12,80 @@ using std::string;
 unsigned char DEFAULTS = 0;
 unsigned char option_flags = 0; 
 
-enum TokenType
-{
-    Number,
-    Operator
-};
 
-class Token
+class Parser
 {
 
 public:
 
-    Token(string& value);
-
-private:
-
-    const static int last_id = 0;
-    int id;
-	TokenType type = TokenType::Number;
-	string value;
-	
-};
-
-class Node
-{
-
-public:
-
-    Node* GetParent();
-    void SetParent(Node& parent);
-
-private:
-
-    Node* parent = 0;
-
-};
-
-class TerminalNode
-{
-
-public:
-
-    TerminalNode(string& token);
-    TerminalNode(Token* token);
-
-    Token* GetToken();
-    void SetToken(Token& token);
-
-private:
-
-    Token* token = 0;
-
-};
+    enum TokenType
+    {
+        Number,
+        Operator
+    };
 
 
-class BinaryNode : public TerminalNode
-{
+    class Token
+    {
 
-public:
+    public:
 
-    BinaryNode(Token* token, TerminalNode* left, TerminalNode* right);
+        Token(string& value);
 
-private:
+    private:
 
-    TerminalNode* left;
-    TerminalNode* right;
+        const static int last_id = 0;
+        int id;
+        TokenType type = TokenType::Number;
+        string value;
+        
+    };
 
-};
+    class Node
+    {
 
-class PostfixParser
-{
+    public:
 
-public:
+        Node* GetParent();
+        void SetParent(Node& parent);
+
+    private:
+
+        Node* parent = 0;
+
+    };
+
+    class TerminalNode
+    {
+
+    public:
+
+        TerminalNode(string& token);
+        TerminalNode(Token* token);
+
+        Token* GetToken();
+        void SetToken(Token& token);
+
+    private:
+
+        Token* token = 0;
+
+    };
+
+
+    class BinaryNode : public TerminalNode
+    {
+
+    public:
+
+        BinaryNode(Token* token, TerminalNode* left, TerminalNode* right);
+
+    private:
+
+        TerminalNode* left;
+        TerminalNode* right;
+
+    };
 
 private:
 
