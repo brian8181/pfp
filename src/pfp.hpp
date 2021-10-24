@@ -107,7 +107,7 @@ public:
 
     static void ParseTokens(std::list<TerminalNode> nodes);
 
-    //static void OperatorPass(std::list<TerminalNode> nodes, char[] ops);
+    static void OperatorPass(std::list<TerminalNode> nodes, char* ops);
 
 private:
 

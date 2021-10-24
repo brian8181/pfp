@@ -118,7 +118,7 @@ void ParseTokens(std::list<Parser::TerminalNode> nodes)
 
 }
 
-// void OperatorPass(std::list<TerminalNode> nodes, char[] ops)
-// {
+void OperatorPass(std::list<Parser::TerminalNode> nodes, char* ops)
+{
 
-// }
+}
