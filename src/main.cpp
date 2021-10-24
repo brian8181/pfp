@@ -5,6 +5,7 @@
 #include <getopt.h>	
 #include <unistd.h>
 #include <termios.h>
+#include "bash_color.h"
 #include "main.hpp"
 
 using std::cin;
@@ -29,6 +30,14 @@ static struct option long_options[] =
 void print_version()
 {
 	cout << VERSION_STRING << endl;
+}
+
+void print_help()
+{
+	cout << "Usage: "  
+		 << FMT_BOLD << "pfp" << FMT_RESET << " "
+		 << FMT_UNDERLINE << "[OPTION]..." << FMT_RESET << " "
+		 << FMT_UNDERLINE << "INPUT..." << FMT_RESET << endl;
 }
 
 int main(int argc, char* argv[])
@@ -59,6 +68,9 @@ int parse_options(int argc, char* argv[])
 	{
 		switch (opt)
 		{
+			case 'h':
+				print_help();
+				return 0;
 			case 'r':
 				print_version();
 				return 0;
