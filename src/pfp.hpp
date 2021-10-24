@@ -8,12 +8,9 @@
 
 using std::string;
 
-// constants
-
 // Options Flags
 unsigned char DEFAULTS = 0;
 unsigned char option_flags = 0; 
-
 
 class Parser
 {
@@ -108,7 +105,6 @@ private:
     //     new char[2] { '*', '/' }, 
     //     new char[2] { '+', '-' }
     // };
-
 };
 
 #endif

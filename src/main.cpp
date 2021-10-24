@@ -24,7 +24,6 @@ static struct option long_options[] =
 		{"options", no_argument, 0, 'o'} //default
 	};
 
-
 int main(int argc, char* argv[])
 {
 	termios t;
