@@ -81,15 +81,15 @@ public:
         TerminalNode* right;
     };
 
-    static std::list<Token>& Parse(string input);
+    static std::list<Token>* Parse(string input);
 
-    static std::list<TerminalNode>& Parse(std::list<TerminalNode> tokens);
+    static std::list<TerminalNode>* Parse(std::list<TerminalNode> tokens);
 
-    static std::list<Token> PostFix(BinaryNode node);
+    static std::list<Token>* PostFix(BinaryNode node);
 
     //static string PostFixString(List<Token> postfix, char s = ' ')
 
-    static std::list<TerminalNode> Tokenize(string input);
+    static std::list<TerminalNode>* Tokenize(string input);
 
     static void SubParse(std::list<TerminalNode> nodes, int i, std::stack<TerminalNode> stack);
 
@@ -98,6 +98,15 @@ public:
     //static void OperatorPass(std::list<TerminalNode> nodes, char[] ops);
 
 private:
+
+    const char plevels[3] { 'a','b','c' };
+
+    //static char plevels[] { {'a'},{'b'},{'c'} };
+
+    //static char plevels[];// = new char[3]
+    // {
+    //     'a','b','c'
+    // };
 
     // static char plevels[][] = new char[3][] 
     // { 
