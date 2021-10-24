@@ -75,8 +75,18 @@ public:
 
         BinaryNode(Token* token, TerminalNode* left, TerminalNode* right);
 
+        Token* GetToken();
+        void SetToken(Token* node);
+
+        TerminalNode* GetRightNode();
+        void SetRightNode(TerminalNode* node);
+
+        TerminalNode* GetLeftNode();
+        void SetLeftNode(TerminalNode* node);
+
     private:
 
+        Token* token;
         TerminalNode* left;
         TerminalNode* right;
     };

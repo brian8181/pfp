@@ -1,7 +1,5 @@
 #include <iostream>
 #include <string>
-// #include <regex>
-// #include "main.hpp"
 #include "pfp.hpp"
 
 Parser::Token::Token(string& value)
@@ -9,6 +7,18 @@ Parser::Token::Token(string& value)
 
 }
 
+//** Node **//
+Parser::Node* Parser::Node::GetParent()
+{
+    return 0;
+}
+
+void Parser::Node::SetParent(Parser::Node* parent)
+{
+    this->parent = parent;  
+}
+
+//** TerminalNode **//
 Parser::TerminalNode::TerminalNode(Token* token)
 {
 
@@ -19,6 +29,18 @@ Parser::TerminalNode::TerminalNode(string& token)
     
 }
 
+Parser::Token* Parser::TerminalNode::GetToken()
+{
+    return 0;
+}
+
+// void Parser::TerminalNode::SetToken(Token* token)
+// {
+    
+// }
+
+
+//** BinaryNode **//
 Parser::BinaryNode::BinaryNode(Token* token, TerminalNode* left, TerminalNode* right) : TerminalNode(token)
 {
     this->left = left;
@@ -27,16 +49,37 @@ Parser::BinaryNode::BinaryNode(Token* token, TerminalNode* left, TerminalNode* r
     // this.right.Parent = this;
 }
 
-Parser::Node* Parser::Node::GetParent()
+Parser::Token* Parser::BinaryNode::GetToken()
 {
     return 0;
 }
 
-void Parser::Node::SetParent(Parser::Node* parent)
+void Parser::BinaryNode::SetToken(Token* node)
 {
-    this->parent = parent; 
+    
 }
 
+// Parser::TerminalNode* Parser::BinaryNode::GetRightNode()
+// {
+//     return 0;
+// }
+
+// void Parser::BinaryNode::SetRightNode(Parser::TerminalNode* right)
+// {
+
+// }
+
+// Parser::TerminalNode* Parser::BinaryNode::GetLeftNode()
+// {
+//     return 0;
+// }
+
+// void Parser::BinaryNode::SetLeftNode(Parser::TerminalNode* right)
+// {
+
+// }
+
+//** Parser **//
 std::list<Parser::Token>* Parser::Parse(string input)
 {
     // std::list<TerminalNode> nodes = Tokenize(input);
