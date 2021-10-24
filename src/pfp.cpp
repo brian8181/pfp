@@ -59,25 +59,25 @@ void Parser::BinaryNode::SetToken(Token* node)
     
 }
 
-// Parser::TerminalNode* Parser::BinaryNode::GetRightNode()
-// {
-//     return 0;
-// }
+Parser::TerminalNode* Parser::BinaryNode::GetRightNode()
+{
+    return 0;
+}
 
-// void Parser::BinaryNode::SetRightNode(Parser::TerminalNode* right)
-// {
+void Parser::BinaryNode::SetRightNode(Parser::TerminalNode* right)
+{
 
-// }
+}
 
-// Parser::TerminalNode* Parser::BinaryNode::GetLeftNode()
-// {
-//     return 0;
-// }
+Parser::TerminalNode* Parser::BinaryNode::GetLeftNode()
+{
+    return 0;
+}
 
-// void Parser::BinaryNode::SetLeftNode(Parser::TerminalNode* right)
-// {
+void Parser::BinaryNode::SetLeftNode(Parser::TerminalNode* right)
+{
 
-// }
+}
 
 //** Parser **//
 std::list<Parser::Token>* Parser::Parse(string input)
