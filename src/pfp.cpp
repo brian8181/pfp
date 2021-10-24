@@ -34,11 +34,10 @@ Parser::Token* Parser::TerminalNode::GetToken()
     return 0;
 }
 
-// void Parser::TerminalNode::SetToken(Token* token)
-// {
+void Parser::TerminalNode::SetToken(Token* token)
+{
     
-// }
-
+}
 
 //** BinaryNode **//
 Parser::BinaryNode::BinaryNode(Token* token, TerminalNode* left, TerminalNode* right) : TerminalNode(token)

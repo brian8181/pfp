@@ -62,7 +62,7 @@ public:
         TerminalNode(Token* token);
 
         Token* GetToken();
-        void SetToken(Token& token);
+        void SetToken(Token* token);
 
     private:
 
