@@ -9,6 +9,8 @@
 
 using std::cin;
 using std::string;
+using std::cout;
+using std::endl;
 
 static struct option long_options[] =
 	{
@@ -23,6 +25,11 @@ static struct option long_options[] =
 		{"extended", no_argument, 0, 'E'}, //default
 		{"options", no_argument, 0, 'o'} //default
 	};
+
+void print_version()
+{
+	cout << VERSION_STRING << endl;
+}
 
 int main(int argc, char* argv[])
 {
@@ -52,8 +59,14 @@ int parse_options(int argc, char* argv[])
 	{
 		switch (opt)
 		{
+			case 'r':
+				print_version();
+				return 0;
 		}
 	}
+
+	//DEBUG
+	cout << "Welcome to PFP (Post Fix Parser) v 0.1" << endl;
 
 	return 0;
 }

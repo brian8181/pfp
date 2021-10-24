@@ -4,7 +4,7 @@
 		{
 			"label": "g++ BUILD",
 			"type": "shell",
-			"command": "g++ -c ${workspaceFolder}/src/pfp.cpp -o pfp.o",
+			"command": "g++ ${workspaceFolder}/src/main.cpp ${workspaceFolder}/src/pfp.cpp -o ${workspaceFolder}/build/pfp",
 			"group": {
 				"kind": "build",
 				"isDefault": true
