@@ -15,9 +15,6 @@
 			"label": "MAKE DEBUGGDB",
 			"type": "shell",
 			"command": "make -f /home/brian/src/pfp/build/Makefile",
-			"group": {
-				"kind": "build"
-			},
 			"problemMatcher": []
 		}
 	]
