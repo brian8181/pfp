@@ -45,8 +45,8 @@ Parser::BinaryNode::BinaryNode(Token* token, TerminalNode* left, TerminalNode* r
 {
     this->left = left;
     this->right = right;
-    // this.left.Parent = this;
-    // this.right.Parent = this;
+    this->right->SetParent(this);
+    this->left->SetParent(this);
 }
 
 Parser::Token* Parser::BinaryNode::GetToken()

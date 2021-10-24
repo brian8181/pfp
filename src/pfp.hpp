@@ -51,10 +51,12 @@ public:
         Node* parent = 0;
     };
 
-    class TerminalNode
+    class TerminalNode : public Node
     {
 
     public:
+
+        //Node();
 
         TerminalNode(string& token);
         TerminalNode(Token* token);
