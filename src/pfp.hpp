@@ -44,7 +44,7 @@ public:
     public:
 
         Node* GetParent();
-        void SetParent(Node& parent);
+        void SetParent(Node* parent);
 
     private:
 

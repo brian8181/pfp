@@ -21,7 +21,20 @@ Parser::TerminalNode::TerminalNode(string& token)
 
 Parser::BinaryNode::BinaryNode(Token* token, TerminalNode* left, TerminalNode* right) : TerminalNode(token)
 {
+    this->left = left;
+    this->right = right;
+    // this.left.Parent = this;
+    // this.right.Parent = this;
+}
 
+Parser::Node* Parser::Node::GetParent()
+{
+    return 0;
+}
+
+void Parser::Node::SetParent(Parser::Node* parent)
+{
+    this->parent = parent; 
 }
 
 std::list<Parser::Token>* Parser::Parse(string input)
