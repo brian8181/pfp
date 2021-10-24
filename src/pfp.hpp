@@ -99,7 +99,7 @@ public:
 
     static std::list<Token>* PostFix(BinaryNode node);
 
-    //static string PostFixString(List<Token> postfix, char s = ' ')
+    static string PostFixString(std::list<Token> postfix, char s = ' ');
 
     static std::list<TerminalNode>* Tokenize(string input);
 

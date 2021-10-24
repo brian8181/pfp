@@ -98,10 +98,10 @@ std::list<Parser::Token>* PostFix(Parser::BinaryNode node)
     return 0;
 }
 
-// string PostFixString(List<Token> postfix, char s = ' ')
-// {
-
-// }
+string Parser::PostFixString(std::list<Token> postfix, char s)
+{
+    return "";
+}
 
 std::list<Parser::TerminalNode>* Tokenize(string input)
 {
