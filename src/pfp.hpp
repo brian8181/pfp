@@ -5,8 +5,10 @@
 #include <string>
 #include <list>
 #include <stack>
+#include <vector>
 
 using std::string;
+using std::vector;
 
 // Options Flags
 unsigned char DEFAULTS = 0;
@@ -56,8 +58,6 @@ public:
 
     public:
 
-        //Node();
-
         TerminalNode(string& token);
         TerminalNode(Token* token);
 
@@ -94,8 +94,8 @@ public:
     };
 
     static std::list<Token>* Parse(string input);
-
-    static std::list<TerminalNode>* Parse(std::list<TerminalNode> tokens);
+    
+    static std::list<TerminalNode>* Parse(std::list<TerminalNode>* tokens);
 
     static std::list<Token>* PostFix(BinaryNode node);
 
@@ -111,21 +111,10 @@ public:
 
 private:
 
-    const char plevels[3] { 'a','b','c' };
+    const vector<vector<char>> plevels{ {'^'},
+                                        {'*', '/'}, 
+                                        {'+', '-'} };
 
-    //static char plevels[] { {'a'},{'b'},{'c'} };
-
-    //static char plevels[];// = new char[3]
-    // {
-    //     'a','b','c'
-    // };
-
-    // static char plevels[][] = new char[3][] 
-    // { 
-    //     new char[1] { '^' }, 
-    //     new char[2] { '*', '/' }, 
-    //     new char[2] { '+', '-' }
-    // };
 };
 
 #endif
