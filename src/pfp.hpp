@@ -30,6 +30,7 @@ public:
 
     public:
 
+        //Token();
         Token(string& value);
 
     private:
@@ -67,7 +68,7 @@ public:
 
     private:
 
-        Token* token = 0;
+        Token* token;
     };
 
 
@@ -79,8 +80,8 @@ public:
         BinaryNode(Token* token, TerminalNode* left, TerminalNode* right);
         //BinaryNode( const TerminalNode& node );
 
-        Token* GetToken();
-        void SetToken(Token* node);
+        // Token* GetToken();
+        // void SetToken(Token* node);
 
         TerminalNode* GetRightNode();
         void SetRightNode(TerminalNode* node);
@@ -90,7 +91,6 @@ public:
 
     private:
 
-        Token* token;
         TerminalNode* left;
         TerminalNode* right;
     };

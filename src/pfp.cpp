@@ -3,6 +3,11 @@
 #include <stack>
 #include "pfp.hpp"
 
+// Parser::Token::Token()
+// {
+
+// }
+
 Parser::Token::Token(string& value)
 {
 
@@ -11,7 +16,7 @@ Parser::Token::Token(string& value)
 //** Node **//
 Parser::Node* Parser::Node::GetParent()
 {
-    return 0;
+    return parent;
 }
 
 void Parser::Node::SetParent(Parser::Node* parent)
@@ -27,22 +32,22 @@ void Parser::Node::SetParent(Parser::Node* parent)
 
 Parser::TerminalNode::TerminalNode(Token* token)
 {
-
+    SetToken(token);
 }
 
 Parser::TerminalNode::TerminalNode(string& token)
 {
-    
+    this->token = new Token(token);
 }
 
 Parser::Token* Parser::TerminalNode::GetToken()
 {
-    return 0;
+    return token;
 }
 
 void Parser::TerminalNode::SetToken(Token* token)
 {
-    
+    this->token = token;
 }
 
 //** BinaryNode **//
@@ -59,19 +64,9 @@ Parser::BinaryNode::BinaryNode(Token* token, TerminalNode* left, TerminalNode* r
     this->left->SetParent(this);
 }
 
-Parser::Token* Parser::BinaryNode::GetToken()
-{
-    return 0;
-}
-
-void Parser::BinaryNode::SetToken(Token* node)
-{
-    
-}
-
 Parser::TerminalNode* Parser::BinaryNode::GetRightNode()
 {
-    return 0;
+    return right;
 }
 
 void Parser::BinaryNode::SetRightNode(Parser::TerminalNode* right)
@@ -81,7 +76,7 @@ void Parser::BinaryNode::SetRightNode(Parser::TerminalNode* right)
 
 Parser::TerminalNode* Parser::BinaryNode::GetLeftNode()
 {
-    return 0;
+    return left;
 }
 
 void Parser::BinaryNode::SetLeftNode(Parser::TerminalNode* right)
