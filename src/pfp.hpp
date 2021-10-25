@@ -58,6 +58,7 @@ public:
 
     public:
 
+        //TerminalNode();
         TerminalNode(string& token);
         TerminalNode(Token* token);
 
@@ -76,6 +77,7 @@ public:
     public:
 
         BinaryNode(Token* token, TerminalNode* left, TerminalNode* right);
+        //BinaryNode( const TerminalNode& node );
 
         Token* GetToken();
         void SetToken(Token* node);
@@ -93,21 +95,22 @@ public:
         TerminalNode* right;
     };
 
-    static std::list<Token>* Parse(string input);
-    
-    static std::list<TerminalNode>* Parse(std::list<TerminalNode>* tokens);
-
-    static std::list<Token>* PostFix(BinaryNode node);
-
-    static string PostFixString(std::list<Token> postfix, char s = ' ');
-
+    static void foo();
     static std::list<TerminalNode>* Tokenize(string input);
 
-    static void SubParse(std::list<TerminalNode> nodes, int i, std::stack<TerminalNode> stack);
+    static std::list<Token>* Parse(string input);
+    
+    static std::list<TerminalNode>* Parse(std::list<TerminalNode>& tokens);
 
-    static void ParseTokens(std::list<TerminalNode> nodes);
+    static std::list<Token>* PostFix(const BinaryNode& node);
 
-    static void OperatorPass(std::list<TerminalNode> nodes, char* ops);
+    static string PostFixString(std::list<Token>* postfix, char s = ' ');
+
+    static void SubParse(std::list<TerminalNode>* nodes, int i, std::stack<TerminalNode> stack);
+
+    static void ParseTokens(std::list<TerminalNode>* nodes);
+
+    static void OperatorPass(std::list<TerminalNode>* nodes, char* ops);
 
 private:
 
