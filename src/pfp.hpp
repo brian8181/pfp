@@ -95,14 +95,15 @@ public:
         TerminalNode* right;
     };
 
-    static void foo();
+    ~Parser();
+
     static std::list<TerminalNode>* Tokenize(string input);
 
     static std::list<Token>* Parse(string input);
     
-    static std::list<TerminalNode>* Parse(std::list<TerminalNode>& tokens);
+    static std::list<TerminalNode>& Parse(std::list<TerminalNode>& tokens);
 
-    static std::list<Token>* PostFix(const BinaryNode& node);
+    static std::list<Parser::Token>* PostFix(const BinaryNode& node);
 
     static string PostFixString(std::list<Token>* postfix, char s = ' ');
 
@@ -118,6 +119,8 @@ private:
                                         {'*', '/'}, 
                                         {'+', '-'} };
 
+    // list<Parser::TerminalNode>* p_nodes;
+    // list<Parser::Token>* p_token;
 };
 
 #endif

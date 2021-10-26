@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <stack>
+#include <list>
+#include <memory>
 #include "pfp.hpp"
 
 // Parser::Token::Token()
@@ -85,6 +87,11 @@ void Parser::BinaryNode::SetLeftNode(Parser::TerminalNode* right)
 }
 
 //** Parser **//
+Parser::~Parser()
+{
+
+}
+
 std::list<Parser::TerminalNode>* Parser::Tokenize(string input)
 {
     return 0;
@@ -98,7 +105,7 @@ std::list<Parser::Token>* Parser::Parse(string input)
     return PostFix((BinaryNode&)node);
 }
 
-std::list<Parser::TerminalNode>* Parser::Parse(std::list<Parser::TerminalNode>& tokens)
+std::list<Parser::TerminalNode>& Parser::Parse(std::list<Parser::TerminalNode>& tokens)
 {
     std::stack<TerminalNode> stack;
 
@@ -126,17 +133,15 @@ std::list<Parser::TerminalNode>* Parser::Parse(std::list<Parser::TerminalNode>& 
 
     // if (tokens.Count > 1)
     //     ParseTokens(tokens);
-    // return tokens;
-    return 0;
-
+    return tokens;
 }
 
 std::list<Parser::Token>* Parser::PostFix(const Parser::BinaryNode& node)
 {
-    // TerminalNode current = node;
-    // List<Token> postfix = new List<Token>();
-    // while (current != null)
-    // {
+    const TerminalNode* current = &node;
+    std::auto_ptr<std::list<Token>> postfix(new std::list<Token>);
+    while (current != 0)
+    {
     //     postfix.Add(current.Token);
     //     if (current is BinaryNode)
     //     {
@@ -159,10 +164,9 @@ std::list<Parser::Token>* Parser::PostFix(const Parser::BinaryNode& node)
     //             }
     //         }
     //     }
-    // }
+    }
     // postfix.Reverse();
-    // return postfix;
-    return 0;
+    return postfix.get();
 }
 
 string Parser::PostFixString(std::list<Token>* postfix, char s)
