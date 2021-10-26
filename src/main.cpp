@@ -8,10 +8,7 @@
 #include "bash_color.h"
 #include "main.hpp"
 
-using std::cin;
-using std::string;
-using std::cout;
-using std::endl;
+using namespace std;
 
 static struct option long_options[] =
 	{
@@ -63,7 +60,7 @@ int parse_options(int argc, char* argv[])
 	int option_index = 0;
 	
 	optind = 0;
-	opt = getopt_long(argc, argv, "hvispPreEo", long_options, &option_index);
+	opt = getopt_long(argc, argv, "hr", long_options, &option_index);
 	while (opt != -1)
 	{
 		switch (opt)
@@ -74,7 +71,11 @@ int parse_options(int argc, char* argv[])
 			case 'r':
 				print_version();
 				return 0;
+			default: // unknown option before args
+				cerr << "Unexpected option, -h for help" << endl;
+				return -1;
 		}
+		opt = getopt_long(argc, argv, "hr", long_options, &option_index);
 	}
 
 	//DEBUG
