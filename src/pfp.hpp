@@ -35,6 +35,9 @@ public:
         TokenType& GetTokenType();
         void SetTokenType(TokenType type);
 
+        string GetValue();
+        
+
     private:
 
         const int id;

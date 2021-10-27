@@ -23,6 +23,10 @@ void Parser::Token::SetTokenType(TokenType type)
     m_type = type; 
 }
 
+string Parser::Token::GetValue()
+{
+    return m_value;
+}
 
 //** Node **//
 Parser::Node* Parser::Node::GetParent()
@@ -122,8 +126,8 @@ std::list<Parser::TerminalNode>& Parser::Parse(std::list<Parser::TerminalNode>& 
     std::list<Parser::TerminalNode>::iterator end = tokens.end();
     for (std::list<Parser::TerminalNode>::iterator iter=begin; iter != end; ++iter)
     {
-    //     if (tokens[i].Token.Value == "(")
-    //     {
+        if(/* iter->token->GetValue() == "("*/0)
+        {
     //         // check for implied mutiplication and create explict
     //         if (i > 0)
     //         {
@@ -138,7 +142,7 @@ std::list<Parser::TerminalNode>& Parser::Parse(std::list<Parser::TerminalNode>& 
     //         }
     //         SubParse(tokens, i, stack);
     //         len = tokens.Count;
-    //     }
+        }
     }
 
     // if (tokens.Count > 1)
