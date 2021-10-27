@@ -5,15 +5,28 @@
 #include <memory>
 #include "pfp.hpp"
 
+
+//** Token **//
 // Parser::Token::Token()
 // {
 
 // }
 
-Parser::Token::Token(string& value)
+Parser::Token::Token(string& value) : id(0)
 {
-
+    //Parser::Token::last_id = id;
 }
+
+Parser::TokenType& Parser::Token::GetTokenType()
+{
+    return m_type;
+}
+
+void Parser::Token::SetTokenType(TokenType type)
+{
+    m_type = type; 
+}
+
 
 //** Node **//
 Parser::Node* Parser::Node::GetParent()
@@ -139,10 +152,15 @@ std::list<Parser::TerminalNode>& Parser::Parse(std::list<Parser::TerminalNode>& 
 std::list<Parser::Token>* Parser::PostFix(const Parser::BinaryNode& node)
 {
     const TerminalNode* current = &node;
-    std::auto_ptr<std::list<Token>> postfix(new std::list<Token>);
+    std::unique_ptr<std::list<Token>> postfix(new std::list<Token>);
+
+    string s = "+"; // debug
+    Parser::Token t = Parser::Token(s); //debug
+
     while (current != 0)
     {
-    //     postfix.Add(current.Token);
+            postfix->push_back(t); // debug
+            //postfix_->push_back(current->token);
     //     if (current is BinaryNode)
     //     {
     //         current = ((BinaryNode)current).Right;

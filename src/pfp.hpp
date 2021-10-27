@@ -33,12 +33,15 @@ public:
         //Token();
         Token(string& value);
 
+        TokenType& GetTokenType();
+        void SetTokenType(TokenType type);
+
     private:
 
-        const static int last_id = 0;
-        int id;
-        TokenType type = TokenType::Number;
-        string value;
+        static int last_id;
+        const int id;
+        TokenType m_type = TokenType::Number;
+        string m_value;
     };
 
     class Node
