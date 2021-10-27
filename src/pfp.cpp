@@ -128,8 +128,8 @@ std::list<Parser::TerminalNode>& Parser::Parse(std::list<Parser::TerminalNode>& 
     {
         if(/* iter->token->GetValue() == "("*/0)
         {
-    //         // check for implied mutiplication and create explict
-    //         if (i > 0)
+            // check for implied mutiplication and create explict
+    //       if (i > 0)
     //         {
     //             if (tokens[i - 1].Token.Type == TokenType.Number)
     //             {
@@ -235,10 +235,13 @@ void Parser::SubParse(std::list<Parser::TerminalNode>* nodes, int i, std::stack<
 
 void Parser::ParseTokens(std::list<Parser::TerminalNode>* nodes)
 {
-    // foreach (char[] ops in plevels)
-    // {
+    //for (char[] ops in plevels)
+    //int len = Parser::plevels.size(); // debug
+    int len = 0; // debug'
+    for(int i = 0; i < len; ++i)
+    {
     //     OperatorPass(nodes, ops);
-    // }
+    }
 }
 
 void Parser::OperatorPass(std::list<Parser::TerminalNode>* nodes, char* ops)
