@@ -118,8 +118,9 @@ std::list<Parser::TerminalNode>& Parser::Parse(std::list<Parser::TerminalNode>& 
 {
     std::stack<TerminalNode> stack;
 
-    int len = tokens.size();
-    for (int i = 0; i < len; ++i)
+    std::list<Parser::TerminalNode>::iterator begin = tokens.begin();
+    std::list<Parser::TerminalNode>::iterator end = tokens.end();
+    for (std::list<Parser::TerminalNode>::iterator iter=begin; iter != end; ++iter)
     {
     //     if (tokens[i].Token.Value == "(")
     //     {
