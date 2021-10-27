@@ -30,7 +30,6 @@ public:
 
     public:
 
-        //Token();
         Token(string& value);
 
         TokenType& GetTokenType();
@@ -38,10 +37,12 @@ public:
 
     private:
 
-        static int last_id;
         const int id;
         TokenType m_type = TokenType::Number;
         string m_value;
+
+        int prev_id;
+        /*static*/ int last_id;
     };
 
     class Node

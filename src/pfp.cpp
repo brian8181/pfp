@@ -7,14 +7,10 @@
 
 
 //** Token **//
-// Parser::Token::Token()
-// {
-
-// }
-
 Parser::Token::Token(string& value) : id(0)
 {
-    //Parser::Token::last_id = id;
+    Parser::Token::prev_id = 0;
+    //Parser::Token::last_id = 0;
 }
 
 Parser::TokenType& Parser::Token::GetTokenType()
