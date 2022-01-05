@@ -126,8 +126,6 @@ std::list<Parser::TerminalNode>& Parser::Parse(std::list<Parser::TerminalNode>& 
     std::list<Parser::TerminalNode>::iterator end = tokens.end();
     for (std::list<Parser::TerminalNode>::iterator iter=begin; iter != end; ++iter)
     {
-        std::stack<Parser::TerminalNode> stack;
-
         Parser::Token token = *iter->GetToken();
         //int len = token.size
         if(0)
