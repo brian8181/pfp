@@ -128,8 +128,7 @@ std::list<Parser::TerminalNode>& Parser::Parse(std::list<Parser::TerminalNode>& 
     {
         Parser::Token token = *iter->GetToken();
         //int len = token.size
-        if(0)
-        //if(ter->token->GetValue() == "(")
+        if(token.GetValue() == "(")
         {
             // check for implied mutiplication and create explict
     //       if (i > 0)
