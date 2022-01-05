@@ -126,7 +126,12 @@ std::list<Parser::TerminalNode>& Parser::Parse(std::list<Parser::TerminalNode>& 
     std::list<Parser::TerminalNode>::iterator end = tokens.end();
     for (std::list<Parser::TerminalNode>::iterator iter=begin; iter != end; ++iter)
     {
-        if(/* iter->token->GetValue() == "("*/0)
+        std::stack<Parser::TerminalNode> stack;
+
+        Parser::Token token = *iter->GetToken();
+        //int len = token.size
+        if(0)
+        //if(ter->token->GetValue() == "(")
         {
             // check for implied mutiplication and create explict
     //       if (i > 0)
