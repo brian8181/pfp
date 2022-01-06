@@ -73,8 +73,6 @@ public:
         Token* GetToken();
         void SetToken(Token* token);
 
-        void GetValue();
-
     private:
 
         Token* token;

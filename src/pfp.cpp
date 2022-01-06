@@ -3,6 +3,7 @@
 #include <stack>
 #include <list>
 #include <memory>
+#include <regex>
 #include "pfp.hpp"
 
 
@@ -107,7 +108,32 @@ Parser::~Parser()
 
 std::list<Parser::TerminalNode>* Parser::Tokenize(string input)
 {
-    return 0;
+    std::list<Parser::TerminalNode> nodes;
+    //std::regex 
+
+    std::regex src_epx;;
+    string src;
+    auto begin = std::sregex_iterator(src.begin(), src.end(), src_epx);
+    auto end = std::sregex_iterator(); 
+    int match_i = 0;
+    // for each match
+    //hack
+    std::sregex_iterator iter = begin;
+    for (; iter != end; ++iter, ++match_i)
+    {
+        return 0;
+    }
+
+    // s  List<TerminalNode> nodes = new List<TerminalNode>();
+    //         Regex regx = new Regex(@"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])");
+    //         MatchCollection mc = regx.Matches(input);
+
+    //         foreach (Match m in mc)
+    //         {
+    //             TerminalNode n = new TerminalNode(m.Value);
+    //             nodes.Add(n);
+    //         }
+    //         return nodes;
 }
 
 std::list<Parser::Token>* Parser::Parse(string input)
@@ -127,7 +153,6 @@ std::list<Parser::TerminalNode>& Parser::Parse(std::list<Parser::TerminalNode>& 
     for (std::list<Parser::TerminalNode>::iterator iter=begin; iter != end; ++iter)
     {
         Parser::Token token = *iter->GetToken();
-        //int len = token.size
         if(token.GetValue() == "(")
         {
             // check for implied mutiplication and create explict
