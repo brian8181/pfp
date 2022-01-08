@@ -37,7 +37,6 @@ public:
 
         string GetValue();
         
-
     private:
 
         const int id;
@@ -84,16 +83,16 @@ public:
 
     public:
 
-        BinaryNode(Token* token, TerminalNode* left, TerminalNode* right);
-        //BinaryNode( const TerminalNode& node );
+        BinaryNode(Token* token, Parser::TerminalNode* left, TerminalNode* right);
+        BinaryNode(const TerminalNode& node);
 
         // Token* GetToken();
         // void SetToken(Token* node);
 
-        TerminalNode* GetRightNode();
+        Parser::TerminalNode* GetRightNode();
         void SetRightNode(TerminalNode* node);
 
-        TerminalNode* GetLeftNode();
+        Parser::TerminalNode* GetLeftNode();
         void SetLeftNode(TerminalNode* node);
 
     private:

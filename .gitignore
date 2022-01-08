@@ -86,3 +86,5 @@ Makefile
 build/Makefile
 build/pfp_test
 build/bash_color_test
+
+.vscode/*

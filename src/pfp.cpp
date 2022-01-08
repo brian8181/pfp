@@ -41,19 +41,15 @@ void Parser::Node::SetParent(Parser::Node* parent)
 }
 
 //** TerminalNode **//
-// Parser::TerminalNode::TerminalNode()
-// {
+Parser::TerminalNode::TerminalNode(string& token)
+{
+    this->token = new Token(token);
+}
 
-// }
 
 Parser::TerminalNode::TerminalNode(Token* token)
 {
     SetToken(token);
-}
-
-Parser::TerminalNode::TerminalNode(string& token)
-{
-    this->token = new Token(token);
 }
 
 Parser::Token* Parser::TerminalNode::GetToken()
@@ -67,10 +63,6 @@ void Parser::TerminalNode::SetToken(Token* token)
 }
 
 //** BinaryNode **//
-// Parser::BinaryNode::BinaryNode( const TerminalNode& node );
-// {
-
-// }
 
 Parser::BinaryNode::BinaryNode(Token* token, TerminalNode* left, TerminalNode* right) : TerminalNode(token)
 {
@@ -108,23 +100,23 @@ Parser::~Parser()
 
 std::list<Parser::TerminalNode>* Parser::Tokenize(string input)
 {
-    std::list<Parser::TerminalNode> nodes;
-    //std::regex 
-
-    std::regex src_epx;;
-    string src;
-    auto begin = std::sregex_iterator(src.begin(), src.end(), src_epx);
+    std::regex::flag_type REGX_FLAGS = std::regex::basic;
+    std::list<Parser::TerminalNode>* nodes =  new std::list<Parser::TerminalNode>;
+    std::regex input_epx = std::regex(R"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])", REGX_FLAGS);
+    
+    auto begin = std::sregex_iterator(input.begin(), input.end(), input_epx);
     auto end = std::sregex_iterator(); 
     int match_i = 0;
-    // for each match
-    //hack
     std::sregex_iterator iter = begin;
     for (; iter != end; ++iter, ++match_i)
     {
-        return 0;
+        //Parser::TerminalNode n(*iter);
+        //nodes.pop_front(*n);
     }
 
-    // s  List<TerminalNode> nodes = new List<TerminalNode>();
+    return nodes;
+
+    //   List<TerminalNode> nodes = new List<TerminalNode>();
     //         Regex regx = new Regex(@"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])");
     //         MatchCollection mc = regx.Matches(input);
 
