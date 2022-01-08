@@ -6,8 +6,9 @@
 #include <regex>
 #include "pfp.hpp"
 
-
+///////////////
 //** Token **//
+//////////////
 Parser::Token::Token(string& value) : id(0)
 {
     Parser::Token::prev_id = 0;
@@ -29,7 +30,9 @@ string Parser::Token::GetValue()
     return m_value;
 }
 
+///////////////
 //** Node **//
+/////////////
 Parser::Node* Parser::Node::GetParent()
 {
     return parent;
@@ -40,7 +43,9 @@ void Parser::Node::SetParent(Parser::Node* parent)
     this->parent = parent;  
 }
 
+///////////////////////
 //** TerminalNode **//
+/////////////////////
 Parser::TerminalNode::TerminalNode(string& token)
 {
     this->token = new Token(token);
@@ -62,8 +67,9 @@ void Parser::TerminalNode::SetToken(Token* token)
     this->token = token;
 }
 
+/////////////////////
 //** BinaryNode **//
-
+///////////////////
 Parser::BinaryNode::BinaryNode(Token* token, TerminalNode* left, TerminalNode* right) : TerminalNode(token)
 {
     this->left = left;
@@ -92,10 +98,19 @@ void Parser::BinaryNode::SetLeftNode(Parser::TerminalNode* right)
 
 }
 
+/////////////////
 //** Parser **//
+///////////////
 Parser::~Parser()
 {
-
+    // 1234567890
+    // 0987654321
+    // abcdefghij
+    // ABCDEFGHIJ
+    // LIHGFEDCBA 000
+    //            111
+    //            222
+    //            888
 }
 
 std::list<Parser::TerminalNode>* Parser::Tokenize(string input)
@@ -149,19 +164,19 @@ std::list<Parser::TerminalNode>& Parser::Parse(std::list<Parser::TerminalNode>& 
         if(token.GetValue() == "(")
         {
             // check for implied mutiplication and create explict
-    //       if (i > 0)
-    //         {
-    //             if (tokens[i - 1].Token.Type == TokenType.Number)
-    //             {
-    //                 // add a "*"
-    //                 TerminalNode multi_op = new TerminalNode("*");
-    //                 tokens.Insert(i, multi_op);
-    //                 len = tokens.Count;
-    //                 ++i;
-    //             }
-    //         }
-    //         SubParse(tokens, i, stack);
-    //         len = tokens.Count;
+            // if (i > 0)
+            // {
+            //     if (tokens[i - 1].Token.Type == TokenType.Number)
+            //     {
+            //         // add a "*"
+            //         TerminalNode multi_op = new TerminalNode("*");
+            //         tokens.Insert(i, multi_op);
+            //         len = tokens.Count;
+            //         ++i;
+            //     }
+            // }
+            // SubParse(tokens, i, stack);
+            // len = tokens.Count;
         }
     }
 
@@ -182,27 +197,27 @@ std::list<Parser::Token>* Parser::PostFix(const Parser::BinaryNode& node)
     {
             postfix->push_back(t); // debug
             //postfix_->push_back(current->token);
-    //     if (current is BinaryNode)
-    //     {
-    //         current = ((BinaryNode)current).Right;
-    //     }
-    //     else 
-    //     {
-    //         while (current != null)
-    //         {
-    //             // current is parents right move to parents Left
-    //             if (((BinaryNode)current.Parent) != null && ((BinaryNode)current.Parent).Left != current)
-    //             {
-    //                 current = ((BinaryNode)current.Parent).Left;
-    //                 break;
-    //             }
-    //             // current parents left move to parent.parent
-    //             else 
-    //             {
-    //                 current = ((BinaryNode)current.Parent);
-    //             }
-    //         }
-    //     }
+            // if (current is BinaryNode)
+            // {
+            //     current = ((BinaryNode)current).Right;
+            // }
+            // else 
+            // {
+            //     while (current != null)
+            //     {
+            //         // current is parents right move to parents Left
+            //         if (((BinaryNode)current.Parent) != null && ((BinaryNode)current.Parent).Left != current)
+            //         {
+            //             current = ((BinaryNode)current.Parent).Left;
+            //             break;
+            //         }
+            //         // current parents left move to parent.parent
+            //         else 
+            //         {
+            //             current = ((BinaryNode)current.Parent);
+            //         }
+            //     }
+            // }
     }
     // postfix.Reverse();
     return postfix.get();
@@ -260,7 +275,7 @@ void Parser::ParseTokens(std::list<Parser::TerminalNode>* nodes)
     int len = 0; // debug'
     for(int i = 0; i < len; ++i)
     {
-    //     OperatorPass(nodes, ops);
+        // OperatorPass(nodes, ops);
     }
 }
 
