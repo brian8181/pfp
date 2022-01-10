@@ -125,8 +125,10 @@ std::list<Parser::TerminalNode>* Parser::Tokenize(string input)
     std::sregex_iterator iter = begin;
     for (; iter != end; ++iter, ++match_i)
     {
-        //Parser::TerminalNode n(*iter);
-        //nodes.pop_front(*n);
+        std::smatch match = *iter;
+        std::string s = match.str(0);
+        Parser::TerminalNode n(s);
+        nodes->push_front(n);
     }
 
     return nodes;
@@ -156,6 +158,8 @@ std::list<Parser::TerminalNode>& Parser::Parse(std::list<Parser::TerminalNode>& 
 {
     std::stack<TerminalNode> stack;
 
+    int i = 0;
+    int len = tokens.size();
     std::list<Parser::TerminalNode>::iterator begin = tokens.begin();
     std::list<Parser::TerminalNode>::iterator end = tokens.end();
     for (std::list<Parser::TerminalNode>::iterator iter=begin; iter != end; ++iter)
@@ -166,14 +170,15 @@ std::list<Parser::TerminalNode>& Parser::Parse(std::list<Parser::TerminalNode>& 
             // check for implied mutiplication and create explict
             // if (i > 0)
             // {
-            //     if (tokens[i - 1].Token.Type == TokenType.Number)
-            //     {
-            //         // add a "*"
-            //         TerminalNode multi_op = new TerminalNode("*");
-            //         tokens.Insert(i, multi_op);
-            //         len = tokens.Count;
-            //         ++i;
-            //     }
+                    //if (tokens[i - 1].Token.Type == TokenType.Number)
+                    {
+                        // add a "*"
+                        string op("*");
+                        TerminalNode multi_op(op);
+                        tokens.insert(iter, multi_op);
+                        len = tokens.size();
+                        ++i;
+                    }
             // }
             // SubParse(tokens, i, stack);
             // len = tokens.Count;

@@ -84,7 +84,6 @@ public:
     public:
 
         BinaryNode(Token* token, Parser::TerminalNode* left, TerminalNode* right);
-        BinaryNode(const TerminalNode& node);
 
         // Token* GetToken();
         // void SetToken(Token* node);
