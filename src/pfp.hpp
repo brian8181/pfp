@@ -103,19 +103,12 @@ public:
     ~Parser();
 
     static std::list<TerminalNode>* Tokenize(string input);
-
     static std::list<Token>* Parse(string input);
-    
     static std::list<TerminalNode>& Parse(std::list<TerminalNode>& tokens);
-
     static std::list<Parser::Token>* PostFix(const BinaryNode& node);
-
     static string PostFixString(std::list<Token>* postfix, char s = ' ');
-
-    static void SubParse(std::list<TerminalNode>* nodes, int i, std::stack<TerminalNode> stack);
-
+    static void SubParse(std::vector<TerminalNode>* nodes, int i, std::stack<TerminalNode> stack);
     static void ParseTokens(std::list<TerminalNode>* nodes);
-
     static void OperatorPass(std::list<TerminalNode>* nodes, char* ops);
 
 private:
@@ -124,8 +117,8 @@ private:
                                         {'*', '/'}, 
                                         {'+', '-'} };
 
-    // list<Parser::TerminalNode>* p_nodes;
-    // list<Parser::Token>* p_token;
+    std::list<Parser::TerminalNode>* p_nodes;
+    std::list<Parser::Token>* p_tokens;
 };
 
 #endif

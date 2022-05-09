@@ -168,8 +168,8 @@ std::list<Parser::TerminalNode>& Parser::Parse(std::list<Parser::TerminalNode>& 
         if(token.GetValue() == "(")
         {
             // check for implied mutiplication and create explict
-            // if (i > 0)
-            // {
+            if (i > 0)
+            {
                     //if (tokens[i - 1].Token.Type == TokenType.Number)
                     {
                         // add a "*"
@@ -179,14 +179,16 @@ std::list<Parser::TerminalNode>& Parser::Parse(std::list<Parser::TerminalNode>& 
                         len = tokens.size();
                         ++i;
                     }
-            // }
+            }
             // SubParse(tokens, i, stack);
-            // len = tokens.Count;
+            //len = tokens.Count;
         }
     }
 
-    // if (tokens.Count > 1)
-    //     ParseTokens(tokens);
+    if (tokens.size() > 1)
+    {
+         //ParseTokens(tokens);
+    }
     return tokens;
 }
 
@@ -239,8 +241,41 @@ string Parser::PostFixString(std::list<Token>* postfix, char s)
     return "";
 }
 
-void Parser::SubParse(std::list<Parser::TerminalNode>* nodes, int i, std::stack<Parser::TerminalNode> stack)
+void Parser::SubParse(std::vector<Parser::TerminalNode>* nodes, int i, std::stack<Parser::TerminalNode> stack)
 {
+    //C++ 
+    // stack
+    // while (nodes[i].Token.Value != ")")
+    {
+    //     stack.Push(nodes[i]);
+         ++i;
+    }
+
+    // // unstack
+    // TerminalNode n = stack.Pop();
+    --i;
+    // List<TerminalNode> tmp_nodes = new List<TerminalNode>();
+    // while (n.Token.Value != "(") 
+    {
+    //     tmp_nodes.Add(n);
+    //     n = stack.Pop();
+        --i;
+    }
+
+    // int len = tmp_nodes.Count;
+    // tmp_nodes.Reverse();
+    // ParseTokens(tmp_nodes);         // parse sub list
+    // nodes.Insert(i, tmp_nodes[0]);  // put sub list into original
+    // nodes.RemoveRange(i + 1, len + 2);
+
+    // // continue ...
+    // if (stack.Count != 0)
+    {
+    //     stack.Push(tmp_nodes[0]);
+    //     SubParse(nodes, i + 1, stack);
+    }
+
+   //C# ref code
     // stack
     // while (nodes[i].Token.Value != ")")
     // {
@@ -289,6 +324,25 @@ void Parser::OperatorPass(std::list<Parser::TerminalNode>* nodes, char* ops)
     int len = nodes->size();
     for (int i = 0; i < len; ++i)
     {
+        // NEW C++ CODE
+        int len = strlen(ops);
+        for(int i = 0; i < len; ++i)
+        {
+            //if(nodes->begin() != BinaryNode)
+            {
+                //if()
+                {
+                    //BinaryNode node();
+                    //nodes->insert(i -1, node);
+                    //nodes->remove();
+                    len = nodes->size();
+                    ++i;
+                    break;
+                }
+            }
+        }
+
+        //C# code
         // foreach (char c in ops)
         // {
         //     if (!(nodes[i] is BinaryNode))
