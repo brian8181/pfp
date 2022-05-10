@@ -241,23 +241,24 @@ string Parser::PostFixString(std::list<Token>* postfix, char s)
     return "";
 }
 
-void Parser::SubParse(std::vector<Parser::TerminalNode>* nodes, int i, std::stack<Parser::TerminalNode> stack)
+void Parser::SubParse(std::vector<Parser::TerminalNode>& nodes, int i, std::stack<Parser::TerminalNode>& stack)
 {
     //C++ 
     // stack
-    // while (nodes[i].Token.Value != ")")
+    //while (nodes[i].Token.Value != ")")
     {
-    //     stack.Push(nodes[i]);
+        //stack.push(nodes[i]);
          ++i;
     }
 
     // // unstack
-    // TerminalNode n = stack.Pop();
+    TerminalNode& n = stack.top();
+    stack.pop();
     --i;
-    // List<TerminalNode> tmp_nodes = new List<TerminalNode>();
+    std::list<TerminalNode> tmp_nodes;
     // while (n.Token.Value != "(") 
     {
-    //     tmp_nodes.Add(n);
+        tmp_nodes.push_back(n);
     //     n = stack.Pop();
         --i;
     }
