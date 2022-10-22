@@ -207,7 +207,7 @@ std::vector<Parser::Token>* Parser::PostFix(const Parser::BinaryNode& node)
     {
             postfix->push_back(t); // debug
             // postfix->push_back(t);
-            if (typeid(current).name() == "BinaryNode")
+            if (typeid(current) == typeid(BinaryNode))
             {
         
 
