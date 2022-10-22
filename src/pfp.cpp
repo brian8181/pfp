@@ -205,10 +205,13 @@ std::vector<Parser::Token>* Parser::PostFix(const Parser::BinaryNode& node)
 
     while (current != 0)
     {
-            // postfix->push_back(t); // debug
+            postfix->push_back(t); // debug
             // postfix->push_back(t);
-            // /* if (current is BinaryNode )
-            //
+            if (typeid(current).name() == "BinaryNode")
+            {
+        
+
+            }
             //    current = ((BinaryNode)current).Right;
             //}
             //else 
