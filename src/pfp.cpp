@@ -13,6 +13,7 @@ Parser::Token::Token(string& value) : id(0)
 {
     Parser::Token::prev_id = 0;
     //Parser::Token::last_id = 0;
+
 }
 
 Parser::TokenType& Parser::Token::GetTokenType()
@@ -113,10 +114,10 @@ Parser::~Parser()
     //            888
 }
 
-std::list<Parser::TerminalNode>* Parser::Tokenize(string input)
+std::vector<Parser::TerminalNode>* Parser::Tokenize(string input)
 {
     std::regex::flag_type REGX_FLAGS = std::regex::basic;
-    std::list<Parser::TerminalNode>* nodes =  new std::list<Parser::TerminalNode>;
+    std::vector<Parser::TerminalNode>* nodes =  new std::vector<Parser::TerminalNode>;
     std::regex input_epx = std::regex(R"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])", REGX_FLAGS);
     
     auto begin = std::sregex_iterator(input.begin(), input.end(), input_epx);
@@ -128,7 +129,7 @@ std::list<Parser::TerminalNode>* Parser::Tokenize(string input)
         std::smatch match = *iter;
         std::string s = match.str(0);
         Parser::TerminalNode n(s);
-        nodes->push_front(n);
+        nodes->push_back(n);
     }
 
     return nodes;
@@ -146,23 +147,23 @@ std::list<Parser::TerminalNode>* Parser::Tokenize(string input)
     // return nodes;
 }
 
-std::list<Parser::Token>* Parser::Parse(string input)
+std::vector<Parser::Token>* Parser::Parse(string input)
 {
-    std::list<Parser::TerminalNode>* nodes = Parser::Tokenize(input);
+    std::vector<Parser::TerminalNode>* nodes = Parser::Tokenize(input);
     Parse(*nodes);
     Parser::TerminalNode node = nodes->front();
     return PostFix((BinaryNode&)node);
 }
 
-std::list<Parser::TerminalNode>& Parser::Parse(std::list<Parser::TerminalNode>& tokens)
+std::vector<Parser::TerminalNode>& Parser::Parse(std::vector<Parser::TerminalNode>& tokens)
 {
     std::stack<TerminalNode> stack;
-
+    
     int i = 0;
     int len = tokens.size();
-    std::list<Parser::TerminalNode>::iterator begin = tokens.begin();
-    std::list<Parser::TerminalNode>::iterator end = tokens.end();
-    for (std::list<Parser::TerminalNode>::iterator iter=begin; iter != end; ++iter)
+    std::vector<Parser::TerminalNode>::iterator begin = tokens.begin();
+    std::vector<Parser::TerminalNode>::iterator end = tokens.end();
+    for (std::vector<Parser::TerminalNode>::iterator iter=begin; iter != end; ++iter)
     {
         Parser::Token token = *iter->GetToken();
         if(token.GetValue() == "(")
@@ -170,17 +171,19 @@ std::list<Parser::TerminalNode>& Parser::Parse(std::list<Parser::TerminalNode>& 
             // check for implied mutiplication and create explict
             if (i > 0)
             {
-                    //if (tokens[i - 1].Token.Type == TokenType.Number)
+                    if (tokens[i - 1].GetToken()->GetTokenType() == Number)
+                    //if (tokens.insert(i-1).Token.Type == TokenType.Number)
                     {
                         // add a "*"
                         string op("*");
                         TerminalNode multi_op(op);
-                        tokens.insert(iter, multi_op);
+                        //tokens.insert(iter, multi_op);
+                        tokens.push_back(multi_op);
                         len = tokens.size();
                         ++i;
                     }
             }
-            // SubParse(tokens, i, stack);
+            SubParse(tokens, i, stack);
             //len = tokens.Count;
         }
     }
@@ -192,45 +195,45 @@ std::list<Parser::TerminalNode>& Parser::Parse(std::list<Parser::TerminalNode>& 
     return tokens;
 }
 
-std::list<Parser::Token>* Parser::PostFix(const Parser::BinaryNode& node)
+std::vector<Parser::Token>* Parser::PostFix(const Parser::BinaryNode& node)
 {
     const TerminalNode* current = &node;
-    std::unique_ptr<std::list<Token>> postfix(new std::list<Token>);
+    std::vector<Token>* postfix(new std::vector<Token>);
 
     string s = "+"; // debug
     Parser::Token t = Parser::Token(s); //debug
 
     while (current != 0)
     {
-            postfix->push_back(t); // debug
-            //postfix_->push_back(current->token);
-            // if (current is BinaryNode)
+            // postfix->push_back(t); // debug
+            // postfix->push_back(t);
+            // /* if (current is BinaryNode )
+            //
+            //    current = ((BinaryNode)current).Right;
+            //}
+            //else 
             // {
-            //     current = ((BinaryNode)current).Right;
-            // }
-            // else 
-            // {
-            //     while (current != null)
+            //     while (current != 0)
             //     {
             //         // current is parents right move to parents Left
-            //         if (((BinaryNode)current.Parent) != null && ((BinaryNode)current.Parent).Left != current)
-            //         {
-            //             current = ((BinaryNode)current.Parent).Left;
-            //             break;
-            //         }
-            //         // current parents left move to parent.parent
-            //         else 
-            //         {
-            //             current = ((BinaryNode)current.Parent);
-            //         }
+            //         // if (((BinaryNode)current.Parent) != null && ((BinaryNode)current.Parent).Left != current)
+            //         // {
+            //         //     current = ((BinaryNode)current.Parent).Left;
+            //         //     break;
+            //         // }
+            //         // // current parents left move to parent.parent
+            //         // else 
+            //         // {
+            //         //     current = ((BinaryNode)current.Parent);
+            //         // }
             //     }
-            // }
+            //}
     }
     // postfix.Reverse();
-    return postfix.get();
-}
+    return postfix;
+    }
 
-string Parser::PostFixString(std::list<Token>* postfix, char s)
+string Parser::PostFixString(std::vector<Token>* postfix, char s)
 {
     // StringBuilder str = new StringBuilder();
     // foreach (Token t in postfix)
@@ -301,7 +304,7 @@ void Parser::SubParse(std::vector<Parser::TerminalNode>& nodes, int i, std::stac
     // nodes.Insert(i, tmp_nodes[0]);  // put sub list into original
     // nodes.RemoveRange(i + 1, len + 2);
 
-    // // continue ...
+    // // continue ...`
     // if (stack.Count != 0)
     // {
     //     stack.Push(tmp_nodes[0]);
@@ -309,7 +312,7 @@ void Parser::SubParse(std::vector<Parser::TerminalNode>& nodes, int i, std::stac
     // }
 }
 
-void Parser::ParseTokens(std::list<Parser::TerminalNode>* nodes)
+void Parser::ParseTokens(std::vector<Parser::TerminalNode>* nodes)
 {
     //for (char[] ops in plevels)
     //int len = Parser::plevels.size(); // debug
@@ -320,7 +323,7 @@ void Parser::ParseTokens(std::list<Parser::TerminalNode>* nodes)
     }
 }
 
-void Parser::OperatorPass(std::list<Parser::TerminalNode>* nodes, char* ops)
+void Parser::OperatorPass(std::vector<Parser::TerminalNode>* nodes, char* ops)
 {
     int len = nodes->size();
     for (int i = 0; i < len; ++i)

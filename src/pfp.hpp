@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <string>
-#include <list>
+#include <vector>
 #include <stack>
 #include <vector>
 
@@ -34,7 +34,6 @@ public:
 
         TokenType& GetTokenType();
         void SetTokenType(TokenType type);
-
         string GetValue();
         
     private:
@@ -65,7 +64,7 @@ public:
 
     public:
 
-        //TerminalNode();
+        TerminalNode();
         TerminalNode(string& token);
         TerminalNode(Token* token);
 
@@ -102,23 +101,21 @@ public:
 
     ~Parser();
 
-    static std::list<TerminalNode>* Tokenize(string input);
-    static std::list<Token>* Parse(string input);
-    static std::list<TerminalNode>& Parse(std::list<TerminalNode>& tokens);
-    static std::list<Parser::Token>* PostFix(const BinaryNode& node);
-    static string PostFixString(std::list<Token>* postfix, char s = ' ');
-    static void SubParse(std::vector<TerminalNode>& nodes, int i, std::stack<TerminalNode>& stack);
-    static void ParseTokens(std::list<TerminalNode>* nodes);
-    static void OperatorPass(std::list<TerminalNode>* nodes, char* ops);
-
-private:
+    static std::vector<TerminalNode>* Tokenize(string input);
+    std::vector<Token>* Parse(string input);
+    std::vector<TerminalNode>& Parse(std::vector<TerminalNode>& tokens);
+    std::vector<Token>* PostFix(const BinaryNode& node);
+    void ParseTokens(std::vector<Parser::TerminalNode>* nodes);
+    string PostFixString(std::vector<Token>* postfix, char s = ' ');
+    void SubParse(std::vector<TerminalNode>& nodes, int i, std::stack<TerminalNode>& stack);
+    static void OperatorPass(std::vector<TerminalNode>* nodes, char* ops);
 
     const vector<vector<char>> plevels{ {'^'},
                                         {'*', '/'}, 
                                         {'+', '-'} };
 
-    std::list<Parser::TerminalNode>* p_nodes;
-    std::list<Parser::Token>* p_tokens;
+    std::vector<Parser::TerminalNode>* p_nodes;
+    std::vector<Parser::Token>* p_tokens;
 };
 
 #endif
