@@ -88,3 +88,7 @@ build/pfp_test
 build/bash_color_test
 
 .vscode/*
+
+# build output
+build
+!build/Makefile
