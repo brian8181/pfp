@@ -85,9 +85,9 @@ Parser::TerminalNode* Parser::BinaryNode::GetRightNode()
     return right;
 }
 
-void Parser::BinaryNode::SetRightNode(Parser::TerminalNode* right)
+void Parser::BinaryNode::SetRightNode(Parser::TerminalNode* node)
 {
-
+    right = node;
 }
 
 Parser::TerminalNode* Parser::BinaryNode::GetLeftNode()
@@ -95,9 +95,9 @@ Parser::TerminalNode* Parser::BinaryNode::GetLeftNode()
     return left;
 }
 
-void Parser::BinaryNode::SetLeftNode(Parser::TerminalNode* right)
+void Parser::BinaryNode::SetLeftNode(Parser::TerminalNode* node)
 {
-
+    left = node;
 }
 
 /////////////////
