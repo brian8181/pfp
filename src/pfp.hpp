@@ -67,8 +67,6 @@ public:
         TerminalNode();
         TerminalNode(string& token);
         TerminalNode(Token* token);
-
-        Token* GetToken();
         void SetToken(Token* token);
 
     private:
@@ -84,7 +82,7 @@ public:
 
         BinaryNode(Token* token, Parser::TerminalNode* left, TerminalNode* right);
 
-        // Token* GetToken();
+        Token* GetToken();
         // void SetToken(Token* node);
 
         Parser::TerminalNode* GetRightNode();
