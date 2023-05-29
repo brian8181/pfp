@@ -16,24 +16,24 @@ int parse_options(int argc, char* argv[])
 	int opt = 0;
 	int option_index = 0;
 	
-	optind = 0;
-	opt = getopt_long(argc, argv, "hr", long_options, &option_index);
-	while (opt != -1)
-	{
-		switch (opt)
-		{
-			case 'h':
-				print_help();
-				return 0;
-			case 'r':
-				print_version();
-				return 0;
-			default: // unknown option before args
-				cerr << "Unexpected option, -h for help" << endl;
-				return -1;
-		}
-		opt = getopt_long(argc, argv, "hr", long_options, &option_index);
-	}
+	// optind = 0;
+	// opt = getopt_long(argc, argv, "hr", long_options, &option_index);
+	// while (opt != -1)
+	// {
+	// 	switch (opt)
+	// 	{
+	// 		case 'h':
+	// 			print_help();
+	// 			return 0;
+	// 		case 'r':
+	// 			print_version();
+	// 			return 0;
+	// 		default: // unknown option before args
+	// 			cerr << "Unexpected option, -h for help" << endl;
+	// 			return -1;
+	// 	}
+	// 	opt = getopt_long(argc, argv, "hr", long_options, &option_index);
+	// }
 
 	//DEBUG
 	cout << "Welcome to PFP (Post Fix Parser) v 0.1" << endl;
