@@ -1,12 +1,11 @@
-class node
+#include "node.hpp"
+
+node* node::get_parent()
 {
+    return 0;
+}
 
-public:
-
-    node* get_parent();
-    void set_parent(node* parent);
-
-private:
-
-    node* parent = 0;
-};
+ void set_parent(node* parent)
+ {
+    
+ }
