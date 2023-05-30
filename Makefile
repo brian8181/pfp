@@ -40,8 +40,8 @@ debuggdb: CXXFLAGS += -DDEBUG -ggdb # compile & link
 all: $(APPNAME)
 
 # link
-$(APPNAME): $(APPNAME).o main.o node.o
-	 $(CXX) $(CXXFLAGS) $(BUILDDIR)/$(APPNAME).o $(BUILDDIR)/main.o $(BUILDDIR)/node.o -o $(BUILDDIR)/$(APPNAME)
+$(APPNAME): $(APPNAME).o main.o parser.o node.o
+	 $(CXX) $(CXXFLAGS) $(BUILDDIR)/$(APPNAME).o $(BUILDDIR)/main.o $(BUILDDIR)/parser.o $(BUILDDIR)/node.o -o $(BUILDDIR)/$(APPNAME)
 
 # compile only
 $(APPNAME).o:
@@ -50,6 +50,9 @@ $(APPNAME).o:
 main.o:
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/main.$(EXT) -o $(BUILDDIR)/main.o
 	# $(CXX) $(CXXFLAGS) $(INCLUDES) $(BUILDDIR)/$(APPNAME).o $(LDFLAGS) -o $(BUILDDIR)/$(APPNAME)_test
+
+parser.o:
+	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/parser.$(EXT) -o $(BUILDDIR)/parser.o
 
 node.o:
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/node.$(EXT) -o $(BUILDDIR)/node.o
