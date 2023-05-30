@@ -1,3 +1,6 @@
+#ifndef _terminal_node_HPP
+#define _terminal_node_HPP
+
 class TerminalNode : public Node
 {
 
@@ -12,3 +15,5 @@ private:
 
     Token* token;
 };
+
+#endif
