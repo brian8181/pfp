@@ -40,8 +40,8 @@ debuggdb: CXXFLAGS += -DDEBUG -ggdb # compile & link
 all: $(APPNAME)
 
 # link
-$(APPNAME): $(APPNAME).o main.o parser.o node.o token.o
-	 $(CXX) $(CXXFLAGS) $(BUILDDIR)/$(APPNAME).o $(BUILDDIR)/main.o $(BUILDDIR)/parser.o $(BUILDDIR)/node.o $(BUILDDIR)/token.o -o $(BUILDDIR)/$(APPNAME)
+$(APPNAME): $(APPNAME).o main.o parser.o node.o token.o terminal_node.o
+	 $(CXX) $(CXXFLAGS) $(BUILDDIR)/$(APPNAME).o $(BUILDDIR)/main.o $(BUILDDIR)/parser.o $(BUILDDIR)/node.o $(BUILDDIR)/token.o $(BUILDDIR)/terminal_node.o -o $(BUILDDIR)/$(APPNAME)
 
 # compile only
 $(APPNAME).o:
@@ -59,6 +59,9 @@ node.o:
 
 token.o:
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/token.$(EXT) -o $(BUILDDIR)/token.o
+
+terminal_node.o: node.o token.o
+	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/terminal_node.$(EXT) -o $(BUILDDIR)/terminal_node.o
 
 # link
 # $(APPNAME)_test: $(APPNAME)_test.o
