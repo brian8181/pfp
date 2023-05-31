@@ -19,18 +19,18 @@ class parser
 
 public:
 
-    // enum TokenType
-    // {
-    //     Number,
-    //     Operator
-    // };
+    enum token_type
+    {
+        Number,
+        Operator
+    };
 
     // class Token
     // {
 
-    // public:
+    //public:
 
-    //     Token(string& value);
+        //token(string& value);
 
     //     TokenType& GetTokenType();
     //     void SetTokenType(TokenType type);
