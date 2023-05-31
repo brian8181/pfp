@@ -13,6 +13,7 @@ using std::vector;
 // Options Flags
 // unsigned char DEFAULTS = 0;
 // unsigned char option_flags = 0; 
+//char plevels[1] {'*'};
 
 class parser
 {
@@ -28,6 +29,10 @@ public:
     //     // char[2] { '*', '/' }, 
     //     // char[2] { '+', '-' }
     // };
+
+private:
+
+    //static char plevels[1][1] { {'^'} };
   
 };
 
