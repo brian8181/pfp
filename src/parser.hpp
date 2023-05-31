@@ -15,6 +15,8 @@ using std::vector;
 // unsigned char option_flags = 0; 
 //char plevels[1] {'*'};
 
+
+
 class parser
 {
 
@@ -33,6 +35,9 @@ public:
 private:
 
     //static char plevels[1][1] { {'^'} };
+    vector<char> level1 { '^' };
+    vector<char> level2 { '*', '/' };
+    vector<char> level3 { '+', '-' };
   
 };
 
