@@ -5,7 +5,7 @@ token::token(string& value)
 
 }
 
-// token_type& token::get_token_type()
-// {
-
-// }
+token_type token::get_token_type()
+{
+    return token_type::Number;
+}
