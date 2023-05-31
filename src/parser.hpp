@@ -19,32 +19,16 @@ class parser
 
 public:
 
-    enum token_type
-    {
-        Number,
-        Operator
-    };
-
-    // class Token
-    // {
-
-    //public:
-
-        //token(string& value);
-
-    //     TokenType& GetTokenType();
-    //     void SetTokenType(TokenType type);
-    //     string GetValue();
-        
-    // private:
-
-    //     const int id;
-    //     TokenType m_type = TokenType::Number;
-    //     string m_value;
-
-    //     int prev_id;
-    //     /*static*/ int last_id;
+    //// <summary>
+    //// default operator precedence
+    //// </summary>
+    // private static char plevels[][]
+    // { 
+    //     // char[1] { '^' }, 
+    //     // char[2] { '*', '/' }, 
+    //     // char[2] { '+', '-' }
     // };
+  
 };
 
 #endif
