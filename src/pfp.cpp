@@ -18,6 +18,16 @@ static struct option long_options[] =
     {"file", no_argument, 0, 'f'}
 };
 
+void print_help()
+{
+    cout << "\n"
+         << FMT_BOLD << "pfp" << FMT_RESET << " "
+         << "[OPTIONS] "
+         << FMT_UNDERLINE << "INPUT_PATTERN" << FMT_RESET << " "
+         << FMT_UNDERLINE << "OUTPUT_PATTERN" << FMT_RESET << " "
+         << FMT_UNDERLINE << "[INPUT ...]" << FMT_RESET << "\n\n";
+}
+
 int parse_options(int argc, char* argv[])
 {
 	int opt = 0;
@@ -33,7 +43,7 @@ int parse_options(int argc, char* argv[])
         switch (opt)
         {
         case 'h':
-            //print_help();
+            print_help();
             return 0; 
         case 'v':
             //verbose_flag = true;
