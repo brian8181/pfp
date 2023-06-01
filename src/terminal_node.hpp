@@ -16,7 +16,7 @@ public:
 
 private:
 
-    //token* token;
+    token* _token;
 };
 
 #endif
