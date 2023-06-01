@@ -10,7 +10,7 @@ enum token_type
     Operator
 };
 
-class token : public node
+class token //: public node
 {
 
 public:
@@ -19,6 +19,12 @@ public:
     token_type get_token_type();
     
 private:
+
+    const int id = 0;
+    token_type m_type = token_type::Number;
+    string m_value;
+    int prev_id;
+    static int last_id;
 
 };
 

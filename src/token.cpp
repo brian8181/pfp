@@ -1,9 +1,10 @@
 #include "token.hpp"
 
-token::token(string& value)
+token::token(string& value) : id(1)
 {
     //m_value = value;
     //id = ++last_id;
+    //id = 1;
 
     //double d;
     //bool isnum = false; // todo
