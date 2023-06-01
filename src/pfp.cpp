@@ -11,29 +11,41 @@
 
 using namespace std;
 
+static struct option long_options[] =
+{
+    {"verbose", no_argument, 0, 'v'},
+    {"help", no_argument, 0, 'h'},
+    {"file", no_argument, 0, 'f'}
+};
+
 int parse_options(int argc, char* argv[])
 {
-	// int opt = 0;
-	// int option_index = 0;
+	int opt = 0;
+	int option_index = 0;
 	
-	// optind = 0;
-	// opt = getopt_long(argc, argv, "hr", long_options, &option_index);
-	// while (opt != -1)
-	// {
-	// 	switch (opt)
-	// 	{
-	// 		case 'h':
-	// 			print_help();
-	// 			return 0;
-	// 		case 'r':
-	// 			print_version();
-	// 			return 0;
-	// 		default: // unknown option before args
-	// 			cerr << "Unexpected option, -h for help" << endl;
-	// 			return -1;
-	// 	}
-	// 	opt = getopt_long(argc, argv, "hr", long_options, &option_index);
-	// }
+	optind = 0;
+	bool file_flag = false;
+    bool verbose_flag = false;
+    
+    optind = 0; // is this needed ?????
+    while((opt = getopt_long(argc, argv, "hvf", long_options, &option_index)) != -1)
+    {
+        switch (opt)
+        {
+        case 'h':
+            //print_help();
+            return 0; 
+        case 'v':
+            verbose_flag = true;
+            break;
+        case 'f':
+            file_flag = true;
+            break; 
+        default: // unknown option before args
+            fprintf(stderr, "Unexpected option, -h for help\n");
+            return EXIT_FAILURE;
+        }
+    }
 
 	//DEBUG
 	cout << "Welcome to PFP (Post Fix Parser) v 0.1" << endl;
