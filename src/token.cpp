@@ -2,6 +2,13 @@
 
 token::token(string& value)
 {
+    //m_value = value;
+    //id = ++last_id;
+
+    //double d;
+    //bool isnum = false; // todo
+    // if(!isnum)
+    //     m_type = token_type::operator;
 
 }
 
