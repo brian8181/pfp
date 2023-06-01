@@ -6,12 +6,12 @@ terminal_node::terminal_node(string& _token)
 
 }
 
-// terminal_node::terminal_node(token* _token)
-// {
+terminal_node::terminal_node(token* _token)
+{
 
-// }
+}
 
-// void terminal_node::set_token(token* _token)
-// {
+void terminal_node::set_token(token* _token)
+{
 
-// }
+}
