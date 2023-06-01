@@ -6,8 +6,8 @@
 
 enum token_type
 {
-    Number = 0,
-    Operator = 2
+    Number = 0x0,
+    Operator = 0x2
 };
 
 class token //: public node
