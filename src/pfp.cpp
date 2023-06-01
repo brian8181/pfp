@@ -32,8 +32,7 @@ int parse_options(int argc, char* argv[])
 	int option_index = 0;
 	
 	optind = 0;
-	//bool file_flag = false;
-    //bool verbose_flag = false;
+    bool verbose_flag = false;
     
     optind = 0; // is this needed ?????
     while((opt = getopt_long(argc, argv, "hvf", long_options, &option_index)) != -1)
@@ -44,18 +43,20 @@ int parse_options(int argc, char* argv[])
             print_help();
             return 0; 
         case 'v':
-            //verbose_flag = true;
+            verbose_flag = true;
             break;
-        case 'f':
-            //file_flag = true;
-            break; 
         default: // unknown option before args
             fprintf(stderr, "Unexpected option, -h for help\n");
             return EXIT_FAILURE;
         }
     }
 
-	//DEBUG
+    if(verbose_flag)
+    {
+        print_help();
+        return 0;  
+    }
+
 	cout << "Welcome to PFP (Post Fix Parser) v 0.1" << endl;
 
 	return 0;

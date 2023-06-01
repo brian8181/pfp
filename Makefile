@@ -44,7 +44,7 @@ $(APPNAME): $(APPNAME).o main.o parser.o node.o token.o terminal_node.o binary_n
 	 $(CXX) $(CXXFLAGS) $(BUILDDIR)/$(APPNAME).o $(BUILDDIR)/main.o $(BUILDDIR)/parser.o $(BUILDDIR)/node.o $(BUILDDIR)/token.o $(BUILDDIR)/terminal_node.o $(BUILDDIR)/binary_node.o -o $(BUILDDIR)/$(APPNAME)
 
 # compile only
-$(APPNAME).o:
+$(APPNAME).o: main.o 
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/$(APPNAME).$(EXT) -o $(BUILDDIR)/$(APPNAME).o
 	
 main.o:

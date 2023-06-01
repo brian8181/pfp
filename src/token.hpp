@@ -22,9 +22,9 @@ private:
 
     const int _id = 0;
     token_type m_type = token_type::Number;
-    string m_value;
-    int prev_id;
+    int prev_id = 0;
     static int last_id;
+    string m_value;
 
 };
 
