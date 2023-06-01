@@ -23,8 +23,6 @@ void print_help()
     cout << "\n"
          << FMT_BOLD << "pfp" << FMT_RESET << " "
          << "[OPTIONS] "
-         << FMT_UNDERLINE << "INPUT_PATTERN" << FMT_RESET << " "
-         << FMT_UNDERLINE << "OUTPUT_PATTERN" << FMT_RESET << " "
          << FMT_UNDERLINE << "[INPUT ...]" << FMT_RESET << "\n\n";
 }
 
