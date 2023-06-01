@@ -1,6 +1,6 @@
 #include "token.hpp"
 
-token::token(string& value) : id(1)
+token::token(string& value, int id) : _id(id)
 {
     //m_value = value;
     //id = ++last_id;

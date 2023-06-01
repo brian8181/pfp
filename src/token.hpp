@@ -15,12 +15,12 @@ class token //: public node
 
 public:
 
-    token(string& value);
+    token(string& value, int id);
     token_type get_token_type();
     
 private:
 
-    const int id = 0;
+    const int _id;
     token_type m_type = token_type::Number;
     string m_value;
     int prev_id;
