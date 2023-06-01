@@ -22,6 +22,13 @@ class parser
 
 public:
 
+    parser()
+    {
+        plevels.push_back(level1);
+        plevels.push_back(level2);
+        plevels.push_back(level3);
+    }
+
     //// <summary>
     //// default operator precedence
     //// </summary>
@@ -39,6 +46,8 @@ private:
     vector<char> level2 { '*', '/' };
     vector<char> level3 { '+', '-' };
     static vector<vector<char>> plevels;
+
+    //vector<vector<char>> plevels2 { vector<char>() {'a'} };
   
 };
 
