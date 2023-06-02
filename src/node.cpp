@@ -2,10 +2,10 @@
 
 node* node::get_parent()
 {
-    return 0;
+    return _parent;
 }
 
- void set_parent(node* parent)
+ void node::set_parent(node* parent)
  {
-    
+    _parent = parent;
  }

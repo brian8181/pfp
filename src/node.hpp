@@ -11,7 +11,7 @@ public:
 
 private:
 
-    node* parent = 0;
+    node* _parent = 0;
 };
 
 #endif
