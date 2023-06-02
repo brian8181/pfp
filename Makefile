@@ -62,7 +62,6 @@ token.o:
 terminal_node.o: node.o token.o
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/terminal_node.$(EXT) -o $(BUILDDIR)/terminal_node.o
 
-
 binary_node.o: node.o terminal_node.o token.o
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/binary_node.$(EXT) -o $(BUILDDIR)/binary_node.o
 
