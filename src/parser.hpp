@@ -5,10 +5,13 @@
 #include <string>
 #include <vector>
 #include <stack>
-#include <vector>
+#include <list>
+#include "token.hpp"
+#include "terminal_node.hpp"
 
 using std::string;
 using std::vector;
+using std::list;
 
 // Options Flags
 // unsigned char DEFAULTS = 0;
@@ -40,6 +43,17 @@ public:
     //     // char[2] { '*', '/' }, 
     //     // char[2] { '+', '-' }
     // };
+
+    list<token> parse(string input);
+
+
+     /// <summary>
+    /// start top level parsing
+    /// </summary>
+    /// <param name="tokens">the original token list</param>
+    /// <returns>a list</returns>
+    //static list<terminal_node> parse(List<terminal_node> tokens);
+
 
 private:
 
