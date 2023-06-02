@@ -1,8 +1,9 @@
 #ifndef _token_HPP
 #define _token_HPP
 
-#include "parser.hpp"
-#include "node.hpp"
+#include <string>
+
+using std::string;
 
 enum token_type
 {
@@ -10,7 +11,7 @@ enum token_type
     Operator = 0x2
 };
 
-class token //: public node
+class token
 {
 
 public:
