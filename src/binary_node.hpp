@@ -10,6 +10,9 @@ class binary_node: public terminal_node
 public:
 
     binary_node();
+
+    terminal_node* get_left();
+    terminal_node* get_right();
   
 private:
 
