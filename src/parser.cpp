@@ -22,7 +22,7 @@ list<token> parser::parse(string input)
 }
 
 
-// list<terminal_node> parser::parse(list<terminal_node> tokens)
-// {
-//     return list<terminal_node>();
-// }
+list<terminal_node> parser::parse(list<terminal_node> tokens)
+{
+    return tokens;
+}
