@@ -89,7 +89,7 @@ public:
     static void sub_parse(list<terminal_node> nodes, int i, stack<terminal_node> stack);
 
 
-    //static char[][] get_operator_precedence();
+    static char** get_operator_precedence();
 
 
     /// <summary>
