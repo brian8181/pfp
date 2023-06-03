@@ -1,8 +1,6 @@
 #include "token.hpp"
 
-
-
-token::token(string& value)
+token::token(string& _value)
 {
     //m_value = value;
     //id = ++last_id;
@@ -13,6 +11,12 @@ token::token(string& value)
     // if(!isnum)
     //     m_type = token_type::operator;
 
+}
+
+token::token(token tok)
+{
+
+    tok._id = 0;
 }
 
 token_type token::get_token_type()

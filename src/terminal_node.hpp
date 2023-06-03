@@ -12,12 +12,12 @@ public:
     terminal_node();
 
     // terminal_node(string& name);
-    // terminal_node(token* _token);
-    void set_token(token* _token);
+    terminal_node(token val);
+    void set_token(token* val);
 
 private:
 
-    token* m_token;
+    token* _token;
 };
 
 #endif

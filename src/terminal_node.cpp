@@ -11,12 +11,12 @@ terminal_node::terminal_node()
 //     //m_token = token(name);
 // }
 
-// terminal_node::terminal_node(token* _token)
+// terminal_node::terminal_node(token val)
 // {
-//     m_token = _token;
+//     //_token = val;
 // }
 
-void terminal_node::set_token(token* _token)
+void terminal_node::set_token(token* val)
 {
-    m_token = _token;
+    _token = val;
 }
