@@ -28,7 +28,6 @@ class parser
 public:
     parser();
 
-
     // parser()
     // {
     //     plevels.push_back(level1);
@@ -78,11 +77,12 @@ public:
     /// </summary>
     /// <param name="input">original expression as string</param>
     /// <returns>returns a list of tokens eg. List of TerminalNodes</returns>
-    static list<terminal_node> tokenize(string input);
+    //static list<terminal_node> tokenize(string input);
+    static std::vector<terminal_node>* tokenize(string input);
 
-    /// <summary>
-        /// handle sub expressions in parens?
-    /// </summary>
+    static bool tokenize(const string& input, terminal_node& nodes);
+
+    /// handle sub expressions in parens?
     /// <param name="nodes"></param>
     /// <param name="i"></param>
     /// <param name="stack"></param>
@@ -116,8 +116,9 @@ private:
 public:
 
     vector<vector<char>> plevels;
-
     //vector<vector<char>> plevels2 { vector<char>() {'a'} };
+
+    //static std::vector<parser::terminal_node>* nodes;
   
 };
 
