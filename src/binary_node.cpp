@@ -6,12 +6,12 @@ binary_node::binary_node()
 }
 
 
-terminal_node* binary_node::get_left()
+node* binary_node::get_left()
 {
     return left;
 }
 
-terminal_node* binary_node::get_right()
+node* binary_node::get_right()
 {
     return right;
 }
