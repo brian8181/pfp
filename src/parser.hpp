@@ -6,7 +6,7 @@
 #include <vector>
 #include <stack>
 #include <list>
-#include "token.hpp"
+//#include "token.hpp"
 #include "terminal_node.hpp"
 #include "binary_node.hpp"
 
@@ -20,7 +20,7 @@ using std::stack;
 // unsigned char option_flags = 0; 
 //char plevels[1] {'*'};
 
-
+class token;
 
 class parser
 {

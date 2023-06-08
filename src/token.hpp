@@ -17,16 +17,13 @@ class token
 public:
 
     token(string& value);
-    token(token tok);
     token_type get_token_type();
     
 public:
-
+  
     int _id;
-    token_type m_type = token_type::Number;
-    int prev_id = 0;
-    static int last_id;
-    string m_value;
+    int _prev_id;
+    string value;
 
 };
 

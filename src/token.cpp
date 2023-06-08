@@ -13,12 +13,6 @@ token::token(string& _value)
 
 }
 
-token::token(token tok)
-{
-
-    tok._id = 0;
-}
-
 token_type token::get_token_type()
 {
     return token_type::Number;
