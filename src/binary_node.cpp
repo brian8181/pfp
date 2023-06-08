@@ -5,13 +5,12 @@ binary_node::binary_node()
 
 }
 
-
 node* binary_node::get_left()
 {
-    return left;
+    return _left;
 }
 
 node* binary_node::get_right()
 {
-    return right;
+    return _right;
 }

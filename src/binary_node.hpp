@@ -17,8 +17,8 @@ public:
 private:
 
     token* _token;
-    node* left;
-    node* right;
+    node* _left;
+    node* _right;
 };
 
 #endif
