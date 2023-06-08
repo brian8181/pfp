@@ -13,10 +13,15 @@ token::token(string& _value)
 
 }
 
-token::token(token tok)
+int token::get_id()
+{
+    return _id;
+}
+
+token::token(const token& tok)
 {
 
-    tok._id = 0;
+    _id = tok._id;
 }
 
 token_type token::get_token_type()

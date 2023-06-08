@@ -17,8 +17,9 @@ class token
 public:
 
     token(string& value);
-    token(token tok);
+    token(const token& tok);
     token_type get_token_type();
+    int get_id();
     
 public:
 
