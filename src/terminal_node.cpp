@@ -6,17 +6,12 @@ terminal_node::terminal_node()
 
 }
 
-// terminal_node::terminal_node(string& name)
-// {
-//     //m_token = token(name);
-// }
-
-// terminal_node::terminal_node(token val)
-// {
-//     //_token = val;
-// }
-
-void terminal_node::set_token(token* val)
+terminal_node::terminal_node(token* ptoken) 
 {
-    _token = val;
+    _ptoken = ptoken;
+}
+
+void terminal_node::set_token(token* ptoken)
+{
+    _ptoken = ptoken;
 }

@@ -10,14 +10,12 @@ class terminal_node : public node
 public:
 
     terminal_node();
-
-    // terminal_node(string& name);
-    terminal_node(token val);
-    void set_token(token* val);
+    terminal_node(token* ptoken);
+    void set_token(token* ptoken);
 
 private:
 
-    token* _token;
+    token* _ptoken;
 };
 
 #endif
