@@ -2,7 +2,6 @@
 #define _binary_node_HPP
 
 #include "node.hpp"
-#include "terminal_node.hpp"
 #include "token.hpp"
 
 class binary_node: public node

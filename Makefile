@@ -6,22 +6,12 @@
 # RUN BEFORE autoreconf -ivfm
 # RUN BEFORE autoreconf -i
 
-MAKE_TEMPLATE = 1.3;
-BUILD_VERSION = 0.1.0
-
-prefix = /usr/local
-prefix = /usr/local
-mandir = $(prefix)/share/man
-man1dir = $(mandir)/man1
+MAKE_TEMPLATE=1.3;
+BUILD_VERSION=0.1.0
 
 # Compiler settings - Can be customized.
 CXX = g++
 CXXFLAGS = -Wall -std=c++11 -DDEBUG -ggdb
-
-# lib settings
-LDFLAGS = -static -lcppunit -L/usr/local/lib/
-INCLUDES = -I/usr/local/include/cppunit/
-# add addtional libs here
 
 # Makefile settings - Can be customized.
 APPNAME = pfp
@@ -31,12 +21,6 @@ BUILDDIR = ./build
 SRCDIR = ./src
 OBJDIR = ./build
 
-# compile & link for debug
-#debug: CXXFLAGS += -DDEBUG -g
-debug: all
-
-# compile & link for debug GDBversion variable
-debuggdb: CXXFLAGS += -DDEBUG -ggdb # compile & link
 all: $(APPNAME)
 
 # link
@@ -50,7 +34,7 @@ $(APPNAME).o: main.o
 main.o:
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/main.$(EXT) -o $(BUILDDIR)/main.o
 
-parser.o:
+parser.o: node.o token.o terminal_node.o binary_node.o
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/parser.$(EXT) -o $(BUILDDIR)/parser.o
 
 node.o:
@@ -62,7 +46,7 @@ token.o:
 terminal_node.o: node.o token.o
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/terminal_node.$(EXT) -o $(BUILDDIR)/terminal_node.o
 
-binary_node.o: node.o terminal_node.o token.o
+binary_node.o: node.o token.o
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/binary_node.$(EXT) -o $(BUILDDIR)/binary_node.o
 
 # link
@@ -79,18 +63,6 @@ binary_node.o: node.o terminal_node.o token.o
 # bash_color_test.o:
 # 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/bash_color_test.cpp -o $(BUILDDIR)/bash_color_test.o
 
-# install man pages
-.PHONY: man
-man:
-	cp ../man/$(APPNAME).1 $(man1dir)
-	# gzip $(man1dir)/$(APPNAME).1
-	mandb
-
-.PHONY: unman
-unman:
-	rm $(man1dir)/$(APPNAME).1.gz
-	mandb
-
 # install 
 .PHONY: install
 install: man
@@ -101,16 +73,3 @@ install: man
 .PHONY: clean
 clean:
 	-rm -f $(BUILDDIR)/$(APPNAME) $(BUILDDIR)/*.o $(BUILDDIR)/$(APPNAME)_test $(BUILDDIR)/bash_color_test
-	-rm -f $(BUILDDIR)/*.xml $(BUILDDIR)/$(APPNAME).$(BUILD_VERSION).tar.gz
-
-# delete all auto generated files
-.PHONY: distclean
-distclean: clean
-	rm -f $(SRCDIR)/config.* $(SRCDIR)/Makefile $(SRCDIR)/Makefile.in $(SRCDIR)/INSTALL $(SRCDIR)/configure 
-	# rm ../stamp-h1 ../aclocal.m4 ../compile ../install-sh ../libtool ../ltmain.sh ../stamp-h1 ../missing ../depcomp
-	# rm ../src/Makefile ../src/Makefile.in
-	# rm -rf ../autom4te.cache ../src/.deps ../src/.libs
-	# rm ../src/.o
-
-dist: 
-	git archive HEAD | gzip > $(BUILDDIR)/$(APPNAME).$(BUILD_VERSION).tar.gz
