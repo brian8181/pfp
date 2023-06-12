@@ -8,16 +8,26 @@ parser::parser()
      plevels.push_back(level3);
 }
 
-static bool tokenize(const string& input, terminal_node& nodes)
+bool parse(const string& s, list<token> out_tokens)
 {
-
     return true;
 }
 
-std::vector<terminal_node>* parser::tokenize(string input)
+bool post_fix(const binary_node& node, list<token>& tokens)
+{
+    return true;
+}
+
+string parser::post_fix_string(list<token> postfix, char c)
+{
+    string s = "test";
+    return s;
+}
+
+bool parser::tokenize(const string& input, std::vector<terminal_node>& nodes)
 {
     std::regex::flag_type REGX_FLAGS = std::regex::basic;
-    std::vector<terminal_node>* nodes =  new std::vector<terminal_node>;
+    //std::vector<terminal_node>* nodes =  new std::vector<terminal_node>;
     std::regex input_epx = std::regex(R"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])", REGX_FLAGS);
     
     auto begin = std::sregex_iterator(input.begin(), input.end(), input_epx);
@@ -30,42 +40,20 @@ std::vector<terminal_node>* parser::tokenize(string input)
         std::string s = match.str(0);
         token t(s);
         terminal_node n(&t);
-        nodes->push_back(n);
+        nodes.push_back(n);
     }
 
-    return nodes;
-
-    // C# REFERENCE CODE
-    // List<TerminalNode> nodes = new List<TerminalNode>();
-    // Regex regx = new Regex(@"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])");
-    // MatchCollection mc = regx.Matches(input);
-
-    // foreach (Match m in mc)
-    // {
-    //     TerminalNode n = new TerminalNode(m.Value);
-    //     nodes.Add(n);
-    // }
-    // return nodes;
+    return true;
 }
 
-/// <summary>
-/// parse an input string
-/// </summary>
-/// <param name="input">the input as a string</param>
-/// <returns>list of token in postfix order</returns>
-list<token> parser::parse(string input)
+void parser::sub_parse(list<terminal_node> nodes, int i, stack<terminal_node> stack)
 {
-    // List<TerminalNode> nodes = Tokenize(input);
-    // Parse(nodes);
-    // return PostFix((BinaryNode)nodes[0]);
-    list<token>* ret = new list<token>();
-    return *ret;
+
 }
 
-
-list<terminal_node> parser::parse(list<terminal_node> tokens)
+void parser::parse_tokens(list<terminal_node> nodes)
 {
-    return tokens;
+
 }
 
 void parser::operator_pass(list<terminal_node> nodes, char ops[])
