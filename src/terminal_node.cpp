@@ -1,10 +1,16 @@
 #include "terminal_node.hpp"
 #include "token.hpp"
 
-terminal_node::terminal_node()
-{
 
-}
+// terminal_node::terminal_node()
+// {
+
+// }
+
+// terminal_node::terminal_node(const string& token)
+// {
+//     //_ptoken = new token(token);
+// }
 
 terminal_node::terminal_node(token* ptoken) 
 {

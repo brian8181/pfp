@@ -9,7 +9,7 @@ class terminal_node : public node
 
 public:
 
-    terminal_node();
+    terminal_node(string token);
     terminal_node(token* ptoken);
     void set_token(token* ptoken);
 

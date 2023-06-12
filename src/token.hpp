@@ -18,14 +18,14 @@ public:
 
     token(string& value);
     token_type get_token_type();
-    int get_id();
+    string get_token_value();
     
-public:
+private:
   
+    static int _prev_id;
     int _id;
-    int _prev_id;
-    string value;
-
+    token_type _type;
+    string _value;
 };
 
 #endif
