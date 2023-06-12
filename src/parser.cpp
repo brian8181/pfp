@@ -67,3 +67,8 @@ list<terminal_node> parser::parse(list<terminal_node> tokens)
 {
     return tokens;
 }
+
+void parser::operator_pass(list<terminal_node> nodes, char ops[])
+{
+
+}
