@@ -1,4 +1,5 @@
 #include "parser.hpp"
+#include <regex>
 
 parser::parser()
 {
@@ -7,10 +8,16 @@ parser::parser()
      plevels.push_back(level3);
 }
 
-std::vector<parser::terminal_node>* parser::tokenize(string input)
+static bool tokenize(const string& input, terminal_node& nodes)
+{
+
+    return true;
+}
+
+std::vector<terminal_node>* parser::tokenize(string input)
 {
     std::regex::flag_type REGX_FLAGS = std::regex::basic;
-    std::vector<parser::terminal_node>* nodes =  new std::vector<parser::terminal_node>;
+    std::vector<terminal_node>* nodes =  new std::vector<terminal_node>;
     std::regex input_epx = std::regex(R"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])", REGX_FLAGS);
     
     auto begin = std::sregex_iterator(input.begin(), input.end(), input_epx);
@@ -21,7 +28,8 @@ std::vector<parser::terminal_node>* parser::tokenize(string input)
     {
         std::smatch match = *iter;
         std::string s = match.str(0);
-        Parser::TerminalNode n(s);
+        token t(s);
+        terminal_node n(&t);
         nodes->push_back(n);
     }
 
