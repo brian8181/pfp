@@ -7,6 +7,39 @@ parser::parser()
      plevels.push_back(level3);
 }
 
+std::vector<parser::terminal_node>* parser::tokenize(string input)
+{
+    std::regex::flag_type REGX_FLAGS = std::regex::basic;
+    std::vector<parser::terminal_node>* nodes =  new std::vector<parser::terminal_node>;
+    std::regex input_epx = std::regex(R"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])", REGX_FLAGS);
+    
+    auto begin = std::sregex_iterator(input.begin(), input.end(), input_epx);
+    auto end = std::sregex_iterator(); 
+    int match_i = 0;
+    std::sregex_iterator iter = begin;
+    for (; iter != end; ++iter, ++match_i)
+    {
+        std::smatch match = *iter;
+        std::string s = match.str(0);
+        Parser::TerminalNode n(s);
+        nodes->push_back(n);
+    }
+
+    return nodes;
+
+    // C# REFERENCE CODE
+    // List<TerminalNode> nodes = new List<TerminalNode>();
+    // Regex regx = new Regex(@"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])");
+    // MatchCollection mc = regx.Matches(input);
+
+    // foreach (Match m in mc)
+    // {
+    //     TerminalNode n = new TerminalNode(m.Value);
+    //     nodes.Add(n);
+    // }
+    // return nodes;
+}
+
 /// <summary>
 /// parse an input string
 /// </summary>
