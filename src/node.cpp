@@ -5,11 +5,6 @@ node::node()
 
 }
 
-node::node(node* pn)
-{
-
-}
-
 node* node::get_parent()
 {
     return _parent;
