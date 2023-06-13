@@ -1,9 +1,15 @@
 #include "token.hpp"
 
+void token::init()
+{
+    // token::_prev_id = 1;
+    // token::_initialized = true;
+}
+
 token::token(string& value)
 {
     _value = value;
-    //_id = _prev_id;
+    //_id = _prev_id++;
     
     //double d;
     //bool isnum = false; // todo
@@ -11,6 +17,8 @@ token::token(string& value)
     //     m_type = token_type::operator;
 
 }
+
+
 
 token_type token::get_token_type()
 {

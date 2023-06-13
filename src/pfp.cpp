@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include "main.hpp"
 #include "pfp.hpp"
+#include "token.hpp"
 
 using namespace std;
 
@@ -58,6 +59,9 @@ int parse_options(int argc, char* argv[])
     }
 
 	cout << "Welcome to PFP (Post Fix Parser) v 0.1" << endl;
-
+    // initalize
+    token::init();
+    //token::_prev_id = 0;
+    
 	return 0;
 }
