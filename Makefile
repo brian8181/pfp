@@ -11,7 +11,7 @@ BUILD_VERSION=0.1.0
 
 # Compiler settings - Can be customized.
 CXX = g++
-CXXFLAGS = -Wall -std=c++11 -DDEBUG -ggdb
+CXXFLAGS = -std=c++11 -DDEBUG
 
 # Makefile settings - Can be customized.
 APPNAME = pfp

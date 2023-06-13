@@ -1,8 +1,10 @@
 #include "token.hpp"
 
+int token::_prev_id = 1;
+
 void token::init()
 {
-    // token::_prev_id = 1;
+    _prev_id = 1;
     // token::_initialized = true;
 }
 
