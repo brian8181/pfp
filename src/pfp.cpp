@@ -59,9 +59,14 @@ int parse_options(int argc, char* argv[])
     }
 
 	cout << "Welcome to PFP (Post Fix Parser) v 0.1" << endl;
+    
     // initalize
-    token::init();
-    //token::_prev_id = 0;
+
+    token t1("token 1");
+    token t2("token 2");
+    cout << "Initializing ..." << endl;
+    cout << "id = " << t1.get_id() << endl;
+    cout << "id = " << t2.get_id() << endl;   
     
 	return 0;
 }

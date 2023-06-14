@@ -13,22 +13,20 @@ enum token_type
 
 class token
 {
-
 public:
-  
-    static void init();
-    token(string& value);
+
+    token(string value);
+    int get_id();
     token_type get_token_type();
     string get_token_value();
     
 private:
-     
-    static bool _initialized; 
-    static int _prev_id;
 
     int _id;
     token_type _type;
     string _value;
+
+    static int _prev_id;
 };
 
 #endif

@@ -2,16 +2,10 @@
 
 int token::_prev_id = 1;
 
-void token::init()
-{
-    _prev_id = 1;
-    // token::_initialized = true;
-}
-
-token::token(string& value)
+token::token(string value)
 {
     _value = value;
-    //_id = _prev_id++;
+    _id = _prev_id++;
     
     //double d;
     //bool isnum = false; // todo
@@ -20,7 +14,10 @@ token::token(string& value)
 
 }
 
-
+int token::get_id()
+{
+    return _id;
+}
 
 token_type token::get_token_type()
 {

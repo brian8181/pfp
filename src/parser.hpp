@@ -24,7 +24,6 @@ class token;
 
 class parser
 {
-
 public:
     parser();
 
@@ -61,9 +60,6 @@ private:
     vector<char> level1 { '^' };
     vector<char> level2 { '*', '/' };
     vector<char> level3 { '+', '-' };
-
-public:
-
     vector<vector<char>> plevels;
     //vector<vector<char>> plevels2 { vector<char>() {'a'} };
 };

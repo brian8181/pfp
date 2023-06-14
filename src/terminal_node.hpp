@@ -6,7 +6,6 @@
 
 class terminal_node : public node
 {
-
 public:
 
     terminal_node();

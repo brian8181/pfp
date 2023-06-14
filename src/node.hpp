@@ -3,7 +3,6 @@
 
 class node
 {
-
 public:
 
     node(); 

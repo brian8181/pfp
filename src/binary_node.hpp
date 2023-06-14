@@ -6,7 +6,6 @@
 
 class binary_node: public node
 {
-
 public:
 
     binary_node();
