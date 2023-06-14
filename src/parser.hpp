@@ -11,9 +11,9 @@
 #include "binary_node.hpp"
 
 using std::string;
-using std::vector;
 using std::list;
 using std::stack;
+using std::vector;
 
 // Options Flags
 // unsigned char DEFAULTS = 0;
@@ -45,10 +45,10 @@ public:
     //     // char[2] { '+', '-' }
     // };
 
-    static bool parse(const string& s, list<token> out_tokens);
+    static bool parse(const string& input, list<terminal_node> nodes);
     static bool post_fix(const binary_node& node, const list<token>& tokens);
     static string post_fix_string(const list<token>& postfix, char c);
-    static bool tokenize(const string& input, vector<terminal_node>& nodes);
+    static bool tokenize(const string& input, list<terminal_node>& nodes);
     static void sub_parse(const list<terminal_node>& nodes, int i, stack<terminal_node>& stack);
     static char** get_operator_precedence();
     static void parse_tokens(const list<terminal_node>& nodes);

@@ -8,8 +8,9 @@ parser::parser()
      plevels.push_back(level3);
 }
 
-bool parse(const string& s, list<token>& out_tokens)
+bool parse(const string& input, list<terminal_node>& nodes)
 {
+    parser::tokenize(input, nodes);
     return true;
 }
 
@@ -24,7 +25,7 @@ string parser::post_fix_string(const list<token>& postfix, char c)
     return s;
 }
 
-bool parser::tokenize(const string& input, std::vector<terminal_node>& nodes)
+bool parser::tokenize(const string& input, list<terminal_node>& nodes)
 {
     std::regex::flag_type REGX_FLAGS = std::regex::basic;
     //std::vector<terminal_node>* nodes =  new std::vector<terminal_node>;
