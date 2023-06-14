@@ -1,25 +1,18 @@
-# MAKE TEMPLATE 06-02-2020 1
-# MAKE TEMPLATE 03-11-2021 1.1
-# MAKE TEMPLATE 05-22-2021 1.2
-# MAKE TEMPLATE 07-07-2021 1.3
-
-# RUN BEFORE autoreconf -ivfm
-# RUN BEFORE autoreconf -i
-
+# Wed Jun 14 07:30:48 AM CDT 2023
 MAKE_TEMPLATE=1.3;
 BUILD_VERSION=0.1.0
 
 # Compiler settings - Can be customized.
-CXX = g++
-CXXFLAGS = -std=c++11 -DDEBUG
+CXX=g++
+CXXFLAGS=-std=c++11 -DDEBUG -g
 
 # Makefile settings - Can be customized.
-APPNAME = pfp
-EXT = cpp
-ROOTDIR  = ..
-BUILDDIR = ./build
-SRCDIR = ./src
-OBJDIR = ./build
+APPNAME=pfp
+EXT=cpp
+ROOTDIR =..
+BUILDDIR=./build
+SRCDIR=./src
+OBJDIR=./build
 
 all: $(APPNAME)
 
