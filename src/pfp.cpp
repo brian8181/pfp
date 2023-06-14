@@ -66,7 +66,9 @@ int parse_options(int argc, char* argv[])
     token t2("token 2");
     cout << "Initializing ..." << endl;
     cout << "id = " << t1.get_id() << endl;
-    cout << "id = " << t2.get_id() << endl;   
+    cout << "id = " << t2.get_id() << endl; 
+    cout << "token test - is_number = " << t1.is_number("2.5") << endl;
+    cout << "token test - is_number = " << t1.is_number("a") << endl;
     
 	return 0;
 }
