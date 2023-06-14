@@ -49,27 +49,7 @@ terminal_node.o: node.o token.o
 binary_node.o: node.o token.o
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/binary_node.$(EXT) -o $(BUILDDIR)/binary_node.o
 
-# link
-# $(APPNAME)_test: $(APPNAME)_test.o
-# 	$(CXX) $(CXXFLAGS) $(INCLUDES) $(BUILDDIR)/$(APPNAME)_test.o $(BUILDDIR)/$(APPNAME).o $(LDFLAGS) -o $(BUILDDIR)/$(APPNAME)_test
-
-# compile only
-# $(APPNAME)_test.o:
-# 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/$(APPNAME)_test.cpp -o $(BUILDDIR)/$(APPNAME)_test.o
-
-# bash_color_test: bash_color_test.o
-# 	$(CXX) $(CXXFLAGS) $(BUILDDIR)/bash_color_test.o -o $(BUILDDIR)/bash_color_test
-
-# bash_color_test.o:
-# 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/bash_color_test.cpp -o $(BUILDDIR)/bash_color_test.o
-
-# install 
-.PHONY: install
-install: man
-	cp $(BUILDDIR)/$(APPNAME) $(prefix)/bin/$(APPNAME)
-	rm $(prefix)/bin/$(APPNAME)
-
 # delete object files & app executable
 .PHONY: clean
 clean:
-	-rm -f $(BUILDDIR)/$(APPNAME) $(BUILDDIR)/*.o $(BUILDDIR)/$(APPNAME)_test $(BUILDDIR)/bash_color_test
+	-rm -f $(BUILDDIR)/$(APPNAME) $(BUILDDIR)/*.o

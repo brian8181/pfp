@@ -1,1 +1,1 @@
-* porting c# post fix parser to c++
+* porting c# infix to postfix parser to c++
