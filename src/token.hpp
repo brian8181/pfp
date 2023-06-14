@@ -15,10 +15,7 @@ class token
 {
 
 public:
-
-    static bool _initialized; 
-    static int _prev_id;
-
+  
     static void init();
     token(string& value);
     token_type get_token_type();
@@ -26,6 +23,9 @@ public:
     
 private:
      
+    static bool _initialized; 
+    static int _prev_id;
+
     int _id;
     token_type _type;
     string _value;

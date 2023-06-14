@@ -8,7 +8,7 @@ parser::parser()
      plevels.push_back(level3);
 }
 
-bool parse(const string& s, list<token> out_tokens)
+bool parse(const string& s, list<token>& out_tokens)
 {
     return true;
 }
@@ -18,7 +18,7 @@ bool post_fix(const binary_node& node, list<token>& tokens)
     return true;
 }
 
-string parser::post_fix_string(list<token> postfix, char c)
+string parser::post_fix_string(const list<token>& postfix, char c)
 {
     string s = "test";
     return s;
@@ -46,17 +46,17 @@ bool parser::tokenize(const string& input, std::vector<terminal_node>& nodes)
     return true;
 }
 
-void parser::sub_parse(list<terminal_node> nodes, int i, stack<terminal_node> stack)
+void parser::sub_parse(const list<terminal_node>& nodes, int i, stack<terminal_node>& stack)
 {
 
 }
 
-void parser::parse_tokens(list<terminal_node> nodes)
+void parser::parse_tokens(const list<terminal_node>& nodes)
 {
 
 }
 
-void parser::operator_pass(list<terminal_node> nodes, char ops[])
+void parser::operator_pass(const list<terminal_node>& nodes, char ops[])
 {
 
 }

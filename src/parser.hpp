@@ -47,12 +47,12 @@ public:
 
     static bool parse(const string& s, list<token> out_tokens);
     static bool post_fix(const binary_node& node, const list<token>& tokens);
-    static string post_fix_string(list<token> postfix, char c);
+    static string post_fix_string(const list<token>& postfix, char c);
     static bool tokenize(const string& input, vector<terminal_node>& nodes);
-    static void sub_parse(list<terminal_node> nodes, int i, stack<terminal_node> stack);
+    static void sub_parse(const list<terminal_node>& nodes, int i, stack<terminal_node>& stack);
     static char** get_operator_precedence();
-    static void parse_tokens(list<terminal_node> nodes);
-    static void operator_pass(list<terminal_node> nodes, char ops[]);
+    static void parse_tokens(const list<terminal_node>& nodes);
+    static void operator_pass(const list<terminal_node>& nodes, char ops[]);
             
 
 private:
