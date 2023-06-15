@@ -9,6 +9,7 @@ class binary_node: public terminal_node
 public:
 
     binary_node();
+    binary_node(token t, terminal_node left, terminal_node right);
     node* get_left();
     node* get_right();
   
