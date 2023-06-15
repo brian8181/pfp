@@ -7,10 +7,11 @@
 class terminal_node : public node
 {
 public:
-
+    terminal_node();
     terminal_node(const string& tok);
     terminal_node(const token& tok);
     terminal_node(token* ptok);
+    //~terminal_node();
     void set_token(token* ptok);
     token* get_token();
 

@@ -1,10 +1,10 @@
 #ifndef _binary_node_HPP
 #define _binary_node_HPP
 
-#include "node.hpp"
+#include "terminal_node.hpp"
 #include "token.hpp"
 
-class binary_node: public node
+class binary_node: public terminal_node
 {
 public:
 
@@ -14,7 +14,6 @@ public:
   
 private:
 
-    token* _token;
     node* _left;
     node* _right;
 };
