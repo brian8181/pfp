@@ -1,20 +1,30 @@
 # Wed Jun 14 07:30:48 AM CDT 2023
-MAKE_TEMPLATE=1.3;
-BUILD_VERSION=0.1.0
+MAKE_TEMPLATE = 1.3;
+BUILD_VERSION = 0.1.0
 
 # Compiler settings - Can be customized.
-CXX=g++
-CXXFLAGS=-std=c++11 -DDEBUG -g
+SHELL = /bin/bash
+CXX = g++
+CXXFLAGS = -std=c++11 -DDEBUG -g
 
 # Makefile settings - Can be customized.
-APPNAME=pfp
-EXT=cpp
-ROOTDIR =..
-BUILDDIR=./build
-SRCDIR=./src
-OBJDIR=./build
+APPNAME = pfp
+EXT = cpp
+ROOTDIR = ..
+BUILDDIR = ./build
+SRCDIR = ./src
+OBJDIR = ./build
 
 all: $(APPNAME)
+
+test: $(APPNAME) 
+
+#$(APPNAME):
+
+# $(APPNAME): %.o
+
+# %.o: %.cpp
+#     $(CXX) -c $(CXXFLAGS) $< -o $@
 
 # link
 $(APPNAME): $(APPNAME).o main.o parser.o node.o token.o terminal_node.o binary_node.o
