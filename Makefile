@@ -15,9 +15,11 @@ BUILDDIR = ./build
 SRCDIR = ./src
 OBJDIR = ./build
 
-all: $(APPNAME)
+all: $(APPNAME) test_class.o
 
-test: $(APPNAME) 
+test: $(APPNAME).o main.o
+	$(CXX) $(CXXFLAGS) $(BUILDDIR)/$(APPNAME).o $(BUILDDIR)/main.o $(BUILDDIR)/token.o -o $(BUILDDIR)/$(APPNAME)
+	#$(CXX) $(CXXFLAGS) $(BUILDDIR)/test_class.o
 
 #$(APPNAME):
 
@@ -54,6 +56,9 @@ terminal_node.o: node.o token.o
 
 binary_node.o: node.o token.o
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/binary_node.$(EXT) -o $(BUILDDIR)/binary_node.o
+
+test_class.o:
+	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/test_class.$(EXT) -o $(BUILDDIR)/test_class.o
 
 # delete object files & app executable
 .PHONY: clean
