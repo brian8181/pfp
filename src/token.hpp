@@ -26,7 +26,6 @@ private:
     int _id;
     token_type _type;
     string _value;
-
     static int _prev_id;
 };
 
