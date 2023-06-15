@@ -25,7 +25,6 @@ terminal_node::terminal_node(token* ptok)
 
 // terminal_node::~terminal_node()
 // {
-
 // }
 
 void terminal_node::set_token(token* ptok)

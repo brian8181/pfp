@@ -1,13 +1,11 @@
-# Wed Jun 14 07:30:48 AM CDT 2023
+# Thu Jun 15 03:57:16 PM CDT 2023
 MAKE_TEMPLATE = 1.3;
 BUILD_VERSION = 0.1.0
-
-# Compiler settings - Can be customized.
+# make variables
 SHELL = /bin/bash
 CXX = g++
 CXXFLAGS = -std=c++11 -DDEBUG -g
-
-# Makefile settings - Can be customized.
+# app variables
 APPNAME = pfp
 EXT = cpp
 ROOTDIR = ..
