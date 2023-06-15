@@ -5,9 +5,10 @@ binary_node::binary_node()
 
 }
 
-binary_node::binary_node(token t, terminal_node left, terminal_node right)
+binary_node::binary_node(token* t, terminal_node* left, terminal_node* right)
 {
-
+    _left = left;
+    _right = right;
 }
 
 node* binary_node::get_left()
