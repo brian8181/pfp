@@ -8,9 +8,10 @@ class terminal_node : public node
 {
 public:
 
-    terminal_node(const string& token);
-    terminal_node(token* ptoken);
-    void set_token(token* ptoken);
+    terminal_node(const string& tok);
+    terminal_node(const token& tok);
+    terminal_node(token* ptok);
+    void set_token(token* ptok);
     token* get_token();
 
 private:
