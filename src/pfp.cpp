@@ -9,6 +9,7 @@
 #include "main.hpp"
 #include "pfp.hpp"
 #include "token.hpp"
+//#include "utility.hpp"
 
 using namespace std;
 
@@ -67,8 +68,9 @@ int parse_options(int argc, char* argv[])
     cout << "Initializing ..." << endl;
     cout << "id = " << t1.get_id() << endl;
     cout << "id = " << t2.get_id() << endl; 
-    // cout << "token test - is_number = " << t1.is_number("2.5") << endl;
-    // cout << "token test - is_number = " << t1.is_number("a") << endl;
+    // cout << "2 - is_number = " << is_numeric("2") << endl;
+    // cout << "2.5 - is_number = " << is_numeric("2.5") << endl;
+    // cout << "a - is_number = " << is_numeric("a") << endl;
     
 	return 0;
 }
