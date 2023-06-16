@@ -6,6 +6,7 @@ class node
 public:
 
     node(); 
+    ~node();
     node* get_parent();
     void set_parent(node* parent);
 
