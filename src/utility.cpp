@@ -1,5 +1,10 @@
 #include "utility.hpp"
 
+void test()
+{
+
+}
+
 bool is_integer(const std::string& value)
 {
     int len = value.length();
