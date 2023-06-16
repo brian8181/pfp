@@ -3,16 +3,10 @@
 
 #include <iostream>
 #include <algorithm>
+#include <string>
 
-/*Simple Is-Numeric function in C++*/
-bool is_digit(const char value) 
-{ 
-    return std::isdigit(value); 
-}
-
-bool is_numeric(const std::string& value) 
-{ 
-    return std::all_of(value.begin(), value.end(), is_digit); 
-}
+bool is_interger(const std::string& value);
+bool is_digit(const char value);
+bool is_numeric(const std::string& value) ;
 
 #endif
