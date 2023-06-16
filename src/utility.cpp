@@ -1,6 +1,6 @@
 #include "utility.hpp"
 
-bool is_interger(const std::string& value)
+bool is_integer(const std::string& value)
 {
     int len = value.length();
     for(int i = 0; i < len; ++i)
