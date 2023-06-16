@@ -6,6 +6,7 @@
 #include <string>
 
 void test();
+bool test_bool();
 bool is_integer(const std::string& value);
 bool is_digit(const char value);
 bool is_numeric(const std::string& value) ;
