@@ -68,7 +68,7 @@ int parse_options(int argc, char* argv[])
     cout << "Initializing ..." << endl;
     cout << "id = " << t1.get_id() << endl;
     cout << "id = " << t2.get_id() << endl; 
-    // test();
+    //test();
     // cout << "is_integer(\"2\") = " << is_integer("2") << endl;
     // cout << "is_digit(2) = " << is_digit('2') << endl;
     // cout << "is_digit(a) = " << is_digit('a') << endl;

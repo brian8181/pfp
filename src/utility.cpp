@@ -19,6 +19,7 @@ bool is_integer(const std::string& value)
             return false;
         return true;
     }
+    return true;
 }
 
 /*Simple Is-Numeric function in C++*/

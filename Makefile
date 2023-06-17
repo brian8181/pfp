@@ -27,20 +27,20 @@ test: $(APPNAME).o main.o
 #     $(CXX) -c $(CXXFLAGS) $< -o $@
 
 # link
-$(APPNAME): $(APPNAME).o main.o parser.o node.o token.o terminal_node.o binary_node.o
+$(APPNAME): $(APPNAME).o main.o parser.o node.o token.o terminal_node.o binary_node.o utility.o
 	$(CXX) $(CXXFLAGS) \
 		$(BUILDDIR)/$(APPNAME).o $(BUILDDIR)/main.o $(BUILDDIR)/parser.o $(BUILDDIR)/node.o \
 		$(BUILDDIR)/token.o $(BUILDDIR)/terminal_node.o $(BUILDDIR)/binary_node.o \
 		-o $(BUILDDIR)/$(APPNAME)
 
 # compile only
-$(APPNAME).o: main.o 
+$(APPNAME).o: main.o utility.o
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/$(APPNAME).$(EXT) -o $(BUILDDIR)/$(APPNAME).o
 	
 main.o:
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/main.$(EXT) -o $(BUILDDIR)/main.o
 
-parser.o: node.o token.o terminal_node.o binary_node.o
+parser.o: node.o token.o terminal_node.o binary_node.o utility.o
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/parser.$(EXT) -o $(BUILDDIR)/parser.o
 
 node.o:
@@ -57,6 +57,9 @@ binary_node.o: node.o token.o
 
 test_class.o:
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/test_class.$(EXT) -o $(BUILDDIR)/test_class.o
+
+utility.o:
+	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/utility.$(EXT) -o $(BUILDDIR)/utility.o
 
 # delete object files & app executable
 .PHONY: clean
