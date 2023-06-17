@@ -13,11 +13,13 @@ BUILDDIR = ./build
 SRCDIR = ./src
 OBJDIR = ./build
 
-all: $(APPNAME) test_class.o
+# all: pfp
 
-test: $(APPNAME).o main.o
-	$(CXX) $(CXXFLAGS) $(BUILDDIR)/$(APPNAME).o $(BUILDDIR)/main.o $(BUILDDIR)/token.o -o $(BUILDDIR)/$(APPNAME)
-	#$(CXX) $(CXXFLAGS) $(BUILDDIR)/test_class.o
+# all: $(APPNAME) test_class.o
+
+# test: $(APPNAME).o main.o
+# 	$(CXX) $(CXXFLAGS) $(BUILDDIR)/$(APPNAME).o $(BUILDDIR)/main.o $(BUILDDIR)/token.o -o $(BUILDDIR)/$(APPNAME)
+# 	#$(CXX) $(CXXFLAGS) $(BUILDDIR)/test_class.o
 
 #$(APPNAME):
 
@@ -27,19 +29,22 @@ test: $(APPNAME).o main.o
 #     $(CXX) -c $(CXXFLAGS) $< -o $@
 
 # link
-$(APPNAME): $(APPNAME).o parser.o node.o token.o terminal_node.o binary_node.o utility.o
-	$(CXX) $(CXXFLAGS) \
-		$(BUILDDIR)/$(APPNAME).o $(BUILDDIR)/main.o $(BUILDDIR)/parser.o $(BUILDDIR)/node.o \
-		$(BUILDDIR)/token.o $(BUILDDIR)/terminal_node.o $(BUILDDIR)/binary_node.o \
-		-o $(BUILDDIR)/$(APPNAME)
+# $(APPNAME): $(APPNAME).o parser.o node.o token.o terminal_node.o binary_node.o utility.o
+# 	$(CXX) $(CXXFLAGS) \
+# 		$(BUILDDIR)/$(APPNAME).o $(BUILDDIR)/main.o $(BUILDDIR)/parser.o $(BUILDDIR)/node.o \
+# 		$(BUILDDIR)/token.o $(BUILDDIR)/terminal_node.o $(BUILDDIR)/binary_node.o \
+# 		-o $(BUILDDIR)/$(APPNAME)
 
 # compile only
-$(APPNAME).o: utility.o
-	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/$(APPNAME).$(EXT) -o $(BUILDDIR)/$(APPNAME).o
+# $(APPNAME).o: utility.o
+# 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/$(APPNAME).$(EXT) -o $(BUILDDIR)/$(APPNAME).o
 
-# pfp.o: main.o token.o
-# 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/pfp.$(EXT) -o $(BUILDDIR)/pfp.o
-	
+pfp: pfp.o main.o
+	$(CXX) $(CXXFLAGS) -c $(BUILDDIR)/pfp.o $(BUILDDIR)/main.o -o $(BUILDDIR)/pfp
+
+pfp.o: main.o
+	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/pfp.$(EXT) -o $(BUILDDIR)/pfp.o
+
 main.o:
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/main.$(EXT) -o $(BUILDDIR)/main.o
 
