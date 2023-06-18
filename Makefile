@@ -39,11 +39,16 @@ OBJDIR = ./build
 # $(APPNAME).o: utility.o
 # 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/$(APPNAME).$(EXT) -o $(BUILDDIR)/$(APPNAME).o
 
-pfp: pfp.o token.o node.o
-	$(CXX) $(CXXFLAGS) $(BUILDDIR)/pfp.o $(BUILDDIR)/main.o $(BUILDDIR)/utility.o \
-	$(BUILDDIR)/token.o $(BUILDDIR)/node.o \
-	-o $(BUILDDIR)/pfp
+# pfp: pfp.o token.o node.o
+# 	$(CXX) $(CXXFLAGS) $(BUILDDIR)/pfp.o $(BUILDDIR)/main.o $(BUILDDIR)/utility.o \
+# 	$(BUILDDIR)/token.o $(BUILDDIR)/node.o \
+# 	-o $(BUILDDIR)/pfp
 
+pfp: pfp.o token.o node.o terminal_node.o binary_node.o
+	$(CXX) $(CXXFLAGS) $(BUILDDIR)/pfp.o $(BUILDDIR)/main.o $(BUILDDIR)/utility.o \
+	$(BUILDDIR)/token.o $(BUILDDIR)/node.o $(BUILDDIR)/terminal_node.o $(BUILDDIR)/binary_node.o \
+	-o $(BUILDDIR)/pfp
+ 
 pfp.o: main.o utility.o
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/pfp.$(EXT) -o $(BUILDDIR)/pfp.o
 
