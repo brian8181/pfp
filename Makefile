@@ -40,7 +40,7 @@ OBJDIR = ./build
 # 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/$(APPNAME).$(EXT) -o $(BUILDDIR)/$(APPNAME).o
 
 pfp: pfp.o main.o
-	$(CXX) $(CXXFLAGS) -c $(BUILDDIR)/pfp.o $(BUILDDIR)/main.o -o $(BUILDDIR)/pfp
+	$(CXX) $(CXXFLAGS) $(BUILDDIR)/pfp.o $(BUILDDIR)/main.o -o $(BUILDDIR)/pfp
 
 pfp.o: main.o
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/pfp.$(EXT) -o $(BUILDDIR)/pfp.o
