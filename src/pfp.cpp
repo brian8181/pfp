@@ -78,9 +78,13 @@ int parse_options(int argc, char* argv[])
     node* pn = n2.get_parent();
 
     terminal_node tn1;
+    tn1.name = "tn1";
     terminal_node tn2;
+    tn2.name = "tn2";
     tn2.set_parent(&tn1);
     node* ptn = tn1.get_parent();
+
+    cout << tn2.name << " parent -> " << tn2.get_parent()->name << endl;
 
     test();
     cout << "is_integer(\"2\") = " << is_integer("2") << endl;
