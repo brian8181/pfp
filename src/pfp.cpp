@@ -71,6 +71,8 @@ int parse_options(int argc, char* argv[])
 
     node n1;
     node n2;
+    n2.set_parent(&n1);
+    node* pn = n2.get_parent();
 
     test();
     cout << "is_integer(\"2\") = " << is_integer("2") << endl;
