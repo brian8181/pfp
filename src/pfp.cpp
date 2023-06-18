@@ -9,6 +9,7 @@
 #include "pfp.hpp"
 #include "token.hpp"
 #include "node.hpp"
+#include "terminal_node.hpp"
 #include "utility.hpp"
 
 using namespace std;
@@ -75,6 +76,11 @@ int parse_options(int argc, char* argv[])
     node n2;
     n2.set_parent(&n1);
     node* pn = n2.get_parent();
+
+    terminal_node tn1;
+    terminal_node tn2;
+    tn2.set_parent(&tn1);
+    node* ptn = tn1.get_parent();
 
     test();
     cout << "is_integer(\"2\") = " << is_integer("2") << endl;
