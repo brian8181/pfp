@@ -62,11 +62,12 @@ int parse_options(int argc, char* argv[])
     
     // initalize
     // string s = "2";
-    // token t1("token 1");
-    // token t2("token 2");
-    // cout << "Initializing ..." << endl;
-    // cout << "id = " << t1.get_id() << endl;
-    // cout << "id = " << t2.get_id() << endl; 
+    token t1("token 1");
+    token t2("token 2");
+    cout << "Initializing ..." << endl;
+    cout << "id = " << t1.get_id() << endl;
+    cout << "id = " << t2.get_id() << endl; 
+    
     test();
     cout << "is_integer(\"2\") = " << is_integer("2") << endl;
     cout << "is_digit(2) = " << is_digit('2') << endl;

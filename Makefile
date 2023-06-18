@@ -39,8 +39,8 @@ OBJDIR = ./build
 # $(APPNAME).o: utility.o
 # 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/$(APPNAME).$(EXT) -o $(BUILDDIR)/$(APPNAME).o
 
-pfp: pfp.o main.o utility.o
-	$(CXX) $(CXXFLAGS) $(BUILDDIR)/pfp.o $(BUILDDIR)/main.o $(BUILDDIR)/utility.o -o $(BUILDDIR)/pfp
+pfp: pfp.o token.o
+	$(CXX) $(CXXFLAGS) $(BUILDDIR)/pfp.o $(BUILDDIR)/main.o $(BUILDDIR)/token.o $(BUILDDIR)/utility.o -o $(BUILDDIR)/pfp
 
 pfp.o: main.o utility.o
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/pfp.$(EXT) -o $(BUILDDIR)/pfp.o
