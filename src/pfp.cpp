@@ -6,6 +6,7 @@
 #include <regex>
 #include <cstring>
 #include <unistd.h>
+#include "parser.hpp"
 #include "pfp.hpp"
 #include "token.hpp"
 #include "node.hpp"
@@ -98,6 +99,10 @@ int parse_options(int argc, char* argv[])
     cout << "2 - is_number = " << is_numeric("2") << endl;
     cout << "2.5 - is_number = " << is_numeric("2.5") << endl;
     cout << "a - is_number = " << is_numeric("a") << endl;
+
+    // test parser
+    parser p;
+
     
 	return 0;
 }
