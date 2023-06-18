@@ -61,6 +61,7 @@ int parse_options(int argc, char* argv[])
 
 	cout << "Welcome to PFP (Post Fix Parser) v 0.1" << endl;
     
+    // test token
     // initalize
     // string s = "2";
     token t1("token 1");
@@ -69,6 +70,7 @@ int parse_options(int argc, char* argv[])
     cout << "id = " << t1.get_id() << endl;
     cout << "id = " << t2.get_id() << endl; 
 
+    //test node
     node n1;
     node n2;
     n2.set_parent(&n1);
