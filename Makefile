@@ -44,8 +44,8 @@ OBJDIR = ./build
 # 	$(BUILDDIR)/token.o $(BUILDDIR)/node.o \
 # 	-o $(BUILDDIR)/pfp
 
-pfp: pfp.o token.o node.o terminal_node.o binary_node.o
-	$(CXX) $(CXXFLAGS) $(BUILDDIR)/pfp.o $(BUILDDIR)/main.o $(BUILDDIR)/utility.o \
+pfp: pfp.o token.o node.o terminal_node.o binary_node.o main.o utility.o parser.o 
+	$(CXX) $(CXXFLAGS) $(BUILDDIR)/pfp.o $(BUILDDIR)/main.o $(BUILDDIR)/utility.o $(BUILDDIR)/parser.o \
 	$(BUILDDIR)/token.o $(BUILDDIR)/node.o $(BUILDDIR)/terminal_node.o $(BUILDDIR)/binary_node.o \
 	-o $(BUILDDIR)/pfp
  
