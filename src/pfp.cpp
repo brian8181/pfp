@@ -10,6 +10,7 @@
 #include "token.hpp"
 #include "node.hpp"
 #include "terminal_node.hpp"
+#include "binary_node.hpp"
 #include "utility.hpp"
 
 using namespace std;
@@ -83,8 +84,10 @@ int parse_options(int argc, char* argv[])
     tn2.name = "tn2";
     tn2.set_parent(&tn1);
     node* ptn = tn1.get_parent();
-
     cout << tn2.name << " parent -> " << tn2.get_parent()->name << endl;
+
+    binary_node bn1;
+    binary_node bn2;
 
     test();
     cout << "is_integer(\"2\") = " << is_integer("2") << endl;
