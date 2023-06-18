@@ -6,7 +6,6 @@
 #include <regex>
 #include <cstring>
 #include <unistd.h>
-#include "main.hpp"
 #include "pfp.hpp"
 #include "token.hpp"
 #include "utility.hpp"
