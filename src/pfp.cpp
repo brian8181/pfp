@@ -68,14 +68,14 @@ int parse_options(int argc, char* argv[])
     // cout << "id = " << t1.get_id() << endl;
     // cout << "id = " << t2.get_id() << endl; 
     test();
-    // cout << "is_integer(\"2\") = " << is_integer("2") << endl;
-    // cout << "is_digit(2) = " << is_digit('2') << endl;
-    // cout << "is_digit(a) = " << is_digit('a') << endl;
-    // cout << "is_digit(.) = " << is_digit('.') << endl;
-    // cout << "is_digit(-) = " << is_digit('-') << endl;
-    // cout << "2 - is_number = " << is_numeric("2") << endl;
-    // cout << "2.5 - is_number = " << is_numeric("2.5") << endl;
-    // cout << "a - is_number = " << is_numeric("a") << endl;
+    cout << "is_integer(\"2\") = " << is_integer("2") << endl;
+    cout << "is_digit(2) = " << is_digit('2') << endl;
+    cout << "is_digit(a) = " << is_digit('a') << endl;
+    cout << "is_digit(.) = " << is_digit('.') << endl;
+    cout << "is_digit(-) = " << is_digit('-') << endl;
+    cout << "2 - is_number = " << is_numeric("2") << endl;
+    cout << "2.5 - is_number = " << is_numeric("2.5") << endl;
+    cout << "a - is_number = " << is_numeric("a") << endl;
     
 	return 0;
 }
