@@ -6,13 +6,13 @@
 #include <regex>
 #include <cstring>
 #include <unistd.h>
-#include "parser.hpp"
 #include "pfp.hpp"
 #include "token.hpp"
 #include "node.hpp"
 #include "terminal_node.hpp"
 #include "binary_node.hpp"
 #include "utility.hpp"
+#include "parser.hpp"
 
 using namespace std;
 
@@ -87,8 +87,12 @@ int parse_options(int argc, char* argv[])
     node* ptn = tn1.get_parent();
     cout << tn2.name << " parent -> " << tn2.get_parent()->name << endl;
 
+    //test binary node
     binary_node bn1;
     binary_node bn2;
+
+    // test parser
+    parser p;
 
     test();
     cout << "is_integer(\"2\") = " << is_integer("2") << endl;
@@ -99,10 +103,6 @@ int parse_options(int argc, char* argv[])
     cout << "2 - is_number = " << is_numeric("2") << endl;
     cout << "2.5 - is_number = " << is_numeric("2.5") << endl;
     cout << "a - is_number = " << is_numeric("a") << endl;
-
-    // test parser
-    parser p;
-
     
 	return 0;
 }
