@@ -8,6 +8,16 @@ parser::parser()
      plevels.push_back(level3);
 }
 
+void foo()
+{
+
+}
+
+void test2()
+{
+
+}
+
 bool parse(const string& input, list<terminal_node>& nodes)
 {
     parser::tokenize(input, nodes);

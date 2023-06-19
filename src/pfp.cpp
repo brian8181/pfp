@@ -92,13 +92,16 @@ int parse_options(int argc, char* argv[])
     binary_node bn2;
 
     // test parser
-    // parser p;
-    
-    // //list<terminal_node> nodes;
-    // //parser::parse("", nodes);
+    parser p;
+    p.foo();
 
-    // list<token> tokens;
-    // bool b = parser::post_fix(bn1, tokens);
+    //parser::test2();
+    
+    list<terminal_node> nodes;
+    //parser::parse("", nodes);
+
+    list<token> tokens;
+    //parser::post_fix(bn1, tokens);
 
     test();
     cout << "is_integer(\"2\") = " << is_integer("2") << endl;
