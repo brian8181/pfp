@@ -52,6 +52,12 @@ pfp: pfp.o token.o node.o terminal_node.o binary_node.o main.o utility.o parser.
 pfp.o: parser.o main.o utility.o 
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/parser.$(EXT) -o $(BUILDDIR)/pfp.o
 
+foo: foo.o
+	$(CXX) $(CXXFLAGS) $(BUILDDIR)/foo.o -o $(BUILDDIR)/foo
+
+foo.o:
+	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/foo.cpp -o $(BUILDDIR)/foo.o
+
 main.o:
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/main.$(EXT) -o $(BUILDDIR)/main.o
 
