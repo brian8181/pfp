@@ -93,8 +93,8 @@ int parse_options(int argc, char* argv[])
 
     // test parser
     parser p;
-    // list<token> tokens;
-    // bool b = p.post_fix(bn1, tokens);
+    list<token> tokens;
+    //bool b = p.post_fix(bn1, tokens);
 
     test();
     cout << "is_integer(\"2\") = " << is_integer("2") << endl;
