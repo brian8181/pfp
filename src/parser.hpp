@@ -44,7 +44,7 @@ public:
     //     // char[2] { '+', '-' }
     // };
 
-    static bool parse(const string& input, list<terminal_node> nodes);
+    static bool parse(const string& input, list<terminal_node>& nodes);
     static bool post_fix(const binary_node& node, const list<token>& tokens);
     static string post_fix_string(const list<token>& postfix, char c);
     static bool tokenize(const string& input, list<terminal_node>& nodes);
