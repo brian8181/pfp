@@ -20,19 +20,11 @@ using std::vector;
 // unsigned char option_flags = 0; 
 //char plevels[1] {'*'};
 
-//class token;
-
-namespace postfix
-{
-
-
-
 class parser
 {
 public:
+
     parser();
-    
-    void foo();
     static bool parse(const string& input, list<terminal_node>& nodes);
     static bool post_fix(const binary_node& node, const list<token>& tokens);
     static string post_fix_string(const list<token>& postfix, char c);
@@ -41,7 +33,6 @@ public:
     static char** get_operator_precedence();
     static void parse_tokens(const list<terminal_node>& nodes);
     static void operator_pass(const list<terminal_node>& nodes, char ops[]);
-            
 
 private:
 
@@ -50,7 +41,5 @@ private:
     // vector<char> level3 { '+', '-' };
     vector<vector<char>> plevels{{ '^' }, { '*', '/' }, { '+', '-' }};
 };
-
-}
 
 #endif

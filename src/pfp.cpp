@@ -91,14 +91,16 @@ int parse_options(int argc, char* argv[])
     binary_node bn2;
 
     // // test parser
-    postfix::parser p;
-    p.foo();
-      
     list<terminal_node> nodes;
-    //postfix::parser::parse("", nodes);
-
+    stack<terminal_node> stack_nodes;
     list<token> tokens;
-    //postfix::parser::post_fix(bn1, tokens);
+    string s;
+
+    parser p;
+    p.sub_parse(nodes, 1, stack_nodes);
+    
+    // parser::parse(s, nodes);
+    // parser::post_fix(bn1, tokens);
 
     // cout << "is_integer(\"2\") = " << is_integer("2") << endl;
     cout << "is_digit(2) = " << is_digit('2') << endl;

@@ -1,14 +1,7 @@
 #include "parser.hpp"
 #include <regex>
 
-using postfix::parser;
-
 parser::parser()
-{
-
-}
-
-void parser::foo()
 {
 
 }
