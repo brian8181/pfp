@@ -91,7 +91,7 @@ int parse_options(int argc, char* argv[])
     binary_node bn2;
 
     // // test parser
-    // postfix::parser p;
+    postfix::parser p;
     // p.foo();
 
     // //parser::test2();
