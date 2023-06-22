@@ -71,9 +71,6 @@ int parse_options(int argc, char* argv[])
     cout << "Initializing ..." << endl;
     cout << "id = " << t1.get_id() << endl;
     cout << "id = " << t2.get_id() << endl; 
-<<<<<<< HEAD
-    // test();
-=======
 
     // //test node
     node n1;
@@ -105,7 +102,6 @@ int parse_options(int argc, char* argv[])
     // parser::parse(s, nodes);
     // parser::post_fix(bn1, tokens);
 
->>>>>>> 5cafadb9cdbfccb3c95f48efc9beeea4baeb2099
     // cout << "is_integer(\"2\") = " << is_integer("2") << endl;
     cout << "is_digit(2) = " << is_digit('2') << endl;
     cout << "is_digit(a) = " << is_digit('a') << endl;
