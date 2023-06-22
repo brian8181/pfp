@@ -6,7 +6,7 @@
 #include <vector>
 #include <stack>
 #include <list>
-//#include "token.hpp"
+#include "token.hpp"
 #include "terminal_node.hpp"
 #include "binary_node.hpp"
 
@@ -20,7 +20,12 @@ using std::vector;
 // unsigned char option_flags = 0; 
 //char plevels[1] {'*'};
 
-class token;
+//class token;
+
+namespace postfix
+{
+
+
 
 class parser
 {
@@ -44,7 +49,9 @@ public:
     //     // char[2] { '+', '-' }
     // };
 
-    static bool parse(const string& input, list<terminal_node> nodes);
+    void foo();
+    static void test2();
+    static bool parse(const string& input, list<terminal_node>& nodes);
     static bool post_fix(const binary_node& node, const list<token>& tokens);
     static string post_fix_string(const list<token>& postfix, char c);
     static bool tokenize(const string& input, list<terminal_node>& nodes);
@@ -63,5 +70,7 @@ private:
     vector<vector<char>> plevels;
     //vector<vector<char>> plevels2 { vector<char>() {'a'} };
 };
+
+}
 
 #endif

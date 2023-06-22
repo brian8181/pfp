@@ -1,11 +1,23 @@
 #include "parser.hpp"
 #include <regex>
 
+using postfix::parser;
+
 parser::parser()
 {
      plevels.push_back(level1);
      plevels.push_back(level2);
      plevels.push_back(level3);
+}
+
+void foo()
+{
+
+}
+
+void test2()
+{
+
 }
 
 bool parse(const string& input, list<terminal_node>& nodes)
