@@ -93,7 +93,6 @@ int parse_options(int argc, char* argv[])
     // // test parser
     postfix::parser p;
     p.foo();
-
       
     list<terminal_node> nodes;
     //postfix::parser::parse("", nodes);
@@ -101,7 +100,6 @@ int parse_options(int argc, char* argv[])
     list<token> tokens;
     //postfix::parser::post_fix(bn1, tokens);
 
-    // test();
     // cout << "is_integer(\"2\") = " << is_integer("2") << endl;
     cout << "is_digit(2) = " << is_digit('2') << endl;
     cout << "is_digit(a) = " << is_digit('a') << endl;
