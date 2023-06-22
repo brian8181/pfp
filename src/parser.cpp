@@ -1,6 +1,8 @@
 #include "parser.hpp"
 #include <regex>
 
+using postfix::parser;
+
 parser::parser()
 {
      plevels.push_back(level1);

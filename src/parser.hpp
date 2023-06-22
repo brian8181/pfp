@@ -22,6 +22,11 @@ using std::vector;
 
 //class token;
 
+namespace postfix
+{
+
+
+
 class parser
 {
 public:
@@ -65,5 +70,7 @@ private:
     vector<vector<char>> plevels;
     //vector<vector<char>> plevels2 { vector<char>() {'a'} };
 };
+
+}
 
 #endif

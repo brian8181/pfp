@@ -3,7 +3,6 @@
 #include <stack>
 #include <list>
 #include <memory>
-#include <regex>
 #include <cstring>
 #include <unistd.h>
 #include "pfp.hpp"
@@ -67,51 +66,51 @@ int parse_options(int argc, char* argv[])
     // test token
     // initalize
     // string s = "2";
-    token t1("token 1");
-    token t2("token 2");
-    cout << "Initializing ..." << endl;
-    cout << "id = " << t1.get_id() << endl;
-    cout << "id = " << t2.get_id() << endl; 
+    // token t1("token 1");
+    // token t2("token 2");
+    // cout << "Initializing ..." << endl;
+    // cout << "id = " << t1.get_id() << endl;
+    // cout << "id = " << t2.get_id() << endl; 
 
-    //test node
-    node n1;
-    node n2;
-    n2.set_parent(&n1);
-    node* pn = n2.get_parent();
+    // //test node
+    // node n1;
+    // node n2;
+    // n2.set_parent(&n1);
+    // node* pn = n2.get_parent();
 
-    terminal_node tn1;
-    tn1.name = "tn1";
-    terminal_node tn2;
-    tn2.name = "tn2";
-    tn2.set_parent(&tn1);
-    node* ptn = tn1.get_parent();
-    cout << tn2.name << " parent -> " << tn2.get_parent()->name << endl;
+    // terminal_node tn1;
+    // tn1.name = "tn1";
+    // terminal_node tn2;
+    // tn2.name = "tn2";
+    // tn2.set_parent(&tn1);
+    // node* ptn = tn1.get_parent();
+    // cout << tn2.name << " parent -> " << tn2.get_parent()->name << endl;
 
-    //test binary node
-    binary_node bn1;
-    binary_node bn2;
+    // //test binary node
+    // binary_node bn1;
+    // binary_node bn2;
 
-    // test parser
-    parser p;
-    p.foo();
+    // // test parser
+    // postfix::parser p;
+    // p.foo();
 
-    //parser::test2();
+    // //parser::test2();
     
-    list<terminal_node> nodes;
-    //parser::parse("", nodes);
+    // list<terminal_node> nodes;
+    // //parser::parse("", nodes);
 
-    list<token> tokens;
-    //parser::post_fix(bn1, tokens);
+    // list<token> tokens;
+    // //parser::post_fix(bn1, tokens);
 
-    test();
-    cout << "is_integer(\"2\") = " << is_integer("2") << endl;
-    cout << "is_digit(2) = " << is_digit('2') << endl;
-    cout << "is_digit(a) = " << is_digit('a') << endl;
-    cout << "is_digit(.) = " << is_digit('.') << endl;
-    cout << "is_digit(-) = " << is_digit('-') << endl;
-    cout << "2 - is_number = " << is_numeric("2") << endl;
-    cout << "2.5 - is_number = " << is_numeric("2.5") << endl;
-    cout << "a - is_number = " << is_numeric("a") << endl;
+    // test();
+    // cout << "is_integer(\"2\") = " << is_integer("2") << endl;
+    // cout << "is_digit(2) = " << is_digit('2') << endl;
+    // cout << "is_digit(a) = " << is_digit('a') << endl;
+    // cout << "is_digit(.) = " << is_digit('.') << endl;
+    // cout << "is_digit(-) = " << is_digit('-') << endl;
+    // cout << "2 - is_number = " << is_numeric("2") << endl;
+    // cout << "2.5 - is_number = " << is_numeric("2.5") << endl;
+    // cout << "a - is_number = " << is_numeric("a") << endl;
     
 	return 0;
 }
