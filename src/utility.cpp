@@ -1,15 +1,5 @@
 #include "utility.hpp"
 
-void test()
-{
-
-}
-
-bool test_bool()
-{
-    return true;
-}
-
 bool is_integer(const std::string& value)
 {
     int len = value.length();
@@ -22,7 +12,6 @@ bool is_integer(const std::string& value)
     return true;
 }
 
-/*Simple Is-Numeric function in C++*/
 bool is_digit(const char value) 
 { 
     return std::isdigit(value); 
