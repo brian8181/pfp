@@ -5,6 +5,11 @@ void test()
 
 }
 
+bool test_bool()
+{
+    return true;
+}
+
 bool is_integer(const std::string& value)
 {
     int len = value.length();

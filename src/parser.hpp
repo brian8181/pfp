@@ -36,9 +36,6 @@ public:
 
 private:
 
-    // vector<char> level1 { '^' };
-    // vector<char> level2 { '*', '/' };
-    // vector<char> level3 { '+', '-' };
     vector<vector<char>> plevels{{ '^' }, { '*', '/' }, { '+', '-' }};
 };
 
