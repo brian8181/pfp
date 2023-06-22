@@ -13,7 +13,7 @@ BUILDDIR = build
 SRCDIR = src
 OBJDIR = build
 
-# all: pfp
+all: pfp
 
 # $(APPNAME): $(APPNAME).o parser.o node.o token.o terminal_node.o binary_node.o utility.o
 # 	$(CXX) $(CXXFLAGS) \
@@ -21,14 +21,14 @@ OBJDIR = build
 # 		$(BUILDDIR)/token.o $(BUILDDIR)/terminal_node.o $(BUILDDIR)/binary_node.o \
 # 		-o $(BUILDDIR)/$(APPNAME)
 
-$(APPNAME): pfp.o token.o node.o terminal_node.o binary_node.o parser.o
+$(APPNAME): pfp.o token.o node.o terminal_node.o binary_node.o parser.o main.o utility.o
 	$(CXX) $(CXXFLAGS) $(BUILDDIR)/pfp.o $(BUILDDIR)/main.o $(BUILDDIR)/utility.o \
 	$(BUILDDIR)/terminal_node.o $(BUILDDIR)/binary_node.o $(BUILDDIR)/parser.o \
 	$(BUILDDIR)/token.o $(BUILDDIR)/node.o \
 	-o $(BUILDDIR)/pfp
 
-pfp.o: utility.o
-	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/$(APPNAME).$(EXT) -o $(BUILDDIR)/$(APPNAME).o
+# pfp.o: utility.o
+# 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/$(APPNAME).$(EXT) -o $(BUILDDIR)/$(APPNAME).o
 
 test.o: pfp.o
 	$(CXX) $(CXXFLAGS) -c $(BUILDDIR)/main.o -o test.o
