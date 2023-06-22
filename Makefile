@@ -39,13 +39,13 @@ all: pfp
 # $(APPNAME).o: utility.o
 # 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/$(APPNAME).$(EXT) -o $(BUILDDIR)/$(APPNAME).o
 
-pfp: pfp.o token.o node.o terminal_node.o binary_node.o
-	$(CXX) $(CXXFLAGS) $(BUILDDIR)/pfp.o $(BUILDDIR)/main.o $(BUILDDIR)/utility.o $(BUILDDIR)/terminal_node.o $(BUILDDIR)/binary_node.o \
+pfp: pfp.o token.o node.o terminal_node.o binary_node.o parser.o
+	$(CXX) $(CXXFLAGS) $(BUILDDIR)/pfp.o $(BUILDDIR)/main.o $(BUILDDIR)/utility.o $(BUILDDIR)/terminal_node.o $(BUILDDIR)/binary_node.o $(BUILDDIR)/parser.o \
 	$(BUILDDIR)/token.o $(BUILDDIR)/node.o \
 	-o $(BUILDDIR)/pfp
 
 # pfp: pfp.o parser.o 
-# 	$(CXX) $(CXXFLAGS) $(BUILDDIR)/pfp.o $(BUILDDIR)/main.o $(BUILDDIR)/utility.o \
+# 	$(CXX) $(CXXFLAGS) $(BUILDDIR)/pfp.o $(BUILDDIR)/main.o $(BUILDDIR)/uqaqtility.o \
 # 	$(BUILDDIR)/token.o $(BUILDDIR)/node.o $(BUILDDIR)/terminal_node.o $(BUILDDIR)/binary_node.o $(BUILDDIR)/parser.o \
 # 	-o $(BUILDDIR)/pfp
 
@@ -58,7 +58,7 @@ pfp.o:
 main.o:
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/main.$(EXT) -o $(BUILDDIR)/main.o
 
-parser.o: node.o token.o terminal_node.o binary_node.o utility.o
+parser.o:
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/parser.$(EXT) -o $(BUILDDIR)/parser.o
 
 node.o:
