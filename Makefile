@@ -13,20 +13,11 @@ BUILDDIR = build
 SRCDIR = src
 OBJDIR = build
 
-all: pfp
-
-# all: $(APPNAME) test_class.o
+all: $(APPNAME)
 
 # test: $(APPNAME).o main.o
 # 	$(CXX) $(CXXFLAGS) $(BUILDDIR)/$(APPNAME).o $(BUILDDIR)/main.o $(BUILDDIR)/token.o -o $(BUILDDIR)/$(APPNAME)
 # 	#$(CXX) $(CXXFLAGS) $(BUILDDIR)/test_class.o
-
-#$(APPNAME):
-
-# $(APPNAME): %.o
-
-# %.o: %.cpp
-#     $(CXX) -c $(CXXFLAGS) $< -o $@
 
 # link
 # $(APPNAME): $(APPNAME).o parser.o node.o token.o terminal_node.o binary_node.o utility.o
@@ -35,19 +26,14 @@ all: pfp
 # 		$(BUILDDIR)/token.o $(BUILDDIR)/terminal_node.o $(BUILDDIR)/binary_node.o \
 # 		-o $(BUILDDIR)/$(APPNAME)
 
-# compile only
-# $(APPNAME).o: utility.o
-# 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/$(APPNAME).$(EXT) -o $(BUILDDIR)/$(APPNAME).o
-
-pfp: pfp.o token.o node.o terminal_node.o binary_node.o parser.o
+$(APPNAME): pfp.o token.o node.o terminal_node.o binary_node.o parser.o
 	$(CXX) $(CXXFLAGS) $(BUILDDIR)/pfp.o $(BUILDDIR)/main.o $(BUILDDIR)/utility.o $(BUILDDIR)/terminal_node.o $(BUILDDIR)/binary_node.o $(BUILDDIR)/parser.o \
 	$(BUILDDIR)/token.o $(BUILDDIR)/node.o \
 	-o $(BUILDDIR)/pfp
-
-# pfp: pfp.o parser.o 
-# 	$(CXX) $(CXXFLAGS) $(BUILDDIR)/pfp.o $(BUILDDIR)/main.o $(BUILDDIR)/uqaqtility.o \
-# 	$(BUILDDIR)/token.o $(BUILDDIR)/node.o $(BUILDDIR)/terminal_node.o $(BUILDDIR)/binary_node.o $(BUILDDIR)/parser.o \
-# 	-o $(BUILDDIR)/pfp
+	
+// compile only
+$(APPNAME).o: utility.o
+	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/$(APPNAME).$(EXT) -o $(BUILDDIR)/$(APPNAME).o
 
 test.o: pfp.o
 	$(CXX) $(CXXFLAGS) -c $(BUILDDIR)/main.o -o test.o
