@@ -111,3 +111,9 @@ int parse_options(int argc, char* argv[])
     
 	return 0;
 }
+
+// Pass by reference TEST!!!
+constexpr float exp2(const float& x, const int& n)
+{
+    return x;
+}
