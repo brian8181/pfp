@@ -98,18 +98,18 @@ int parse_options(int argc, char* argv[])
     list<terminal_node> nodes;
     postfix::parser::parse("", nodes);
 
-    // list<token> tokens;
-    // //parser::post_fix(bn1, tokens);
+    list<token> tokens;
+    postfix::parser::post_fix(bn1, tokens);
 
     // test();
-    // cout << "is_integer(\"2\") = " << is_integer("2") << endl;
-    // cout << "is_digit(2) = " << is_digit('2') << endl;
-    // cout << "is_digit(a) = " << is_digit('a') << endl;
-    // cout << "is_digit(.) = " << is_digit('.') << endl;
-    // cout << "is_digit(-) = " << is_digit('-') << endl;
-    // cout << "2 - is_number = " << is_numeric("2") << endl;
-    // cout << "2.5 - is_number = " << is_numeric("2.5") << endl;
-    // cout << "a - is_number = " << is_numeric("a") << endl;
+    cout << "is_integer(\"2\") = " << is_integer("2") << endl;
+    cout << "is_digit(2) = " << is_digit('2') << endl;
+    cout << "is_digit(a) = " << is_digit('a') << endl;
+    cout << "is_digit(.) = " << is_digit('.') << endl;
+    cout << "is_digit(-) = " << is_digit('-') << endl;
+    cout << "2 - is_number = " << is_numeric("2") << endl;
+    cout << "2.5 - is_number = " << is_numeric("2.5") << endl;
+    cout << "a - is_number = " << is_numeric("a") << endl;
     
 	return 0;
 }
