@@ -13,7 +13,7 @@ BUILDDIR = build
 SRCDIR = src
 OBJDIR = build
 
-# all: pfp
+all: pfp
 
 # all: $(APPNAME) test_class.o
 
@@ -39,8 +39,8 @@ OBJDIR = build
 # $(APPNAME).o: utility.o
 # 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/$(APPNAME).$(EXT) -o $(BUILDDIR)/$(APPNAME).o
 
-pfp: pfp.o token.o node.o
-	$(CXX) $(CXXFLAGS) $(BUILDDIR)/pfp.o $(BUILDDIR)/main.o $(BUILDDIR)/utility.o \
+pfp: pfp.o token.o node.o terminal_node.o
+	$(CXX) $(CXXFLAGS) $(BUILDDIR)/pfp.o $(BUILDDIR)/main.o $(BUILDDIR)/utility.o $(BUILDDIR)/terminal_node.o \
 	$(BUILDDIR)/token.o $(BUILDDIR)/node.o \
 	-o $(BUILDDIR)/pfp
 
@@ -52,7 +52,7 @@ pfp: pfp.o token.o node.o
 test.o: pfp.o
 	$(CXX) $(CXXFLAGS) -c $(BUILDDIR)/main.o -o test.o
  
-pfp.o: parser.o main.o utility.o 
+pfp.o: 
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/pfp.$(EXT) -o $(BUILDDIR)/pfp.o
 
 main.o:
