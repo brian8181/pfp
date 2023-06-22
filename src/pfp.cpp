@@ -87,8 +87,8 @@ int parse_options(int argc, char* argv[])
     cout << tn2.name << " parent -> " << tn2.get_parent()->name << endl;
 
     // //test binary node
-    // binary_node bn1;
-    // binary_node bn2;
+    binary_node bn1;
+    binary_node bn2;
 
     // // test parser
     // postfix::parser p;
