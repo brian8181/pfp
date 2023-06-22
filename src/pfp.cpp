@@ -3,13 +3,15 @@
 #include <stack>
 #include <list>
 #include <memory>
-#include <regex>
 #include <cstring>
 #include <unistd.h>
-#include "main.hpp"
 #include "pfp.hpp"
 #include "token.hpp"
+#include "node.hpp"
+#include "terminal_node.hpp"
+#include "binary_node.hpp"
 #include "utility.hpp"
+#include "parser.hpp"
 
 using namespace std;
 
@@ -61,22 +63,63 @@ int parse_options(int argc, char* argv[])
 
 	cout << "Welcome to PFP (Post Fix Parser) v 0.1" << endl;
     
+    // test token
     // initalize
-    string s = "2";
+    // string s = "2";
     token t1("token 1");
     token t2("token 2");
     cout << "Initializing ..." << endl;
     cout << "id = " << t1.get_id() << endl;
     cout << "id = " << t2.get_id() << endl; 
+<<<<<<< HEAD
     // test();
+=======
+
+    // //test node
+    node n1;
+    node n2;
+    n2.set_parent(&n1);
+    node* pn = n2.get_parent();
+
+    terminal_node tn1;
+    tn1.name = "tn1";
+    terminal_node tn2;
+    tn2.name = "tn2";
+    tn2.set_parent(&tn1);
+    node* ptn = tn1.get_parent();
+    cout << tn2.name << " parent -> " << tn2.get_parent()->name << endl;
+
+    // //test binary node
+    binary_node bn1;
+    binary_node bn2;
+
+    // // test parser
+    list<terminal_node> nodes;
+    stack<terminal_node> stack_nodes;
+    list<token> tokens;
+    string s;
+
+    parser p;
+    p.sub_parse(nodes, 1, stack_nodes);
+    
+    // parser::parse(s, nodes);
+    // parser::post_fix(bn1, tokens);
+
+>>>>>>> 5cafadb9cdbfccb3c95f48efc9beeea4baeb2099
     // cout << "is_integer(\"2\") = " << is_integer("2") << endl;
-    // cout << "is_digit(2) = " << is_digit('2') << endl;
-    // cout << "is_digit(a) = " << is_digit('a') << endl;
-    // cout << "is_digit(.) = " << is_digit('.') << endl;
-    // cout << "is_digit(-) = " << is_digit('-') << endl;
-    // cout << "2 - is_number = " << is_numeric("2") << endl;
-    // cout << "2.5 - is_number = " << is_numeric("2.5") << endl;
-    // cout << "a - is_number = " << is_numeric("a") << endl;
+    cout << "is_digit(2) = " << is_digit('2') << endl;
+    cout << "is_digit(a) = " << is_digit('a') << endl;
+    cout << "is_digit(.) = " << is_digit('.') << endl;
+    cout << "is_digit(-) = " << is_digit('-') << endl;
+    cout << "2 - is_number = " << is_numeric("2") << endl;
+    cout << "2.5 - is_number = " << is_numeric("2.5") << endl;
+    cout << "a - is_number = " << is_numeric("a") << endl;
     
 	return 0;
+}
+
+// Pass by reference TEST!!!
+constexpr float exp2(const float& x, const int& n)
+{
+    return x;
 }

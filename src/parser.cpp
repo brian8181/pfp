@@ -3,18 +3,16 @@
 
 parser::parser()
 {
-     plevels.push_back(level1);
-     plevels.push_back(level2);
-     plevels.push_back(level3);
+
 }
 
-bool parse(const string& input, list<terminal_node>& nodes)
+bool parser::parse(const string& input, list<terminal_node>& nodes)
 {
     parser::tokenize(input, nodes);
     return true;
 }
 
-bool post_fix(const binary_node& node, list<token>& tokens)
+bool parser::post_fix(const binary_node& node, const list<token>& tokens)
 {
     return true;
 }

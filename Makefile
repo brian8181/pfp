@@ -9,38 +9,37 @@ CXXFLAGS = -std=c++11 -DDEBUG -g
 APPNAME = pfp
 EXT = cpp
 ROOTDIR = ..
-BUILDDIR = ./build
-SRCDIR = ./src
-OBJDIR = ./build
+BUILDDIR = build
+SRCDIR = src
+OBJDIR = build
 
-all: $(APPNAME) test_class.o
+# all: pfp
 
-test: $(APPNAME).o main.o
-	$(CXX) $(CXXFLAGS) $(BUILDDIR)/$(APPNAME).o $(BUILDDIR)/main.o $(BUILDDIR)/token.o -o $(BUILDDIR)/$(APPNAME)
-	#$(CXX) $(CXXFLAGS) $(BUILDDIR)/test_class.o
+# $(APPNAME): $(APPNAME).o parser.o node.o token.o terminal_node.o binary_node.o utility.o
+# 	$(CXX) $(CXXFLAGS) \
+# 		$(BUILDDIR)/$(APPNAME).o $(BUILDDIR)/main.o $(BUILDDIR)/parser.o $(BUILDDIR)/node.o \
+# 		$(BUILDDIR)/token.o $(BUILDDIR)/terminal_node.o $(BUILDDIR)/binary_node.o \
+# 		-o $(BUILDDIR)/$(APPNAME)
 
-#$(APPNAME):
+$(APPNAME): pfp.o token.o node.o terminal_node.o binary_node.o parser.o
+	$(CXX) $(CXXFLAGS) $(BUILDDIR)/pfp.o $(BUILDDIR)/main.o $(BUILDDIR)/utility.o \
+	$(BUILDDIR)/terminal_node.o $(BUILDDIR)/binary_node.o $(BUILDDIR)/parser.o \
+	$(BUILDDIR)/token.o $(BUILDDIR)/node.o \
+	-o $(BUILDDIR)/pfp
 
-# $(APPNAME): %.o
-
-# %.o: %.cpp
-#     $(CXX) -c $(CXXFLAGS) $< -o $@
-
-# link
-$(APPNAME): $(APPNAME).o main.o parser.o node.o token.o terminal_node.o binary_node.o
-	$(CXX) $(CXXFLAGS) \
-		$(BUILDDIR)/$(APPNAME).o $(BUILDDIR)/main.o $(BUILDDIR)/parser.o $(BUILDDIR)/node.o \
-		$(BUILDDIR)/token.o $(BUILDDIR)/terminal_node.o $(BUILDDIR)/binary_node.o \
-		-o $(BUILDDIR)/$(APPNAME)
-
-# compile only
-$(APPNAME).o: main.o 
+pfp.o: utility.o
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/$(APPNAME).$(EXT) -o $(BUILDDIR)/$(APPNAME).o
-	
+
+test.o: pfp.o
+	$(CXX) $(CXXFLAGS) -c $(BUILDDIR)/main.o -o test.o
+ 
+pfp.o: 
+	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/pfp.$(EXT) -o $(BUILDDIR)/pfp.o
+
 main.o:
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/main.$(EXT) -o $(BUILDDIR)/main.o
 
-parser.o: node.o token.o terminal_node.o binary_node.o
+parser.o:
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/parser.$(EXT) -o $(BUILDDIR)/parser.o
 
 node.o:
@@ -57,6 +56,9 @@ binary_node.o: node.o token.o
 
 test_class.o:
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/test_class.$(EXT) -o $(BUILDDIR)/test_class.o
+
+utility.o:
+	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/utility.$(EXT) -o $(BUILDDIR)/utility.o
 
 # delete object files & app executable
 .PHONY: clean
