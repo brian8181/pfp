@@ -92,10 +92,9 @@ int parse_options(int argc, char* argv[])
 
     // // test parser
     postfix::parser p;
-    // p.foo();
+    p.foo();
 
-    // //parser::test2();
-    
+      
     // list<terminal_node> nodes;
     // //parser::parse("", nodes);
 

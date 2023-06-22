@@ -10,7 +10,7 @@ parser::parser()
      plevels.push_back(level3);
 }
 
-void foo()
+void parser::foo()
 {
 
 }
