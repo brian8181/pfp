@@ -15,18 +15,13 @@ void parser::foo()
 
 }
 
-void test2()
-{
-
-}
-
-bool parse(const string& input, list<terminal_node>& nodes)
+bool parser::parse(const string& input, list<terminal_node>& nodes)
 {
     parser::tokenize(input, nodes);
     return true;
 }
 
-bool post_fix(const binary_node& node, list<token>& tokens)
+bool parser::post_fix(const binary_node& node, const list<token>& tokens)
 {
     return true;
 }

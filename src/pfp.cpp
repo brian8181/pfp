@@ -95,8 +95,8 @@ int parse_options(int argc, char* argv[])
     p.foo();
 
       
-    // list<terminal_node> nodes;
-    // //parser::parse("", nodes);
+    list<terminal_node> nodes;
+    postfix::parser::parse("", nodes);
 
     // list<token> tokens;
     // //parser::post_fix(bn1, tokens);
