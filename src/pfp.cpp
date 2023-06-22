@@ -66,17 +66,17 @@ int parse_options(int argc, char* argv[])
     // test token
     // initalize
     // string s = "2";
-    // token t1("token 1");
-    // token t2("token 2");
-    // cout << "Initializing ..." << endl;
-    // cout << "id = " << t1.get_id() << endl;
-    // cout << "id = " << t2.get_id() << endl; 
+    token t1("token 1");
+    token t2("token 2");
+    cout << "Initializing ..." << endl;
+    cout << "id = " << t1.get_id() << endl;
+    cout << "id = " << t2.get_id() << endl; 
 
     // //test node
-    // node n1;
-    // node n2;
-    // n2.set_parent(&n1);
-    // node* pn = n2.get_parent();
+    node n1;
+    node n2;
+    n2.set_parent(&n1);
+    node* pn = n2.get_parent();
 
     // terminal_node tn1;
     // tn1.name = "tn1";
