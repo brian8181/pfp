@@ -45,6 +45,36 @@ bool parser::parse(vector<terminal_node>& tokens)
 
 bool parser::post_fix(const binary_node& node, const list<token>& tokens)
 {
+    // TerminalNode current = node;
+    // List<Token> postfix = new List<Token>();
+    // while (current != null)
+    // {
+    //     postfix.Add(current.Token);
+    //     if (current is BinaryNode)
+    //     {
+    //         current = ((BinaryNode)current).Right;
+    //     }
+    //     else 
+    //     {
+    //         while (current != null)
+    //         {
+    //             // current is parents right move to parents Left
+    //             if (((BinaryNode)current.Parent) != null && ((BinaryNode)current.Parent).Left != current)
+    //             {
+    //                 current = ((BinaryNode)current.Parent).Left;
+    //                 break;
+    //             }
+    //             // current parents left move to parent.parent
+    //             else 
+    //             {
+    //                 current = ((BinaryNode)current.Parent);
+    //             }
+    //         }
+    //     }
+    // }
+    // postfix.Reverse();
+    // return postfix;
+
     return true;
 }
 
