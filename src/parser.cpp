@@ -7,36 +7,39 @@ parser::parser()
 
 }
 
-bool parser::parse(const string& input, list<terminal_node>& nodes)
+bool parser::parse(vector<terminal_node>& tokens)
 {
-     stack<terminal_node> stack;
-    
-    int len = tokens.value;
+    stack<terminal_node> stack;
+    //int len = tokens.value;
+    int len = tokens.size();
     for (int i = 0; i < len; ++i)
     {
-        if (tokens[i].Token.Value == "(")
+        if (tokens[i].get_token()->get_token_value() == "(")
         {
             // check for implied mutiplication and create explict
             if (i > 0)
             {
-                if (tokens[i - 1].Token.Type == token_type::Number)
+                if (tokens[i - 1].get_token()->get_token_type() == token_type::Number)
                 {
                     // add a "*"
                     terminal_node multi_op;
-                    tokens.Insert(i, multi_op);
-                    len = tokens.Count;
+                    //tokens.Insert(i, multi_op);
+                    //tokens.insert(i, multi_op);
+                    len = tokens.size();
                     ++i;
                 }
             }
             //SubParse(tokens, i, stack);
-            len = tokens.Count;
+            len = tokens.size();
         }
     }
 
-    if (tokens.Count > 1)
-        ParseTokens(tokens);
-        return tokens;
-    parser::tokenize(input, nodes);
+    if (tokens.size() > 1)
+    {
+        //ParseTokens(tokens);
+        //return tokens;
+    }
+    //parser::tokenize(input, nodes);
     return true;
 }
 
