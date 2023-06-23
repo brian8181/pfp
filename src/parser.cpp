@@ -10,7 +10,6 @@ parser::parser()
 bool parser::parse(vector<terminal_node>& tokens)
 {
     stack<terminal_node> stack;
-    //int len = tokens.value;
     int len = tokens.size();
     for (int i = 0; i < len; ++i)
     {
@@ -23,23 +22,24 @@ bool parser::parse(vector<terminal_node>& tokens)
                 {
                     // add a "*"
                     terminal_node multi_op;
-                    //tokens.Insert(i, multi_op);
-                    //tokens.insert(i, multi_op);
+                    vector<terminal_node>::iterator iter = tokens.begin();
+                    tokens.insert(iter += i, multi_op);
                     len = tokens.size();
                     ++i;
                 }
             }
-            //SubParse(tokens, i, stack);
+            sub_parse(tokens, i, stack);
             len = tokens.size();
         }
     }
 
     if (tokens.size() > 1)
     {
-        //ParseTokens(tokens);
+        parse_tokens(tokens);
         //return tokens;
     }
-    //parser::tokenize(input, nodes);
+    string input = "TEST";
+    parser::tokenize(input, tokens);
     return true;
 }
 
@@ -48,16 +48,15 @@ bool parser::post_fix(const binary_node& node, const list<token>& tokens)
     return true;
 }
 
-string parser::post_fix_string(const list<token>& postfix, char c)
+string parser::post_fix_string(const list<token>& postfix, char c)                    //tokens.Insert(i, multi_op);
 {
     string s = "test";
     return s;
 }
 
-bool parser::tokenize(const string& input, list<terminal_node>& nodes)
+bool parser::tokenize(const string& input, vector<terminal_node>& nodes)
 {
     std::regex::flag_type REGX_FLAGS = std::regex::basic;
-    //std::vector<terminal_node>* nodes =  new std::vector<terminal_node>;
     std::regex input_epx = std::regex(R"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])", REGX_FLAGS);
     
     auto begin = std::sregex_iterator(input.begin(), input.end(), input_epx);
@@ -76,12 +75,12 @@ bool parser::tokenize(const string& input, list<terminal_node>& nodes)
     return true;
 }
 
-void parser::sub_parse(const list<terminal_node>& nodes, int i, stack<terminal_node>& stack)
+void parser::sub_parse(const vector<terminal_node>& nodes, int i, stack<terminal_node>& stack)
 {
 
 }
 
-void parser::parse_tokens(const list<terminal_node>& nodes)
+void parser::parse_tokens(const vector<terminal_node>& nodes)
 {
 
 }
