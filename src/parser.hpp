@@ -26,17 +26,17 @@ public:
 
     parser();
     static bool parse(vector<terminal_node>& tokens);
-    static bool post_fix(const binary_node& node, const list<token>& tokens);
-    static string post_fix_string(const list<token>& postfix, char c);
+    static bool post_fix(const binary_node& node, const vector<token>& tokens);
+    static string post_fix_string(const vector<token>& postfix, char c);
     static bool tokenize(const string& input, vector<terminal_node>& nodes);
     static void sub_parse(const vector<terminal_node>& nodes, int i, stack<terminal_node>& stack);
     static char** get_operator_precedence();
     static void parse_tokens(const vector<terminal_node>& nodes);
-    static void operator_pass(const list<terminal_node>& nodes, char ops[]);
+    static void operator_pass(const vector<terminal_node>& nodes, char ops[]);
 
 private:
 
-    vector<vector<char>> plevels{{ '^' }, { '*', '/' }, { '+', '-' }};
+    static vector<vector<char>> plevels{{ '^' }, { '*', '/' }, { '+', '-' }};
 };
 
 #endif

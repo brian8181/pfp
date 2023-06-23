@@ -43,7 +43,7 @@ bool parser::parse(vector<terminal_node>& tokens)
     return true;
 }
 
-bool parser::post_fix(const binary_node& node, const list<token>& tokens)
+bool parser::post_fix(const binary_node& node, const vector<token>& tokens)
 {
     // TerminalNode current = node;
     // List<Token> postfix = new List<Token>();
@@ -78,7 +78,7 @@ bool parser::post_fix(const binary_node& node, const list<token>& tokens)
     return true;
 }
 
-string parser::post_fix_string(const list<token>& postfix, char c)                    //tokens.Insert(i, multi_op);
+string parser::post_fix_string(const vector<token>& postfix, char c)                    //tokens.Insert(i, multi_op);
 {
     // StringBuilder str = new StringBuilder();
     // foreach (Token t in postfix)
@@ -148,13 +148,14 @@ void parser::sub_parse(const vector<terminal_node>& nodes, int i, stack<terminal
 
 void parser::parse_tokens(const vector<terminal_node>& nodes)
 {
+    
     // foreach (char[] ops in plevels)
     // {
     //     OperatorPass(nodes, ops);
     // }
 }
 
-void parser::operator_pass(const list<terminal_node>& nodes, char ops[])
+void parser::operator_pass(const vector<terminal_node>& nodes, char ops[])
 {
     // int len = nodes.Count;
     // for (int i = 0; i < len; ++i)
