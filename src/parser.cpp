@@ -1,4 +1,5 @@
 #include "parser.hpp"
+#include <stack>
 #include <regex>
 
 parser::parser()
@@ -8,6 +9,33 @@ parser::parser()
 
 bool parser::parse(const string& input, list<terminal_node>& nodes)
 {
+     stack<terminal_node> stack;
+    
+    int len = tokens.value;
+    for (int i = 0; i < len; ++i)
+    {
+        if (tokens[i].Token.Value == "(")
+        {
+            // check for implied mutiplication and create explict
+            if (i > 0)
+            {
+                if (tokens[i - 1].Token.Type == token_type::Number)
+                {
+                    // add a "*"
+                    terminal_node multi_op;
+                    tokens.Insert(i, multi_op);
+                    len = tokens.Count;
+                    ++i;
+                }
+            }
+            //SubParse(tokens, i, stack);
+            len = tokens.Count;
+        }
+    }
+
+    if (tokens.Count > 1)
+        ParseTokens(tokens);
+        return tokens;
     parser::tokenize(input, nodes);
     return true;
 }
