@@ -114,15 +114,66 @@ bool parser::tokenize(const string& input, vector<terminal_node>& nodes)
 
 void parser::sub_parse(const vector<terminal_node>& nodes, int i, stack<terminal_node>& stack)
 {
+    // stack
+    // while (nodes[i].Token.Value != ")")
+    // {
+    //     stack.Push(nodes[i]);
+    //     ++i;
+    // }
 
+    // // unstack
+    // TerminalNode n = stack.Pop();
+    // --i;
+    // List<TerminalNode> tmp_nodes = new List<TerminalNode>();
+    // while (n.Token.Value != "(") 
+    // {
+    //     tmp_nodes.Add(n);
+    //     n = stack.Pop();
+    //     --i;
+    // }
+
+    // int len = tmp_nodes.Count;
+    // tmp_nodes.Reverse();
+    // ParseTokens(tmp_nodes);         // parse sub list
+    // nodes.Insert(i, tmp_nodes[0]);  // put sub list into original
+    // nodes.RemoveRange(i + 1, len + 2);
+
+    // // continue ...
+    // if (stack.Count != 0)
+    // {
+    //     stack.Push(tmp_nodes[0]);
+    //     SubParse(nodes, i + 1, stack);
+    // }
 }
 
 void parser::parse_tokens(const vector<terminal_node>& nodes)
 {
-
+    // foreach (char[] ops in plevels)
+    // {
+    //     OperatorPass(nodes, ops);
+    // }
 }
 
 void parser::operator_pass(const list<terminal_node>& nodes, char ops[])
 {
-
+    // int len = nodes.Count;
+    // for (int i = 0; i < len; ++i)
+    // {
+    //     foreach (char c in ops)
+    //     {
+    //         if (!(nodes[i] is BinaryNode))
+    //         {
+    //             if (nodes[i].Token.Value == c.ToString())
+    //             {
+    //                 BinaryNode node = 
+    //                     new BinaryNode(nodes[i].Token, nodes[i - 1], nodes[i + 1]);
+    //                 nodes.Insert(i - 1, node);
+    //                 nodes.RemoveRange(i, 3);
+    //                 len = nodes.Count;
+    //                 --i;
+    //                 break;
+    //             }
+    //         }
+    //     }
+    // }
 }
