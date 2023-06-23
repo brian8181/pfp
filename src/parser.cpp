@@ -80,6 +80,13 @@ bool parser::post_fix(const binary_node& node, const list<token>& tokens)
 
 string parser::post_fix_string(const list<token>& postfix, char c)                    //tokens.Insert(i, multi_op);
 {
+    // StringBuilder str = new StringBuilder();
+    // foreach (Token t in postfix)
+    // {
+    //     str.Append(t.Value + s);
+    // }
+    // return str.ToString().TrimEnd();
+    
     string s = "test";
     return s;
 }
