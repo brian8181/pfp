@@ -2,9 +2,11 @@
 #include <stack>
 #include <regex>
 
-parser::parser()
+bool parser::parse(const string& infix_expression)
 {
-
+    vector<terminal_node> nodes;// = parser::tokenize(infix_expression);
+    parser::parse(nodes);
+    return true; //parser::post_fix((binary_node)nodes[0], nodes);
 }
 
 bool parser::parse(vector<terminal_node>& tokens)
@@ -43,12 +45,12 @@ bool parser::parse(vector<terminal_node>& tokens)
     return true;
 }
 
-bool parser::post_fix(const binary_node& node, const vector<token>& tokens)
+bool parser::post_fix(binary_node& node, const vector<token>& tokens)
 {
-    // TerminalNode current = node;
-    // List<Token> postfix = new List<Token>();
-    // while (current != null)
-    // {
+    terminal_node* current = &node;
+    vector<token> postfix;
+    while (current != 0)
+    {
     //     postfix.Add(current.Token);
     //     if (current is BinaryNode)
     //     {
@@ -71,8 +73,9 @@ bool parser::post_fix(const binary_node& node, const vector<token>& tokens)
     //             }
     //         }
     //     }
-    // }
+    }
     // postfix.Reverse();
+    
     // return postfix;
 
     return true;
@@ -155,26 +158,30 @@ void parser::parse_tokens(const vector<terminal_node>& nodes)
     // }
 }
 
-void parser::operator_pass(const vector<terminal_node>& nodes, char ops[])
+void parser::operator_pass(vector<terminal_node>& nodes, char ops[])
 {
-    // int len = nodes.Count;
-    // for (int i = 0; i < len; ++i)
-    // {
-    //     foreach (char c in ops)
-    //     {
-    //         if (!(nodes[i] is BinaryNode))
-    //         {
-    //             if (nodes[i].Token.Value == c.ToString())
-    //             {
-    //                 BinaryNode node = 
-    //                     new BinaryNode(nodes[i].Token, nodes[i - 1], nodes[i + 1]);
-    //                 nodes.Insert(i - 1, node);
-    //                 nodes.RemoveRange(i, 3);
-    //                 len = nodes.Count;
-    //                 --i;
-    //                 break;
-    //             }
-    //         }
-    //     }
-    // }
+    int len = nodes.size();;
+    for (int i = 0; i < len; ++i)
+    {
+        int len = 0; // todo
+        for (int i = 0; i < len; ++i)
+        {
+            //if (!(nodes[i] is BinaryNode))
+            {
+                //if (nodes[i].get_token()->get_token_type() == c.ToString())
+                {
+                    binary_node node;
+                    //binary_node node = binary_node(nodes[i].get_token(), nodes[i -1], nodes[i + 1]); 
+                    vector<terminal_node>::const_iterator iter = nodes.begin();
+                    nodes.insert(iter -= (i-1), node);
+                    //nodes.Insert(i - 1, node);
+                    //nodes.RemoveRange(i, 3);
+                    //nodes.erase()
+                    len = nodes.size();
+                    --i;
+                    break;
+                }
+            }
+        }
+    }
 }

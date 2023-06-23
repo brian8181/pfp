@@ -24,15 +24,15 @@ class parser
 {
 public:
 
-    parser();
+    static bool parse(const string& infix_expression);
     static bool parse(vector<terminal_node>& tokens);
-    static bool post_fix(const binary_node& node, const vector<token>& tokens);
+    static bool post_fix(binary_node& node, const vector<token>& tokens);
     static string post_fix_string(const vector<token>& postfix, char c);
     static bool tokenize(const string& input, vector<terminal_node>& nodes);
     static void sub_parse(const vector<terminal_node>& nodes, int i, stack<terminal_node>& stack);
     static char** get_operator_precedence();
     static void parse_tokens(const vector<terminal_node>& nodes);
-    static void operator_pass(const vector<terminal_node>& nodes, char ops[]);
+    static void operator_pass(vector<terminal_node>& nodes, char ops[]);
 
 private:
 
