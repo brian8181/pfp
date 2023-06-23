@@ -1,6 +1,6 @@
 # Thu Jun 15 03:57:16 PM CDT 2023
-MAKE_TEMPLATE = 1.3;
-BUILD_VERSION = 0.1.0
+MAKE_TEMPLATE = 1.5;
+BUILD_VERSION = 0.2.1
 # make variables
 SHELL = /bin/bash
 CXX = g++
