@@ -36,7 +36,7 @@ public:
 
 private:
 
-    static vector<vector<char>> plevels{{ '^' }, { '*', '/' }, { '+', '-' }};
+    vector<vector<char>> plevels{{ '^' }, { '*', '/' }, { '+', '-' }};
 };
 
 #endif
