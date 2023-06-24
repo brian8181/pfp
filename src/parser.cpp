@@ -3,9 +3,9 @@
 #include "utility.hpp"
 #include "parser.hpp"
 
-bool parser::parse(const string& infix_expression)
+bool parser::parse(const string& expression)
 {
-    vector<terminal_node> nodes;// = parser::tokenize(infix_expression);
+    vector<terminal_node> nodes;// = parser::tokenize(expression);
     parser::parse(nodes);
     return true; //parser::post_fix((binary_node)nodes[0], nodes);
 }
