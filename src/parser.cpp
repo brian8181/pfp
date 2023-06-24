@@ -122,12 +122,11 @@ bool parser::tokenize(const string& input, vector<terminal_node>& nodes)
     
     auto begin = std::sregex_iterator(input.begin(), input.end(), input_epx);
     auto end = std::sregex_iterator(); 
-    int match_i = 0;
-    std::sregex_iterator iter = begin;
-    for (; iter != end; ++iter, ++match_i)
+   
+    for (std::sregex_iterator iter = begin; iter != end; ++iter)
     {
         std::smatch match = *iter;
-        std::string s = match.str(0);
+        string s = match.str(0);
         token t(s);
         terminal_node n(&t);
         nodes.push_back(n);
@@ -136,43 +135,47 @@ bool parser::tokenize(const string& input, vector<terminal_node>& nodes)
     return true;
 }
 
-void parser::sub_parse(const vector<terminal_node>& nodes, int i, stack<terminal_node>& stack)
+void parser::sub_parse(vector<terminal_node>& nodes, int i, stack<terminal_node>& stack)
 {
     // stack
-    // while (nodes[i].Token.Value != ")")
-    // {
-    //     stack.Push(nodes[i]);
-    //     ++i;
-    // }
+    while (nodes[i].get_token()->get_token_value() != ")")
+    {
+        stack.push(nodes[i]);
+        ++i;
+    }
 
-    // // unstack
-    // TerminalNode n = stack.Pop();
-    // --i;
-    // List<TerminalNode> tmp_nodes = new List<TerminalNode>();
-    // while (n.Token.Value != "(") 
-    // {
-    //     tmp_nodes.Add(n);
-    //     n = stack.Pop();
-    //     --i;
-    // }
+    // unstack
+    terminal_node n = stack.top();
+    stack.pop();
+    --i;
 
-    // int len = tmp_nodes.Count;
-    // tmp_nodes.Reverse();
-    // ParseTokens(tmp_nodes);         // parse sub list
+    vector<terminal_node> tmp_nodes;
+    while (n.get_token()->get_token_value() != "(") 
+    {
+        tmp_nodes.push_back(n);
+        n = stack.top();
+        stack.pop();
+        --i;
+    }
+
+    int len = tmp_nodes.size();
+    std::reverse(tmp_nodes.begin(), tmp_nodes.end());
+    parse_tokens(tmp_nodes);
+
+    //todo BKP
     // nodes.Insert(i, tmp_nodes[0]);  // put sub list into original
     // nodes.RemoveRange(i + 1, len + 2);
 
-    // // continue ...
-    // if (stack.Count != 0)
-    // {
-    //     stack.Push(tmp_nodes[0]);
-    //     SubParse(nodes, i + 1, stack);
-    // }
+    // continue ...
+    if (stack.empty())
+    {
+        stack.push(tmp_nodes[0]);
+        sub_parse(nodes, i + 1, stack);
+    }
 }
 
 void parser::parse_tokens(const vector<terminal_node>& nodes)
 {
-    
     // foreach (char[] ops in plevels)
     // {
     //     OperatorPass(nodes, ops);

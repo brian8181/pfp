@@ -13,7 +13,6 @@
 #include "parser.hpp"
 
 using namespace std;
-using std::cout;
 
 static struct option long_options[] =
 {

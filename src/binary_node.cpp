@@ -1,5 +1,10 @@
 #include "binary_node.hpp"
 
+binary_node::binary_node()
+{
+
+}
+
 binary_node::binary_node(token* ptoken, terminal_node* pleft, terminal_node* pright)
 {
     p_left = pleft;
