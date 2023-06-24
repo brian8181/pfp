@@ -26,7 +26,7 @@ public:
 
     static bool parse(const string& infix_expression);
     static bool parse(vector<terminal_node>& tokens);
-    //static bool post_fix(binary_node& node, const vector<token>& tokens);
+    static bool _post_fix(binary_node& node, const vector<token>& tokens);
     static constexpr vector<token> post_fix(binary_node& node, vector<token>& tokens);
     static string post_fix_string(const vector<token>& postfix, char c);
     static bool tokenize(const string& input, vector<terminal_node>& nodes);

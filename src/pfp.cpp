@@ -1,10 +1,9 @@
 #include <iostream>
 #include <string>
-#include <stack>
-#include <list>
-#include <memory>
-#include <cstring>
-#include <unistd.h>
+//#include <stack>
+//#include <list>
+//#include <memory>
+//#include <unistd.h>
 #include "pfp.hpp"
 #include "token.hpp"
 #include "node.hpp"
@@ -14,6 +13,7 @@
 #include "parser.hpp"
 
 using namespace std;
+using std::cout;
 
 static struct option long_options[] =
 {
@@ -61,9 +61,11 @@ int parse_options(int argc, char* argv[])
         return 0;  
     }
 
-	cout << "Welcome to PFP (Post Fix Parser) v 0.1" << endl;
+	cout << "Welcome to PFP (Post Fix Parser) v 0.1" << endl << endl;
+    print_help();
+
     string input( argv[1] );
-    cout << "input string is " << "\"" << input << "\"" << endl;
+    cout << "Input string is " << "\"" << input << "\"" << endl;
     
     // test token
     // initalize
