@@ -45,40 +45,40 @@ bool parser::parse(vector<terminal_node>& tokens)
     return true;
 }
 
-bool parser::post_fix(binary_node& node, const vector<token>& tokens)
+constexpr vector<token> parser::post_fix(binary_node& node, vector<token>& tokens)
 {
     terminal_node* current = &node;
     vector<token> postfix;
     while (current != 0)
     {
-    //     postfix.Add(current.Token);
-    //     if (current is BinaryNode)
-    //     {
-    //         current = ((BinaryNode)current).Right;
-    //     }
-    //     else 
-    //     {
-    //         while (current != null)
-    //         {
-    //             // current is parents right move to parents Left
-    //             if (((BinaryNode)current.Parent) != null && ((BinaryNode)current.Parent).Left != current)
-    //             {
-    //                 current = ((BinaryNode)current.Parent).Left;
-    //                 break;
-    //             }
-    //             // current parents left move to parent.parent
-    //             else 
-    //             {
-    //                 current = ((BinaryNode)current.Parent);
-    //             }
-    //         }
-    //     }
+        postfix.push_back(*current->get_token());
+        if (current->get_token()->get_token_type() != token_type::Operator)
+        {
+            current = (binary_node*)current;
+        }
+        else 
+        {
+            while (current != 0)
+            {
+                // current is parents right move to parents Left
+                if ((binary_node*)current->get_parent() != 0 && ((binary_node*)current->get_parent()) != current)
+                {
+                    current = (binary_node*)current;
+                    break;
+                }
+                // current parents left move to parent.parent
+                else 
+                {
+                    current = ((binary_node*)current->get_parent());
+                }
+            }
+        }
     }
     // postfix.Reverse();
-    
-    // return postfix;
 
-    return true;
+    std::reverse(postfix.begin(), postfix.end());
+    
+    return postfix;
 }
 
 string parser::post_fix_string(const vector<token>& postfix, char c)                    //tokens.Insert(i, multi_op);
