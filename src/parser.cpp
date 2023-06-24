@@ -1,6 +1,7 @@
-#include "parser.hpp"
 #include <stack>
 #include <regex>
+#include "utility.hpp"
+#include "parser.hpp"
 
 bool parser::parse(const string& infix_expression)
 {
@@ -102,17 +103,16 @@ constexpr vector<token> parser::post_fix(binary_node& node, vector<token>& token
     return postfix;
 }
 
-string parser::post_fix_string(const vector<token>& postfix, char c)                    //tokens.Insert(i, multi_op);
+const string& parser::post_fix_string(const vector<token>& tokens)                 
 {
-    // StringBuilder str = new StringBuilder();
-    // foreach (Token t in postfix)
-    // {
-    //     str.Append(t.Value + s);
-    // }
-    // return str.ToString().TrimEnd();
-    
-    string s = "test";
-    return s;
+    string str;
+    int len = tokens.size();
+    for(int i = 0; i < len; ++i)
+    {
+        token t = tokens[i];
+        str.append(t.get_value() + " ");
+    }
+    return trim(str);
 }
 
 bool parser::tokenize(const string& input, vector<terminal_node>& nodes)
@@ -174,15 +174,16 @@ void parser::sub_parse(vector<terminal_node>& nodes, int i, stack<terminal_node>
     }
 }
 
-void parser::parse_tokens(const vector<terminal_node>& nodes)
+void parser::parse_tokens(vector<terminal_node>& nodes)
 {
-    // foreach (char[] ops in plevels)
-    // {
-    //     OperatorPass(nodes, ops);
-    // }
+    int len = plevels.size();
+    for(int i = 0; i < len; ++i)
+    {
+        operator_pass(nodes, plevels[i]);
+    }
 }
 
-void parser::operator_pass(vector<terminal_node>& nodes, char ops[])
+void parser::operator_pass(vector<terminal_node>& nodes, vector<char> level)
 {
     int len = nodes.size();;
     for (int i = 0; i < len; ++i)

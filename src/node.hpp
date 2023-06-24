@@ -8,6 +8,9 @@ class node
 public:
 
     std::string name;
+    
+    node();
+    node(node* pparent);
     node* get_parent();
     void set_parent(node* pparent);
 
