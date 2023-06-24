@@ -45,34 +45,30 @@ bool parser::parse(vector<terminal_node>& tokens)
     return true;
 }
 
-constexpr vector<token> parser::post_fix(binary_node& node, vector<token>& tokens)
+constexpr vector<token> parser::post_fix(binary_node& node)
 {
     terminal_node* current = &node;
     vector<token> postfix;
     while (current != 0)
     {
         postfix.push_back(*current->get_token());
-        if (current->get_token()->get_token_type() != token_type::Operator)
+        current = (binary_node*)current;
+    
+        while (current != 0)
         {
-            current = (binary_node*)current;
-        }
-        else 
-        {
-            while (current != 0)
+            // current is parents right move to parents Left
+            if ((binary_node*)current->get_parent() != 0 && ((binary_node*)current->get_parent())->get_left() != current)
             {
-                // current is parents right move to parents Left
-                if ((binary_node*)current->get_parent() != 0 && ((binary_node*)current->get_parent()) != current)
-                {
-                    current = (binary_node*)current;
-                    break;
-                }
-                // current parents left move to parent.parent
-                else 
-                {
-                    current = ((binary_node*)current->get_parent());
-                }
+                current = ((binary_node*)current->get_parent())->get_left();
+                break;
+            }
+            // current parents left move to parent.parent
+            else 
+            {
+                current = ((binary_node*)current->get_parent());
             }
         }
+        
     }
     // postfix.Reverse();
 
