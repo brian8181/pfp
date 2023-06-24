@@ -19,12 +19,12 @@ int token::get_id()
     return _id;
 }
 
-token_type token::get_token_type()
+token_type token::get_type()
 {
     return _type;
 }
 
-string token::get_token_value()
+string token::get_value()
 {
     return _value;
 }

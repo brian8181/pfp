@@ -15,12 +15,12 @@ bool parser::parse(vector<terminal_node>& tokens)
     int len = tokens.size();
     for (int i = 0; i < len; ++i)
     {
-        if (tokens[i].get_token()->get_token_value() == "(")
+        if (tokens[i].get_token()->get_value() == "(")
         {
             // check for implied mutiplication and create explict
             if (i > 0)
             {
-                if (tokens[i - 1].get_token()->get_token_type() == token_type::Number)
+                if (tokens[i - 1].get_token()->get_type() == token_type::Number)
                 {
                     // add a "*"
                     terminal_node multi_op;
@@ -138,7 +138,7 @@ bool parser::tokenize(const string& input, vector<terminal_node>& nodes)
 void parser::sub_parse(vector<terminal_node>& nodes, int i, stack<terminal_node>& stack)
 {
     // stack
-    while (nodes[i].get_token()->get_token_value() != ")")
+    while (nodes[i].get_token()->get_value() != ")")
     {
         stack.push(nodes[i]);
         ++i;
@@ -150,7 +150,7 @@ void parser::sub_parse(vector<terminal_node>& nodes, int i, stack<terminal_node>
     --i;
 
     vector<terminal_node> tmp_nodes;
-    while (n.get_token()->get_token_value() != "(") 
+    while (n.get_token()->get_value() != "(") 
     {
         tmp_nodes.push_back(n);
         n = stack.top();
@@ -192,7 +192,7 @@ void parser::operator_pass(vector<terminal_node>& nodes, char ops[])
         {
             //if (!(nodes[i] is BinaryNode))
             {
-                //if (nodes[i].get_token()->get_token_type() == c.ToString())
+                //if (nodes[i].get_token()->get_type() == c.ToString())
                 {
                     binary_node node;
                     //binary_node node = binary_node(nodes[i].get_token(), nodes[i -1], nodes[i + 1]); 

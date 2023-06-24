@@ -17,8 +17,8 @@ public:
 
     token(string value);
     int get_id();
-    token_type get_token_type();
-    string get_token_value();
+    token_type get_type();
+    string get_value();
     static bool is_number(const string& s);
     
 private:
