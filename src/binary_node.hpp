@@ -8,17 +8,17 @@ class binary_node: public terminal_node
 {
 public:
 
-    binary_node(token* t, terminal_node* left, terminal_node* right);
+    binary_node(token* ptoken, terminal_node* pleft, terminal_node* pright);
     ~binary_node();
     terminal_node* get_left();
-    void set_left(terminal_node* node);
+    void set_left(terminal_node* pnode);
     terminal_node* get_right();
-    void set_right(terminal_node* node);
+    void set_right(terminal_node* pnode);
   
 private:
 
-    terminal_node* _left;
-    terminal_node* _right;
+    terminal_node* p_left;
+    terminal_node* p_right;
 };
 
 #endif

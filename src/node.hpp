@@ -9,11 +9,11 @@ public:
 
     std::string name;
     node* get_parent();
-    void set_parent(node* parent);
+    void set_parent(node* pparent);
 
 private:
 
-    node* _parent = 0;
+    node* p_parent = 0;
 };
 
 #endif

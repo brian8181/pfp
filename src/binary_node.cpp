@@ -1,11 +1,11 @@
 #include "binary_node.hpp"
 
-binary_node::binary_node(token* t, terminal_node* left, terminal_node* right)
+binary_node::binary_node(token* ptoken, terminal_node* pleft, terminal_node* pright)
 {
-    _left = left;
-    _right = right;
-    (*left).set_parent(this);
-    (*right).set_parent(this);
+    p_left = pleft;
+    p_right = pright;
+    (*pleft).set_parent(this);
+    (*pright).set_parent(this);
 }
 
 binary_node::~binary_node()
@@ -15,20 +15,20 @@ binary_node::~binary_node()
 
 terminal_node* binary_node::get_left()
 {
-    return _left;
+    return p_left;
 }
 
-void binary_node::set_left(terminal_node* node)
+void binary_node::set_left(terminal_node* pnode)
 {
-    _left = node;
+    p_left = pnode;
 }
 
 terminal_node* binary_node::get_right()
 {
-    return _right;
+    return p_right;
 }
 
-void binary_node::set_right(terminal_node* node)
+void binary_node::set_right(terminal_node* pnode)
 {
-    _right = node;
+    p_right = pnode;
 }
