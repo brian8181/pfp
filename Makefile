@@ -26,7 +26,7 @@ $(APPNAME).o:
 main.o:
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/main.$(EXT) -o $(BUILDDIR)/main.o
 
-parser.o: node.o token.o terminal_node.o binary_node.o utility.o
+parser.o:
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/parser.$(EXT) -o $(BUILDDIR)/parser.o
 
 node.o:

@@ -8,31 +8,32 @@ terminal_node::terminal_node()
 
 terminal_node::terminal_node(const string& s)
 {
-    _ptoken = new token(s);
+    p_token = new token(s);
 }
 
-terminal_node::terminal_node(const token& tok)
+terminal_node::terminal_node(const token& rtokrn)
 {
     //_ptoken = &t;
     token t1("t1");
     token* pt = &t1;
 }
 
-terminal_node::terminal_node(token* ptok) 
+terminal_node::terminal_node(token* ptoken) 
 {
-    _ptoken = ptok;
+    p_token = ptoken;
 }
 
 terminal_node::~terminal_node()
 {
+    delete p_token;
 }
 
-void terminal_node::set_token(token* ptok)
+void terminal_node::set_token(token* ptoken)
 {
-    _ptoken = ptok;
+    p_token = ptoken;
 }
 
 token* terminal_node::get_token()
 {
-    return _ptoken;
+    return p_token;
 }

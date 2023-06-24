@@ -21,3 +21,11 @@ bool is_numeric(const std::string& value)
 { 
     return std::all_of(value.begin(), value.end(), is_digit); 
 }
+
+// Print vector.
+//std::for_each(nums.rbegin(), nums.rend(), [](const int n) { std::cout << n << ' '; });
+
+// void reverse_vector(vector<T>& v)
+// {
+//     vector<int>::iter
+// })
