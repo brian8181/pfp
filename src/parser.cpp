@@ -5,8 +5,13 @@
 
 bool parser::parse(const string& expression)
 {
-    vector<terminal_node> nodes;// = parser::tokenize(expression);
+    vector<terminal_node> nodes;
+    bool ret = parser::tokenize(expression, nodes);
     parser::parse(nodes);
+
+    vector<token> tokens;
+    binary_node n = static_cast<binary_node>(nodes[0]);
+    parser::post_fix(n, tokens);
     return true; //parser::post_fix((binary_node)nodes[0], nodes);
 }
 
@@ -46,13 +51,12 @@ bool parser::parse(vector<terminal_node>& tokens)
     return true;
 }
 
-bool parser::_post_fix(binary_node& node, const vector<token>& tokens)
+bool parser::post_fix(binary_node& node, vector<token>& tokens)
 {
     terminal_node* current = &node;
-    vector<token> postfix;
     while (current != 0)
     {
-        postfix.push_back(*current->get_token());
+        tokens.push_back(*current->get_token());
         current = (binary_node*)current;
     
         while (current != 0)
@@ -70,38 +74,37 @@ bool parser::_post_fix(binary_node& node, const vector<token>& tokens)
         }
     }
 
-    std::reverse(postfix.begin(), postfix.end());
-    //return postfix;
+    std::reverse(tokens.begin(), tokens.end());
     return true;
 }
 
-constexpr vector<token> parser::post_fix(binary_node& node, vector<token>& tokens)
-{
-    terminal_node* current = &node;
-    vector<token> postfix;
-    while (current != 0)
-    {
-        postfix.push_back(*current->get_token());
-        current = (binary_node*)current;
+// constexpr vector<token> parser::_post_fix(binary_node& node, vector<token>& tokens)
+// {
+//     terminal_node* current = &node;
+//     vector<token> postfix;
+//     while (current != 0)
+//     {
+//         postfix.push_back(*current->get_token());
+//         current = (binary_node*)current;
     
-        while (current != 0)
-        {
-            // current is parents right move to parents Left
-            if ((binary_node*)current->get_parent() != 0 && ((binary_node*)current->get_parent())->get_left() != current)
-            {
-                current = ((binary_node*)current->get_parent())->get_left();
-                break;
-            }
-            else // current parents left move to parent.parent
-            {
-                current = ((binary_node*)current->get_parent());
-            }
-        }
-    }
+//         while (current != 0)
+//         {
+//             // current is parents right move to parents Left
+//             if ((binary_node*)current->get_parent() != 0 && ((binary_node*)current->get_parent())->get_left() != current)
+//             {
+//                 current = ((binary_node*)current->get_parent())->get_left();
+//                 break;
+//             }
+//             else // current parents left move to parent.parent
+//             {
+//                 current = ((binary_node*)current->get_parent());
+//             }
+//         }
+//     }
 
-    std::reverse(postfix.begin(), postfix.end());
-    return postfix;
-}
+//     std::reverse(postfix.begin(), postfix.end());
+//     return postfix;
+// }
 
 const string& parser::post_fix_string(const vector<token>& tokens)                 
 {

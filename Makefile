@@ -4,7 +4,7 @@ BUILD_VERSION = 0.2.1
 # make variables
 SHELL = /bin/bash
 CXX = g++
-CXXFLAGS = -std=c++11 -DDEBUG -g
+CXXFLAGS = -Wall -std=c++11 -DDEBUG -g
 # app variables
 APPNAME = pfp
 EXT = cpp
@@ -46,6 +46,9 @@ test_class.o:
 
 utility.o:
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/utility.$(EXT) -o $(BUILDDIR)/utility.o
+
+000-CatchMain.o: 
+	$(CXX) $(CXXFLAGS) -Icatch.hpp -c $(SRCDIR)/000-CatchMain.cpp -o $(BUILDDIR)/000-CatchMain.o
 
 # delete object files & app executable
 .PHONY: clean
