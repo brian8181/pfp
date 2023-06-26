@@ -3,60 +3,61 @@
 #include "utility.hpp"
 #include "parser.hpp"
 
-bool parser::parse(const string& expression)
-{
-    vector<terminal_node> nodes;
-    bool ret = parser::tokenize(expression, nodes);
-    parser::parse(nodes);
 
-    vector<token> tokens;
-    binary_node n = static_cast<binary_node>(nodes[0]);
-    parser::post_fix(n, tokens);
-    return true; //parser::post_fix((binary_node)nodes[0], nodes);
+// parser::parser()
+// {
+// }
+
+void parser::parse(const string& s)
+{
+    parser::tokenize(s);
+    
+    //binary_node n = static_cast<binary_node>(m_nodes[0]);
+    //parser::post_fix(n);
 }
 
-bool parser::parse(vector<terminal_node>& tokens)
-{
-    stack<terminal_node> stack;
-    int len = tokens.size();
-    for (int i = 0; i < len; ++i)
-    {
-        if (tokens[i].get_token()->get_value() == "(")
-        {
-            // check for implied mutiplication and create explict
-            if (i > 0)
-            {
-                if (tokens[i - 1].get_token()->get_type() == token_type::Number)
-                {
-                    // add a "*"
-                    terminal_node multi_op;
-                    vector<terminal_node>::iterator iter = tokens.begin();
-                    tokens.insert(iter += i, multi_op);
-                    len = tokens.size();
-                    ++i;
-                }
-            }
-            sub_parse(tokens, i, stack);
-            len = tokens.size();
-        }
-    }
+// bool parser::parse()
+// {
+//     stack<terminal_node> stack;
+//     int len = m_tokens.size();
+//     for (int i = 0; i < len; ++i)
+//     {   
+//         if (m_tokens[i].get_token()->get_value() == "(")
+//         {
+//             // check for implied mutiplication and create explict
+//             if (i > 0)
+//             {
+//                 if (m_tokens[i - 1].get_token()->get_type() == token_type::Number)
+//                 {
+//                     // add a "*"
+//                     terminal_node multi_op;
+//                     vector<terminal_node>::iterator iter = m_tokens.begin();
+//                     tokens.insert(iter += i, multi_op);
+//                     len = tokens.size();
+//                     ++i;
+//                 }
+//             }
+//             sub_parse(m_tokens, i, stack);
+//             len = m_tokens.size();
+//         }
+//     }
 
-    if (tokens.size() > 1)
-    {
-        parse_tokens(tokens);
-        //return tokens;
-    }
-    string input = "TEST";
-    parser::tokenize(input, tokens);
-    return true;
-}
+//     if (m_tokens.size() > 1)
+//     {
+//         parse_tokens(m_tokens);
+//         //return tokens;
+//     }
+//     string input = "TEST";
+//     parser::tokenize(input, m_tokens);
+//     return true;
+// }
 
-bool parser::post_fix(binary_node& node, vector<token>& tokens)
+bool parser::post_fix(binary_node& node)
 {
     terminal_node* current = &node;
     while (current != 0)
     {
-        tokens.push_back(*current->get_token());
+        m_tokens.push_back(*current->get_token());
         current = (binary_node*)current;
     
         while (current != 0)
@@ -74,7 +75,7 @@ bool parser::post_fix(binary_node& node, vector<token>& tokens)
         }
     }
 
-    std::reverse(tokens.begin(), tokens.end());
+    std::reverse(m_tokens.begin(), m_tokens.end());
     return true;
 }
 
@@ -106,7 +107,7 @@ bool parser::post_fix(binary_node& node, vector<token>& tokens)
 //     return postfix;
 // }
 
-const string& parser::post_fix_string(const vector<token>& tokens)                 
+string& parser::post_fix_string(const vector<token>& tokens)                 
 {
     string str;
     int len = tokens.size();
@@ -118,7 +119,7 @@ const string& parser::post_fix_string(const vector<token>& tokens)
     return trim(str);
 }
 
-bool parser::tokenize(const string& input, vector<terminal_node>& nodes)
+void parser::tokenize(const string& input)
 {
     std::regex::flag_type REGX_FLAGS = std::regex::basic;
     std::regex input_epx = std::regex(R"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])", REGX_FLAGS);
@@ -132,10 +133,9 @@ bool parser::tokenize(const string& input, vector<terminal_node>& nodes)
         string s = match.str(0);
         token t(s);
         terminal_node n(&t);
-        nodes.push_back(n);
+        m_nodes.push_back(n);
     }
 
-    return true;
 }
 
 void parser::sub_parse(vector<terminal_node>& nodes, int i, stack<terminal_node>& stack)

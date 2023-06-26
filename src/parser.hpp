@@ -23,13 +23,11 @@ using std::vector;
 class parser
 {
 public:
-
-    static bool parse(const string& expression);
-    static bool parse(vector<terminal_node>& tokens);
-    static bool post_fix(binary_node& node, vector<token>& tokens);
-    //static constexpr vector<token> post_fix(binary_node& node, vector<token>& tokens);
-    static const string& post_fix_string(const vector<token>& tokens);    
-    static bool tokenize(const string& input, vector<terminal_node>& nodes);
+    //parser();
+    void parse(const string& expression);
+    bool post_fix(binary_node& node);
+    string& post_fix_string(const vector<token>& tokens);    
+    void tokenize(const string& input);
     static void sub_parse(vector<terminal_node>& nodes, int i, stack<terminal_node>& stack);
     static char** get_operator_precedence();
     static void parse_tokens(vector<terminal_node>& nodes);
@@ -37,9 +35,12 @@ public:
 
 private:
 
-    static const vector<vector<char>> plevels;
+    vector<terminal_node> m_nodes;
+    vector<token> m_tokens; 
+    vector<vector<char>> plevels{{ '^' }, { '*', '/' }, { '+', '-' }};
+
 };
 
-const vector<vector<char>> parser::plevels = {{ '^' }, { '*', '/' }, { '+', '-' }};
+//const vector<vector<char>> parser::plevels = {{ '^' }, { '*', '/' }, { '+', '-' }};
 
 #endif
