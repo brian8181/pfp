@@ -14,7 +14,7 @@ void parser::parse(const string& s)
     parser::tokenize(s);
     binary_node node;
     m_nodes.push_back(node);
-    parser::post_fix(node);
+    parser::post_fix(&node);
 }
 
 // bool parser::parse()
