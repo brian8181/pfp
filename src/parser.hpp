@@ -15,17 +15,12 @@ using std::list;
 using std::stack;
 using std::vector;
 
-// Options Flags
-// unsigned char DEFAULTS = 0;
-// unsigned char option_flags = 0; 
-//char plevels[1] {'*'};
-
 class parser
 {
 public:
-    //parser();
+    parser();
     void parse(const string& expression);
-    bool post_fix(binary_node& node);
+    bool post_fix(binary_node* p_node);
     string& post_fix_string(const vector<token>& tokens);    
     void tokenize(const string& input);
     static void sub_parse(vector<terminal_node>& nodes, int i, stack<terminal_node>& stack);
@@ -36,7 +31,8 @@ public:
 private:
 
     vector<terminal_node> m_nodes;
-    vector<token> m_tokens; 
+    vector<terminal_node*> m_pnodes;
+    vector<token*> m_ptokens; 
     vector<vector<char>> plevels{{ '^' }, { '*', '/' }, { '+', '-' }};
 
 };

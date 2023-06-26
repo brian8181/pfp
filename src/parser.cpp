@@ -4,16 +4,17 @@
 #include "parser.hpp"
 
 
-// parser::parser()
-// {
-// }
+parser::parser()
+{
+    
+}
 
 void parser::parse(const string& s)
 {
     parser::tokenize(s);
-    
-    //binary_node n = static_cast<binary_node>(m_nodes[0]);
-    //parser::post_fix(n);
+    binary_node node;
+    m_nodes.push_back(node);
+    parser::post_fix(node);
 }
 
 // bool parser::parse()
@@ -52,25 +53,26 @@ void parser::parse(const string& s)
 //     return true;
 // }
 
-bool parser::post_fix(binary_node& node)
+bool parser::post_fix(binary_node* p_node)
 {
-    terminal_node* current = &node;
-    while (current != 0)
+    //terminal_node* current = &node;
+    while (p_node != 0)
     {
-        m_tokens.push_back(*current->get_token());
-        current = (binary_node*)current;
+        m_ptokens.push_back(p_node->get_token());
+        //current = (binary_node*)current;
     
-        while (current != 0)
+        while (p_node != 0)
         {
+            binary_node* p_parent = (binary_node*)p_node->get_parent();
             // current is parents right move to parents Left
-            if ((binary_node*)current->get_parent() != 0 && ((binary_node*)current->get_parent())->get_left() != current)
+            if (p_parent != 0 && p_parent->get_left() != p_node)
             {
-                current = ((binary_node*)current->get_parent())->get_left();
+                p_node = ((binary_node*)p_node->get_parent()->get_left());
                 break;
             }
             else // current parents left move to parent.parent
             {
-                current = ((binary_node*)current->get_parent());
+                p_node = (binary_node*)p_node->get_parent());
             }
         }
     }
