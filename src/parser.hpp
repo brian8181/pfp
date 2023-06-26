@@ -29,7 +29,7 @@ public:
 
 private:
 
-    vector<terminal_node> m_                            qsnodes;
+    vector<terminal_node> m_pnodes;
     vector<terminal_node*> m_pnodes;
     vector<token*> m_ptokens; 
     vector<vector<char>> plevels{{ '^' }, { '*', '/' }, { '+', '-' }};

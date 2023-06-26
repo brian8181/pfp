@@ -99,7 +99,7 @@ int parse_options(int argc, char* argv[])
     list<token> tokens;
     string s;
 
-    //parser p;
+    parser p;
     string exp = "2+2";
     //p.parse(exp);
 
