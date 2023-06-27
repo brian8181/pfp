@@ -172,7 +172,7 @@ void parser::sub_parse(vector<terminal_node>& nodes, int i, stack<terminal_node>
 
     if (stack.empty())
     {
-        stack.push(pnodes[0]);
+        stack.push(n_pnodes[0]);
         sub_parse(nodes, i + 1, stack);
     }
 }
@@ -196,7 +196,7 @@ void parser::operator_pass(vector<terminal_node>& nodes, vector<char> level)
         {
             //if (!(nodes[i] is BinaryNode))
             {
-                //if (nodes[i].get_token()->get_type() == c.ToString())
+                if (nodes[i].get_token()->get_type() == c.ToString())
                 {
                     binary_node node;
                     //binary_node node = binary_node(nodes[i].get_token(), nodes[i -1], nodes[i + 1]); 
@@ -204,7 +204,9 @@ void parser::operator_pass(vector<terminal_node>& nodes, vector<char> level)
                     nodes.insert(iter -= (i-1), node);
                     //nodes.Insert(i - 1, node);
                     //nodes.RemoveRange(i, 3);
-                    //nodes.erase()
+                    nodes.erase(i);
+                    nodes.erase(i+1);
+                    nodes.erase(i+2);
                     len = nodes.size();
                     --i;
                     break;
