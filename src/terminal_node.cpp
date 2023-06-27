@@ -13,7 +13,6 @@ terminal_node::terminal_node(const string& s)
 
 terminal_node::terminal_node(const token& rtokrn)
 {
-    //_ptoken = &t;
     token t1("t1");
     token* pt = &t1;
 }

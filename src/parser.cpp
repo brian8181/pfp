@@ -4,16 +4,16 @@
 #include "parser.hpp"
 
 
-parser::parser()
-{
+// parser::parser()
+// {
     
-}
+// }
 
 void parser::parse(const string& s)
 {
     parser::tokenize(s);
     binary_node node;
-    m_nodes.push_back(node);
+    m_pnodes.push_back(node);
     parser::post_fix(&node);
 }
 
@@ -59,7 +59,6 @@ bool parser::post_fix(binary_node* p_node)
     while (p_node != 0)
     {
         m_ptokens.push_back(p_node->get_token());
-        //current = (binary_node*)current;
     
         while (p_node != 0)
         {
@@ -77,7 +76,7 @@ bool parser::post_fix(binary_node* p_node)
         }
     }
 
-    std::reverse(m_tokens.begin(), m_tokens.end());
+    std::reverse(m_ptokens.begin(), m_ptokens.end());
     return true;
 }
 
@@ -135,7 +134,7 @@ void parser::tokenize(const string& input)
         string s = match.str(0);
         token t(s);
         terminal_node n(&t);
-        m_nodes.push_back(n);
+        m_pnodes.push_back(n);
     }
 
 }
@@ -154,27 +153,26 @@ void parser::sub_parse(vector<terminal_node>& nodes, int i, stack<terminal_node>
     stack.pop();
     --i;
 
-    vector<terminal_node> tmp_nodes;
+    //vector<terminal_node> pnodes;
     while (n.get_token()->get_value() != "(") 
     {
-        tmp_nodes.push_back(n);
+        m_pnodes.push_back(n);
         n = stack.top();
         stack.pop();
         --i;
     }
 
-    int len = tmp_nodes.size();
-    std::reverse(tmp_nodes.begin(), tmp_nodes.end());
-    parse_tokens(tmp_nodes);
+    int len = m_pnodes.size();
+    std::reverse(m_pnodes.begin(), m_pnodes.end());
+    parse_tokens(m_pnodes);
 
     //todo BKP
-    // nodes.Insert(i, tmp_nodes[0]);  // put sub list into original
+    // nodes.Insert(i, pnodes[0]);  // put sub list into original
     // nodes.RemoveRange(i + 1, len + 2);
 
-    // continue ...
     if (stack.empty())
     {
-        stack.push(tmp_nodes[0]);
+        stack.push(pnodes[0]);
         sub_parse(nodes, i + 1, stack);
     }
 }

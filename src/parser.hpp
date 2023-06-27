@@ -18,7 +18,7 @@ using std::vector;
 class parser
 {
 public:
-    parser();
+    //parser();
     void parse(const string& expression);
     bool post_fix(binary_node* p_node);
     string& post_fix_string(const vector<token>& tokens);    
@@ -29,7 +29,6 @@ public:
 
 private:
 
-    vector<terminal_node> m_pnodes;
     vector<terminal_node*> m_pnodes;
     vector<token*> m_ptokens; 
     vector<vector<char>> plevels{{ '^' }, { '*', '/' }, { '+', '-' }};
