@@ -9,8 +9,8 @@ binary_node::binary_node(token* ptoken, terminal_node* pleft, terminal_node* pri
 {
     p_left = pleft;
     p_right = pright;
-    (*pleft).set_parent(this);
-    (*pright).set_parent(this);
+    pleft->set_parent(this);
+    pright->set_parent(this);
 }
 
 binary_node::~binary_node()

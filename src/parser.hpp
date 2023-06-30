@@ -21,7 +21,8 @@ public:
     parser();
     void parse(const string& expression);
     bool post_fix(binary_node* p_node);
-    string& post_fix_string(const vector<token>& tokens);    
+    string &post_fix_string();
+    //void post_fix_string(const vector<token>& tokens, string& s);    
     void tokenize(const string& input);
     void sub_parse(vector<terminal_node>& nodes, int i, stack<terminal_node>& stack);
     void parse_tokens(vector<terminal_node>& nodes);
@@ -29,7 +30,7 @@ public:
 
 private:
 
-    vector<terminal_node> m_                            qsnodes;
+    vector<terminal_node> m_nodes;
     vector<terminal_node*> m_pnodes;
     vector<token*> m_ptokens; 
     vector<vector<char>> plevels{{ '^' }, { '*', '/' }, { '+', '-' }};
