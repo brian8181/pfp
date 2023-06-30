@@ -19,6 +19,7 @@ class parser
 {
 public:
     //parser();
+    void parse();
     void parse(const string& expression);
     bool post_fix(binary_node* p_node);
     string& post_fix_string();
@@ -30,7 +31,6 @@ public:
 
 private:
 
-    vector<terminal_node> m_nodes;
     vector<terminal_node*> m_pnodes;
     vector<token*> m_ptokens; 
     vector<vector<char>> plevels{{ '^' }, { '*', '/' }, { '+', '-' }};
