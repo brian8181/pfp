@@ -26,8 +26,9 @@ public:
     //void post_fix_string(const vector<token>& tokens, string& s);    
     void tokenize(const string& input);
     void sub_parse(vector<terminal_node>& nodes, int i, stack<terminal_node>& stack);
-    void parse_tokens(vector<terminal_node>& nodes);
-    void operator_pass(vector<terminal_node>& nodes, vector<char> level);
+    //void sub_parse(int i);
+    void parse_tokens();
+    void operator_pass(vector<char> level);
 
 private:
 

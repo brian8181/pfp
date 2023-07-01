@@ -130,7 +130,7 @@ void parser::sub_parse(vector<terminal_node>& nodes, int i, stack<terminal_node>
 
     int len = m_pnodes.size();
     std::reverse(m_pnodes.begin(), m_pnodes.end());
-    parse_tokens(&m_pnodes);
+    parse_tokens(*m_pnodes);
 
     // todo BKP
     //  nodes.Insert(i, tmp_nodes[0]);  // put sub list into original
@@ -138,40 +138,41 @@ void parser::sub_parse(vector<terminal_node>& nodes, int i, stack<terminal_node>
 
     if (stack.empty())
     {
-        stack.push(&(m_pnodes[0]));
+        stack.push(&m_pnodes[0]);
         sub_parse(nodes, i + 1, stack);
     }
 }
 
-void parser::parse_tokens(vector<terminal_node>& nodes)
+void parser::parse_tokens()
 {
     int len = plevels.size();
     for (int i = 0; i < len; ++i)
     {
-        operator_pass(nodes, plevels[i]);
+        operator_pass(plevels[i]);
     }
 }
 
-void parser::operator_pass(vector<terminal_node>& nodes, vector<char> level)
+void parser::operator_pass(vector<char> level)
 {
-    int len = nodes.size();
+    int len = m_pnodes.size();
     for (int i = 0; i < len; ++i)
     {
         int len_ops = plevels.size();
         for(int j = 0; j < len_ops; ++j)
         {
+            //terminal_node* node = m_pnodes[i];
             // if (!(nodes[i] is BinaryNode))
             {
-                if (nodes[i].get_token()->get_type() == level[j])
+                if (m_pnodes[i]->get_token()->get_type() == level[j])
                 {
                     binary_node node;
                     // binary_node node = binary_node(nodes[i].get_token(), nodes[i -1], nodes[i + 1]);
-                    vector<terminal_node>::const_iterator iter = nodes.begin();
-                    nodes.insert(iter - (i - 1), node);
-                    nodes.erase(iter);
-                    nodes.erase(iter+1);
-                    nodes.erase(iter+2);
-                    len = nodes.size();
+                    // vector<terminal_node>::const_iterator iter = m_pnodes.begin();
+                    // m_pnodes.insert(iter - (i - 1), node);
+                    // m_pnodes.erase(iter);
+                    // m_pnodes.erase(iter+1);
+                    // m_pnodes.erase(iter+2);
+                    // len = m_pnodes.size();
                     --i;
                     break;
                 }
