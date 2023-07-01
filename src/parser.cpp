@@ -18,31 +18,31 @@ void parser::parse(const string& s)
 void parser::parse()
 {
     stack<terminal_node> stack;
-    int len = m_ptokens.size();
+    int len = m_pnodes.size();
     for (int i = 0; i < len; ++i)
     {
-        if (m_ptokens[i].get_token()->get_value() == "(")
+        if (m_pnodes[i]->get_token()->get_value() == "(")
         {
             // check for implied mutiplication and create explict
             if (i > 0)
             {
-                if (m_ptokens[i - 1].get_token()->get_type() == token_type::Number)
+                if (m_pnodes[i - 1]->get_token()->get_type() == token_type::Number)
                 {
                     // add a "*"
                     terminal_node multi_op;
-                    vector<terminal_node>::iterator iter = m_ptokens.begin();
-                    m_ptokens.insert(iter += i, multi_op);
-                    len = m_ptokens.size();
+                    vector<terminal_node>::iterator iter = m_pnodes.begin();
+                    m_pnodes.insert(iter += i, multi_op);
+                    len = m_pnodes.size();
                     ++i;
                 }
             }
-            sub_parse(m_ptokens, i, stack);
+            sub_parse(i);
             len = m_ptokens.size();
         }
     }
      if (m_ptokens.size() > 1)
      {
-        parse_tokens(m_ptokens);
+        parse_tokens();
         //return tokens;
     }
 }
@@ -75,7 +75,6 @@ bool parser::post_fix(binary_node* p_node)
     return true;
 }
 
-//string &parser::post_fix_string(const vector<token> &tokens)
 string &parser::post_fix_string()
 {
     string str;
@@ -106,8 +105,10 @@ void parser::tokenize(const string& input)
     }
 }
 
-void parser::sub_parse(vector<terminal_node>& nodes, int i, stack<terminal_node>& stack)
+void parser::sub_parse(int i)
 {
+    vector<terminal_node>* nodes = m_pnodes;
+    stack<terminal_node>& stack;
     // stack
     while (nodes[i].get_token()->get_value() != ")")
     {
@@ -139,7 +140,7 @@ void parser::sub_parse(vector<terminal_node>& nodes, int i, stack<terminal_node>
     if (stack.empty())
     {
         stack.push(&m_pnodes[0]);
-        sub_parse(nodes, i + 1, stack);
+        sub_parse(i + 1);
     }
 }
 
