@@ -30,7 +30,7 @@ void parser::parse()
                 {
                     // add a "*"
                     terminal_node multi_op;
-                    vector<terminal_node>::iterator iter = m_pnodes.begin();
+                    vector<terminal_node*>::iterator iter = m_pnodes.begin();
                     m_pnodes.insert(iter += i, multi_op);
                     len = m_pnodes.size();
                     ++i;
@@ -107,23 +107,23 @@ void parser::tokenize(const string& input)
 
 void parser::sub_parse(int i)
 {
-    vector<terminal_node>* nodes = m_pnodes;
-    stack<terminal_node>& stack;
+    vector<terminal_node*> nodes;
+    stack<terminal_node*> stack;
     // stack
-    while (nodes[i].get_token()->get_value() != ")")
+    while (m_pnodes[i]->get_token()->get_value() != ")")
     {
         stack.push(nodes[i]);
         ++i;
     }
 
     // unstack
-    terminal_node n = stack.top();
+    terminal_node* n = stack.top();
     stack.pop();
     --i;
 
-    while (n.get_token()->get_value() != "(")
+    while (n->get_token()->get_value() != "(")
     {
-        m_pnodes.push_back(&n);
+        m_pnodes.push_back(n);
         n = stack.top();
         stack.pop();
         --i;
@@ -139,7 +139,7 @@ void parser::sub_parse(int i)
 
     if (stack.empty())
     {
-        stack.push(&m_pnodes[0]);
+        stack.push(m_pnodes[0]);
         sub_parse(i + 1);
     }
 }
