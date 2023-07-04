@@ -15,8 +15,9 @@ OBJDIR = build
 
 all: $(APPNAME)
 
-$(APPNAME): $(APPNAME).o token.o node.o terminal_node.o binary_node.o main.o utility.o
-	$(CXX) $(CXXFLAGS) $(BUILDDIR)/$(APPNAME).o $(BUILDDIR)/main.o $(BUILDDIR)/utility.o $(BUILDDIR)/terminal_node.o $(BUILDDIR)/binary_node.o \
+$(APPNAME): $(APPNAME).o parser.o token.o node.o terminal_node.o binary_node.o main.o utility.o
+	$(CXX) $(CXXFLAGS) $(BUILDDIR)/$(APPNAME).o $(BUILDDIR)/parser.o $(BUILDDIR)/main.o $(BUILDDIR)/utility.o \
+	$(BUILDDIR)/terminal_node.o $(BUILDDIR)/binary_node.o \
 	$(BUILDDIR)/token.o $(BUILDDIR)/node.o \
 	-o $(BUILDDIR)/$(APPNAME)
 

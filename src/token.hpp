@@ -16,6 +16,8 @@ class token
 public:
 
     token(string value);
+    token(const token& t);
+    
     int get_id();
     token_type get_type();
     string get_value();

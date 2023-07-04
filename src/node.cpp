@@ -2,13 +2,11 @@
 
 node::node()
 {
-    name = "unnamed";
 }
 
-node::node(node* pparent)
+node::node(const node& n)
 {
-    name = "unnamed";
-    set_parent(pparent);
+    set_parent(n.p_parent);
 }
 
 node* node::get_parent()

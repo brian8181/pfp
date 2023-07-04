@@ -14,6 +14,13 @@ token::token(string value) : _type(token_type::Operator)
         _type = token_type::Operator;
 }
 
+token::token(const token& t)
+{
+    _value = t._value;
+    _id = t._id;
+    _type = t._type;
+}
+
 int token::get_id()
 {
     return _id;

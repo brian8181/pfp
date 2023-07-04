@@ -5,6 +5,11 @@ binary_node::binary_node()
 
 }
 
+binary_node::binary_node(const binary_node& node)
+{
+    
+}
+
 binary_node::binary_node(token* ptoken, terminal_node* pleft, terminal_node* pright)
 {
     p_left = pleft;

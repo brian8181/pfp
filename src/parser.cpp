@@ -31,7 +31,8 @@ void parser::parse()
                     // add a "*"
                     terminal_node multi_op;
                     vector<terminal_node*>::iterator iter = m_pnodes.begin();
-                    m_pnodes.insert(iter += i, multi_op);
+                    //m_pnodes.insert((*iter), multi_op);
+                    m_pnodes.insert(iter, &multi_op);
                     len = m_pnodes.size();
                     ++i;
                 }
@@ -61,7 +62,8 @@ bool parser::post_fix(binary_node* p_node)
             // current is parents right move to parents Left
             if (p_parent != 0 && p_parent->get_left() != p_node)
             {
-                p_node = ((binary_node*)(p_node->get_parent()))->get_left();
+                //p_node = ((binary_node*)(p_node->get_parent()))->get_left();
+                terminal_node* p_tnode = ((binary_node*)p_node->get_parent())->get_left();
                 break;
             }
             else // current parents left move to parent.parent
@@ -99,8 +101,7 @@ void parser::tokenize(const string& input)
     {
         std::smatch match = *iter;
         string s = match.str(0);
-        token t(s);
-        terminal_node n(&t);
+        terminal_node n(s);
         m_pnodes.push_back(&n);
     }
 }
@@ -131,7 +132,7 @@ void parser::sub_parse(int i)
 
     int len = m_pnodes.size();
     std::reverse(m_pnodes.begin(), m_pnodes.end());
-    parse_tokens(*m_pnodes);
+    parse_tokens();
 
     // todo BKP
     //  nodes.Insert(i, tmp_nodes[0]);  // put sub list into original
