@@ -22,7 +22,7 @@ bool is_numeric(const std::string& value)
     return std::all_of(value.begin(), value.end(), is_digit); 
 }
 
-std::string &_ltrim(std::string &s)
+std::string &ltrim(std::string &s)
 {
     auto it = std::find_if(s.begin(), s.end(),
                            [](char c)
@@ -33,7 +33,7 @@ std::string &_ltrim(std::string &s)
     return s;
 }
 
-std::string &_rtrim(std::string &s)
+std::string &rtrim(std::string &s)
 {
     auto it = std::find_if(s.rbegin(), s.rend(),
                            [](char c)
@@ -44,7 +44,7 @@ std::string &_rtrim(std::string &s)
     return s;
 }
 
-std::string &_trim(std::string &s)
+std::string &trim(std::string &s)
 {
-    return _ltrim(_rtrim(s));
+    return ltrim(rtrim(s));
 }

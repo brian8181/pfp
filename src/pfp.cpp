@@ -63,6 +63,12 @@ int parse_options(int argc, char* argv[])
 	cout << "Welcome to PFP (Post Fix Parser) v 0.1" << endl << endl;
     print_help();
 
+    if(argc < 2)
+    {
+        cout << "Error: no input" << endl;
+        return -1;
+    }
+
     string input( argv[1] );
     cout << "Input string is " << "\"" << input << "\"" << endl;
     
@@ -112,8 +118,11 @@ int parse_options(int argc, char* argv[])
     cout << "is_digit(.) = " << is_digit('.') << endl;
     cout << "is_digit(-) = " << is_digit('-') << endl;
     cout << "2 - is_number = " << is_numeric("2") << endl;
-    cout << "2.5 - is_number = " << is_numeric("2.5") << endl;
-    cout << "a - is_number = " << is_numeric("a") << endl;
+    // error, 
+    // cout << "2.5 - is_number = " << is_numeric("2.5") << endl;
+    // cout << "3 - is_number = " << is_numeric("3") << endl;
+    // error! crash
+    //cout << "a - is_number = " << is_numeric("a") << endl;
     
 	return 0;
 }
