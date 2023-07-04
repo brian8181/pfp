@@ -17,9 +17,17 @@ bool is_digit(const char value)
     return std::isdigit(value); 
 }
 
-bool is_numeric(const std::string& value) 
+bool is_numeric(const std::string& s) 
 { 
-    return std::all_of(value.begin(), value.end(), is_digit); 
+    //return std::all_of(value.begin(), value.end(), is_digit); 
+
+    std::string::const_iterator end =  s.end();
+    for(std::string::const_iterator iter = s.begin(); iter != end; ++iter)
+    {
+        if(is_digit(*iter) != true)
+            return -1;
+    }
+    return true;
 }
 
 std::string &ltrim(std::string &s)
