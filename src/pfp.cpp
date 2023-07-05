@@ -71,17 +71,16 @@ int parse_options(int argc, char* argv[])
 
     string input( argv[1] );
     cout << "Input string is " << "\"" << input << "\"" << endl;
-    
+    cout << "Initializing ..." << endl;
+
     // test token
-    // initalize
     // string s = "2";
     token t1("token 1");
     token t2("token 2");
-    cout << "Initializing ..." << endl;
     cout << "id = " << t1.get_id() << endl;
     cout << "id = " << t2.get_id() << endl; 
 
-    // //test node
+    //test node
     node n1;
     node n2;
     n2.set_parent(&n1);

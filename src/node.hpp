@@ -8,6 +8,7 @@ class node
 public:
 
     node();
+    node(const std::string& name);
     node(const node& n);
     node* get_parent();
     void set_parent(node* pparent);
