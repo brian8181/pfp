@@ -24,9 +24,7 @@ public:
     void parse(const string& expression);
     bool post_fix(binary_node* n);
     string& post_fix_string();
-    //void post_fix_string(const vector<token>& tokens, string& s);    
     void tokenize(const string& input);
-    //void sub_parse(vector<terminal_node>& nodes, int i, stack<terminal_node>& nodes_stack);
     void sub_parse(int i);
     void parse_tokens();
     void operator_pass(vector<char> level);

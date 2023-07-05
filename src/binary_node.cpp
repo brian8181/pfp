@@ -5,11 +5,6 @@ binary_node::binary_node()
 
 }
 
-binary_node::binary_node(const binary_node& n)
-{
-    
-}
-
 binary_node::binary_node(token* t, terminal_node* left, terminal_node* right)
 {
     _left = left;
@@ -18,19 +13,14 @@ binary_node::binary_node(token* t, terminal_node* left, terminal_node* right)
     right->set_parent(this);
 }
 
-binary_node::~binary_node()
-{
-
-}
-
 terminal_node* binary_node::get_left()
 {
     return _left;
 }
 
-void binary_node::set_left(terminal_node* n)
+void binary_node::set_left(terminal_node* left)
 {
-    _left = n;
+    _left = left;
 }
 
 terminal_node* binary_node::get_right()
@@ -38,7 +28,7 @@ terminal_node* binary_node::get_right()
     return _right;
 }
 
-void binary_node::set_right(terminal_node* n)
+void binary_node::set_right(terminal_node* right)
 {
-    _right = n;
+    _right = right;
 }

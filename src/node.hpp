@@ -9,14 +9,14 @@ public:
 
     node();
     node(const std::string& name);
-    node(const node& n);
+    node(const std::string& name, const node& n);
     node* get_parent();
     void set_parent(node* parent);
 
-private:
+protected:
 
     std::string _name;
-    node* _parent = 0;
+    node* _parent;
 };
 
 #endif
