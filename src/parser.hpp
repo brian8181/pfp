@@ -22,20 +22,20 @@ public:
     parser();
     void parse();
     void parse(const string& expression);
-    bool post_fix(binary_node* p_node);
+    bool post_fix(binary_node* n);
     string& post_fix_string();
     //void post_fix_string(const vector<token>& tokens, string& s);    
     void tokenize(const string& input);
-    void sub_parse(vector<terminal_node>& nodes, int i, stack<terminal_node>& stack);
+    //void sub_parse(vector<terminal_node>& nodes, int i, stack<terminal_node>& nodes_stack);
     void sub_parse(int i);
     void parse_tokens();
     void operator_pass(vector<char> level);
 
 private:
 
-    vector<terminal_node*> m_pnodes;
-    vector<token*> m_ptokens; 
-    vector<vector<char>> plevels{{ '^' }, { '*', '/' }, { '+', '-' }};
+    vector<terminal_node*> _nodes;
+    vector<token*> _tokens; 
+    vector<vector<char>> _plevels{{ '^' }, { '*', '/' }, { '+', '-' }};
 
 };
 
