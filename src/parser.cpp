@@ -61,7 +61,8 @@ bool parser::post_fix(binary_node* p_node)
             // current is parents right move to parents Left
             if (p_parent != 0 && p_parent->get_left() != p_node)
             {
-                terminal_node* p_tnode = ((binary_node*)p_node->get_parent())->get_left();
+                // warn not used
+                //terminal_node* p_tnode = ((binary_node*)p_node->get_parent())->get_left();
                 break;
             }
             else // current parents left move to parent.parent
@@ -113,8 +114,8 @@ void parser::sub_parse(int i)
     {
         stack.push(nodes[i]);
         ++i;
-    }                //p_node = ((binary_node*)(p_node->get_parent()))->get_left();
-
+    }                
+    
     // unstack
     terminal_node* n = stack.top();
     stack.pop();
@@ -128,7 +129,8 @@ void parser::sub_parse(int i)
         --i;
     }
 
-    int len = m_pnodes.size();
+    // warn not used
+    //int len = m_pnodes.size();
     std::reverse(m_pnodes.begin(), m_pnodes.end());
     parse_tokens();
 

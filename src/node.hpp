@@ -15,7 +15,7 @@ public:
 
 private:
 
-    string _name;
+    std::string _name;
     node* _p_parent = 0;
 };
 
