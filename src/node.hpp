@@ -11,12 +11,12 @@ public:
     node(const std::string& name);
     node(const node& n);
     node* get_parent();
-    void set_parent(node* pparent);
+    void set_parent(node* parent);
 
 private:
 
     std::string _name;
-    node* _p_parent = 0;
+    node* _parent = 0;
 };
 
 #endif
