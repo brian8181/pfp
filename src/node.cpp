@@ -2,19 +2,26 @@
 
 node::node()
 {
+    _name = "node";
+}
+
+node::node(const std::string& name)
+{
+    _name = name;
 }
 
 node::node(const node& n)
 {
-    set_parent(n.p_parent);
+    _name = "node";
+    set_parent(n._p_parent);
 }
 
 node* node::get_parent()
 {
-    return p_parent;
+    return _p_parent;
 }
 
  void node::set_parent(node* pparent)
  {
-    p_parent = pparent;
+    _p_parent = pparent;
  }

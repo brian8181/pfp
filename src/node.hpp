@@ -14,7 +14,8 @@ public:
 
 private:
 
-    node* p_parent = 0;
+    string _name;
+    node* _p_parent = 0;
 };
 
 #endif
