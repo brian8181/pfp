@@ -9,18 +9,18 @@ class binary_node: public terminal_node
 public:
 
     binary_node();
-    binary_node(const binary_node& node);
-    binary_node(token* ptoken, terminal_node* pleft, terminal_node* pright);
+    binary_node(const binary_node& n);
+    binary_node(token* t, terminal_node* left, terminal_node* right);
     ~binary_node();
     terminal_node* get_left();
-    void set_left(terminal_node* pnode);
+    void set_left(terminal_node* n);
     terminal_node* get_right();
-    void set_right(terminal_node* pnode);
+    void set_right(terminal_node* n);
   
 private:
 
-    terminal_node* p_left;
-    terminal_node* p_right;
+    terminal_node* _left;
+    terminal_node* _right;
 };
 
 #endif
