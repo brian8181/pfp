@@ -1,11 +1,13 @@
+#include <iostream>
 #include <stack>
 #include <regex>
 #include "utility.hpp"
 #include "parser.hpp"
 
-// parser::parser()
-// {
-// }
+parser::parser()
+{
+    std::cout << "parser::parser" << std::endl;
+}
 
 void parser::parse(const string& s)
 {
@@ -50,19 +52,15 @@ void parser::parse()
 
 bool parser::post_fix(binary_node* p_node)
 {
-    // terminal_node* current = &node;
     while (p_node != 0)
     {
         m_ptokens.push_back(p_node->get_token());
-        // current = (binary_node*)current;
-
         while (p_node != 0)
         {
             binary_node *p_parent = (binary_node *)p_node->get_parent();
             // current is parents right move to parents Left
             if (p_parent != 0 && p_parent->get_left() != p_node)
             {
-                //p_node = ((binary_node*)(p_node->get_parent()))->get_left();
                 terminal_node* p_tnode = ((binary_node*)p_node->get_parent())->get_left();
                 break;
             }
@@ -115,7 +113,7 @@ void parser::sub_parse(int i)
     {
         stack.push(nodes[i]);
         ++i;
-    }
+    }                //p_node = ((binary_node*)(p_node->get_parent()))->get_left();
 
     // unstack
     terminal_node* n = stack.top();

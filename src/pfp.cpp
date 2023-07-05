@@ -105,13 +105,7 @@ int parse_options(int argc, char* argv[])
 
     parser p;
     string exp = "2+2";
-    //p.parse(exp);
-
-    // p.sub_parse(nodes, 1, stack_nodes);
     
-    // parser::parse(s, nodes);
-    // parser::post_fix(bn1, tokens);
-
     // cout << "is_integer(\"2\") = " << is_integer("2") << endl;
     cout << "is_digit(2) = " << is_digit('2') << endl;
     cout << "is_digit(a) = " << is_digit('a') << endl;

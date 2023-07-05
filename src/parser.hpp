@@ -18,7 +18,8 @@ using std::vector;
 class parser
 {
 public:
-    //parser();
+    
+    parser();
     void parse();
     void parse(const string& expression);
     bool post_fix(binary_node* p_node);
