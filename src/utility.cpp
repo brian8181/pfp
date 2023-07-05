@@ -25,7 +25,7 @@ bool is_numeric(const std::string& s)
     for(std::string::const_iterator iter = s.begin(); iter != end; ++iter)
     {
         if(is_digit(*iter) != true)
-            return -1;
+            return false;
     }
     return true;
 }
