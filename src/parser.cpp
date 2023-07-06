@@ -4,18 +4,18 @@
 #include "utility.hpp"
 #include "parser.hpp"
 
+using std::stack;
+
 parser::parser()
 {
     std::cout << "parser::parser" << std::endl;
 }
 
-void parser::parse(const string& expression)
+void parser::parse(const string& expression, vector<token>& tokens)
 {
     vector<terminal_node> nodes;
     tokenize(expression, nodes);
     parse(nodes);
-    
-    vector<token> tokens;
     post_fix((binary_node*)&nodes[0], tokens);
 }
 

@@ -73,6 +73,12 @@ int parse_options(int argc, char* argv[])
     cout << "Input string is " << "\"" << input << "\"" << endl;
     cout << "Initializing ..." << endl;
 
+    parser p;
+    vector<token> tokens;
+    p.parse(input, tokens);
+    string s = p.post_fix_string(tokens);
+
+
     // test token
     // string s = "2";
     token t1("token 1");
@@ -115,6 +121,8 @@ int parse_options(int argc, char* argv[])
     // cout << "3 - is_number = " << is_numeric("3") << endl;
     // error! crash
     //cout << "a - is_number = " << is_numeric("a") << endl;
+
+
     
 	return 0;
 }

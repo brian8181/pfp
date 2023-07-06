@@ -4,15 +4,11 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <stack>
-#include <list>
 #include "token.hpp"
 #include "terminal_node.hpp"
 #include "binary_node.hpp"
 
 using std::string;
-using std::list;
-using std::stack;
 using std::vector;
 
 class parser
@@ -20,7 +16,7 @@ class parser
 public:
     
     parser();
-    void parse(const string& expression);
+    void parse(const string& expression, vector<token>& tokens);
     void parse(vector<terminal_node>& nodes);
     bool post_fix(binary_node* n, vector<token>& tokens);
     string& post_fix_string(vector<token>& postfix);
