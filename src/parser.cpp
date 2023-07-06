@@ -9,52 +9,53 @@ parser::parser()
     std::cout << "parser::parser" << std::endl;
 }
 
-void parser::parse(const string& s)
+void parser::parse(const string& expression, vector<token>& tokens)
 {
-    parser::tokenize(s);
+    parser::tokenize(expression);
     binary_node node;
-    _nodes.push_back(&node);
-    post_fix(&node);
+    //_nodes.push_back(&node);
+    //tokens.push_back(node);
+    post_fix(&node, tokens);
 }
 
-void parser::parse()
+void parser::parse(vector<terminal_node>& nodes)
 {
     stack<terminal_node> stack;
-    int len = _nodes.size();
+    int len = nodes.size();
     for (int i = 0; i < len; ++i)
     {
-        if (_nodes[i]->get_token()->get_value() == "(")
+        if (nodes[i].get_token()->get_value() == "(")
         {
             // check for implied mutiplication and create explict
             if (i > 0)
             {
-                if (_nodes[i - 1]->get_token()->get_type() == token_type::Number)
+                if (nodes[i - 1].get_token()->get_type() == token_type::Number)
                 {
                     // add a "*"
                     terminal_node multi_op;
-                    vector<terminal_node*>::iterator iter = _nodes.begin();
+                    vector<terminal_node>::iterator iter = nodes.begin();
                     //m_pnodes.insert((*iter), multi_op);
-                    _nodes.insert(iter, &multi_op);
-                    len = _nodes.size();
+                    nodes.insert(iter, multi_op);
+                    len = nodes.size();
                     ++i;
                 }
             }
-            sub_parse(i);
-            len = _tokens.size();
+            sub_parse(i, nodes);
+            len = nodes.size();
         }
     }
-     if (_tokens.size() > 1)
+    if (nodes.size() > 1)
      {
-        parse_tokens();
+        parse_tokens(nodes);
         //return tokens;
     }
 }
 
-bool parser::post_fix(binary_node* n)
+bool parser::post_fix(binary_node* n, vector<token>& tokens)
 {
     while (n != 0)
     {
-        _tokens.push_back(n->get_token());
+        tokens.push_back(*n->get_token());
         while (n != 0)
         {
             binary_node *p_parent = (binary_node *)n->get_parent();
@@ -72,18 +73,18 @@ bool parser::post_fix(binary_node* n)
         }
     }
 
-    std::reverse(_tokens.begin(), _tokens.end());
+    std::reverse(tokens.begin(), tokens.end());
     return true;
 }
 
-string &parser::post_fix_string()
+string& parser::post_fix_string(vector<token>& postfix)
 {
     string str;
-    int len = _tokens.size();
+    int len = postfix.size();
     for (int i = 0; i < len; ++i)
     {
-        token* t = _tokens[i];
-        str.append(t->get_value() + " ");
+        token t = postfix[i];
+        str.append(t.get_value() + " ");
     }
     return trim(str);
 }
@@ -105,25 +106,24 @@ void parser::tokenize(const string& input)
     }
 }
 
-void parser::sub_parse(int i)
+void parser::sub_parse(int i, vector<terminal_node>& nodes)
 {
-    vector<terminal_node*> nodes;
-    stack<terminal_node*> stack;
+    stack<terminal_node> stack;
     // stack
-    while (_nodes[i]->get_token()->get_value() != ")")
+    while (nodes[i].get_token()->get_value() != ")")
     {
         stack.push(nodes[i]);
         ++i;
     }                
     
     // unstack
-    terminal_node* n = stack.top();
+    terminal_node n = stack.top();
     stack.pop();
     --i;
 
-    while (n->get_token()->get_value() != "(")
+    while (n.get_token()->get_value() != "(")
     {
-        _nodes.push_back(n);
+        nodes.push_back(n);
         n = stack.top();
         stack.pop();
         --i;
@@ -131,8 +131,8 @@ void parser::sub_parse(int i)
 
     // warn not used
     //int len = m_pnodes.size();
-    std::reverse(_nodes.begin(), _nodes.end());
-    parse_tokens();
+    std::reverse(nodes.begin(), nodes.end());
+    parse_tokens(nodes);
 
     // todo BKP
     //  nodes.Insert(i, tmp_nodes[0]);  // put sub list into original
@@ -140,23 +140,23 @@ void parser::sub_parse(int i)
 
     if (stack.empty())
     {
-        stack.push(_nodes[0]);
-        sub_parse(i + 1);
+        stack.push(nodes[0]);
+        sub_parse(i + 1, nodes);
     }
 }
 
-void parser::parse_tokens()
+void parser::parse_tokens(vector<terminal_node>& nodes)
 {
     int len = _plevels.size();
     for (int i = 0; i < len; ++i)
     {
-        operator_pass(_plevels[i]);
+        operator_pass(_plevels[i], nodes);
     }
 }
 
-void parser::operator_pass(vector<char> level)
+void parser::operator_pass(vector<char> level, vector<terminal_node>& nodes)
 {
-    int len = _nodes.size();
+    int len = nodes.size();
     for (int i = 0; i < len; ++i)
     {
         int len_ops = _plevels.size();
@@ -165,7 +165,7 @@ void parser::operator_pass(vector<char> level)
             //terminal_node* node = m_pnodes[i];
             // if (!(nodes[i] is BinaryNode))
             {
-                if (_nodes[i]->get_token()->get_type() == level[j])
+                if (nodes[i].get_token()->get_type() == level[j])
                 {
                     binary_node node;
                     // binary_node node = binary_node(nodes[i].get_token(), nodes[i -1], nodes[i + 1]);
