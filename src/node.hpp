@@ -7,7 +7,6 @@ class node
 {
 public:
 
-    node();
     node(const node& n);
     node(const std::string& name);
     node* get_parent();

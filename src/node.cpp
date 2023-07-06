@@ -1,10 +1,5 @@
 #include "node.hpp"
 
-node::node()
-{
-    _name = "node";
-}
-
 node::node(const std::string& name)
 {
     _name = name;

@@ -34,7 +34,7 @@ void parser::parse(vector<terminal_node>& nodes)
                 if (nodes[i - 1].get_token()->get_type() == token_type::Number)
                 {
                     // add a "*"
-                    terminal_node multi_op;
+                    terminal_node multi_op("");
                     vector<terminal_node>::iterator iter = nodes.begin();
                     //m_pnodes.insert((*iter), multi_op);
                     nodes.insert(iter, multi_op);

@@ -1,24 +1,19 @@
 #include "terminal_node.hpp"
 #include "token.hpp"
 
-terminal_node::terminal_node()
-{
-
-}
-
-terminal_node::terminal_node(const token& t)
+terminal_node::terminal_node(const token& t) : node("node")
 {
     _token = new token(t);
 }
 
-terminal_node::terminal_node(const terminal_node& n)
+terminal_node::terminal_node(const terminal_node& n) : node("node")
 {
     _token = n._token;
     _name = "node";
     set_parent(n._parent);
 }
 
-terminal_node::terminal_node(const string& s)
+terminal_node::terminal_node(const string& s) : node("node")
 {
     _token = new token(s);
 }

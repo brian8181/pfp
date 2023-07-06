@@ -81,13 +81,13 @@ int parse_options(int argc, char* argv[])
     cout << "id = " << t2.get_id() << endl; 
 
     //test node
-    node n1;
-    node n2;
+    node n1("n1");
+    node n2("n2");
     n2.set_parent(&n1);
     //node* pn = n2.get_parent();
 
-    terminal_node tn1;
-    terminal_node tn2;
+    terminal_node tn1("");
+    terminal_node tn2("");
     tn2.set_parent(&tn1);
     //node* ptn = tn1.get_parent();
     //cout << tn2.name << " parent -> " << tn2.get_parent()->name << endl;
