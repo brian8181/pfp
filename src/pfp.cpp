@@ -109,7 +109,7 @@ int parse_options(int argc, char* argv[])
     cout << "is_digit(a) = " << is_digit('a') << endl;
     cout << "is_digit(.) = " << is_digit('.') << endl;
     cout << "is_digit(-) = " << is_digit('-') << endl;
-    cout << "2" << " " << "is_number = " << is_numeric("2") << endl;
+    //cout << "2" << " " << "is_number = " << is_numeric("2") << endl;
     // error, 
     // cout << "2.5 - is_number = " << is_numeric("2.5") << endl;
     // cout << "3 - is_number = " << is_numeric("3") << endl;

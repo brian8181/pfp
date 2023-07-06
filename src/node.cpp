@@ -10,9 +10,10 @@ node::node(const std::string& name)
     _name = name;
 }
 
-node::node(const std::string& name, const node& n)
+node::node(const node& n)
 {
-    
+    _name = n._name;
+    _parent = n._parent;
 }
 
 node* node::get_parent()

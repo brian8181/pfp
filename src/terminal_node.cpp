@@ -23,7 +23,7 @@ terminal_node::terminal_node(const string& s)
     _token = new token(s);
 }
 
-terminal_node::terminal_node(const std::string& name, const node& n) : node(name, n)
+terminal_node::terminal_node(const std::string& name, const node& n) : node(n)
 {
 
 }
