@@ -1,10 +1,5 @@
 #include "binary_node.hpp"
 
-binary_node::binary_node()
-{
-
-}
-
 binary_node::binary_node(const string& tok, terminal_node* left, terminal_node* right) : terminal_node(tok)
 {
     _left = left;
@@ -20,7 +15,8 @@ terminal_node* binary_node::get_left()
 
 void binary_node::set_left(terminal_node* left)
 {
-    _left = left;
+    delete _left;
+    _left = new terminal_node(*left);
 }
 
 terminal_node* binary_node::get_right()
@@ -30,5 +26,6 @@ terminal_node* binary_node::get_right()
 
 void binary_node::set_right(terminal_node* right)
 {
-    _right = right;
+    delete _right;
+    _right = new terminal_node(*right);
 }

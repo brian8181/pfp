@@ -12,7 +12,9 @@ parser::parser()
 void parser::parse(const string& expression, vector<token>& tokens)
 {
     parser::tokenize(expression);
-    binary_node node;
+    terminal_node n1("");
+    terminal_node n2("");
+    binary_node node("", &n1, &n2);
     //_nodes.push_back(&node);
     //tokens.push_back(node);
     post_fix(&node, tokens);
@@ -167,7 +169,9 @@ void parser::operator_pass(vector<char> level, vector<terminal_node>& nodes)
             {
                 if (nodes[i].get_token()->get_type() == level[j])
                 {
-                    binary_node node;
+                    terminal_node n1("");
+                    terminal_node n2("");
+                    binary_node node("", &n1, &n2);
                     // binary_node node = binary_node(nodes[i].get_token(), nodes[i -1], nodes[i + 1]);
                     // vector<terminal_node>::const_iterator iter = m_pnodes.begin();
                     // _nodes.insert(iter - (i - 1), node);
