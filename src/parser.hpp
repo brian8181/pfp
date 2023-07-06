@@ -23,7 +23,6 @@ public:
     void parse(vector<terminal_node>& nodes);
     void parse(const string& expression, vector<token>& tokens);
     bool post_fix(binary_node* n, vector<token>& tokens);
-    //string& post_fix_string(List<Token> postfix, char s = ' ');
     string& post_fix_string(vector<token>& postfix);
     void tokenize(const string& input);
     void sub_parse(int i, vector<terminal_node>& nodes);
@@ -32,7 +31,9 @@ public:
 
 private:
 
+    // todo remove!
     vector<terminal_node*> _nodes;
+    // todo remove!
     vector<token*> _tokens; 
     vector<vector<char>> _plevels{{ '^' }, { '*', '/' }, { '+', '-' }};
 

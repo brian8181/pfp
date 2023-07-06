@@ -10,7 +10,7 @@ class binary_node : public terminal_node
 public:
     
     binary_node();
-    binary_node(token* t, terminal_node* left, terminal_node* right);
+    binary_node(const string& tok, terminal_node* left, terminal_node* right);
     terminal_node* get_left();
     void set_left(terminal_node* left);
     terminal_node* get_right();

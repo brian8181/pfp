@@ -5,7 +5,7 @@ binary_node::binary_node()
 
 }
 
-binary_node::binary_node(token* t, terminal_node* left, terminal_node* right)
+binary_node::binary_node(const string& tok, terminal_node* left, terminal_node* right) : terminal_node(tok)
 {
     _left = left;
     _right = right;

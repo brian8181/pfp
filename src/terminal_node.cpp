@@ -6,6 +6,11 @@ terminal_node::terminal_node()
 
 }
 
+terminal_node::terminal_node(const token& t)
+{
+    _token = new token(t);
+}
+
 terminal_node::terminal_node(const terminal_node& n)
 {
     _token = n._token;
