@@ -9,15 +9,14 @@ parser::parser()
     std::cout << "parser::parser" << std::endl;
 }
 
-void parser::parse(const string& expression, vector<token>& tokens)
+void parser::parse(const string& expression)
 {
-    parser::tokenize(expression);
-    terminal_node n1("");
-    terminal_node n2("");
-    binary_node node("", &n1, &n2);
-    //_nodes.push_back(&node);
-    //tokens.push_back(node);
-    post_fix(&node, tokens);
+    vector<terminal_node> nodes;
+    tokenize(expression, nodes);
+    parse(nodes);
+    
+    vector<token> tokens;
+    post_fix((binary_node*)&nodes[0], tokens);
 }
 
 void parser::parse(vector<terminal_node>& nodes)
@@ -91,7 +90,7 @@ string& parser::post_fix_string(vector<token>& postfix)
     return trim(str);
 }
 
-void parser::tokenize(const string& input)
+void parser::tokenize(const string& input, vector<terminal_node>& nodes)
 {
     std::regex::flag_type REGX_FLAGS = std::regex::basic;
     std::regex input_epx = std::regex(R"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])", REGX_FLAGS);
@@ -104,7 +103,7 @@ void parser::tokenize(const string& input)
         std::smatch match = *iter;
         string s = match.str(0);
         terminal_node n(s);
-        _nodes.push_back(&n);
+        nodes.push_back(n);
     }
 }
 
