@@ -41,7 +41,7 @@ std::string &ltrim(std::string &s)
         {
             return !std::isspace<char>(c, std::locale::classic());
         } );
-    s.erase(s.begin(), iter;
+    s.erase(s.begin(), iter);
     return s;
 }
 
