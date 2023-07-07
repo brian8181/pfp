@@ -14,14 +14,14 @@ class parser
 {
 public:
     
-    void parse(const string& expression, vector<token>& tokens);
-    void parse(vector<terminal_node>& nodes);
-    string& post_fix_string(vector<token>& postfix);
-    bool post_fix(binary_node* n, vector<token>& tokens);
-    void tokenize(const string& input, vector<terminal_node>& nodes);
-    void sub_parse(int i, vector<terminal_node>& nodes);
-    void parse_tokens(vector<terminal_node>& nodes);
-    void operator_pass(vector<char> level, vector<terminal_node>& nodes);
+    void parse(const string& expression, /*out*/ vector<token>& tokens);
+    void parse(/*out*/ vector<terminal_node>& nodes);
+    string& post_fix_string(/*out*/ vector<token>& postfix);
+    bool post_fix(binary_node* n, /*out*/ vector<token>& tokens);
+    void tokenize(const string& input, /*out*/ vector<terminal_node>& nodes);
+    void sub_parse(int i, /*out*/ vector<terminal_node>& nodes);
+    void parse_tokens(/*out*/ vector<terminal_node>& nodes);
+    void operator_pass(const vector<char> level, /*out*/ vector<terminal_node>& nodes);
    
 private:
 

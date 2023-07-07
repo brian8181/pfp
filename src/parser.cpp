@@ -6,15 +6,15 @@
 
 using std::stack;
 
-void parser::parse(const string& expression, vector<token>& tokens)
+void parser::parse(const string& infix, /*out*/ vector<token>& tokens)
 {
     vector<terminal_node> nodes;
-    tokenize(expression, nodes);
+    tokenize(infix, nodes);
     parse(nodes);
     post_fix((binary_node*)&nodes[0], tokens);
 }
 
-void parser::parse(vector<terminal_node>& nodes)
+void parser::parse(/*out*/ vector<terminal_node>& nodes)
 {
     stack<terminal_node> stack;
     int len = nodes.size();
@@ -45,7 +45,7 @@ void parser::parse(vector<terminal_node>& nodes)
     }
 }
 
-bool parser::post_fix(binary_node* n, vector<token>& tokens)
+bool parser::post_fix(binary_node* n, /*out*/ vector<token>& tokens)
 {
     while (n != 0)
     {
@@ -71,7 +71,7 @@ bool parser::post_fix(binary_node* n, vector<token>& tokens)
     return true;
 }
 
-string& parser::post_fix_string(vector<token>& postfix)
+string& parser::post_fix_string(/*out*/ vector<token>& postfix)
 {
     string str;
     int len = postfix.size();
@@ -83,7 +83,7 @@ string& parser::post_fix_string(vector<token>& postfix)
     return trim(str);
 }
 
-void parser::tokenize(const string& input, vector<terminal_node>& nodes)
+void parser::tokenize(const string& input, /*out*/ vector<terminal_node>& nodes)
 {
     std::regex::flag_type REGX_FLAGS = std::regex::basic;
     //std::regex input_epx = std::regex(R"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])", REGX_FLAGS);
@@ -110,7 +110,7 @@ void parser::tokenize(const string& input, vector<terminal_node>& nodes)
     }
 }
 
-void parser::sub_parse(int i, vector<terminal_node>& nodes)
+void parser::sub_parse(int i, /*out*/ vector<terminal_node>& nodes)
 {
     stack<terminal_node> stack;
     // stack
@@ -149,7 +149,7 @@ void parser::sub_parse(int i, vector<terminal_node>& nodes)
     }
 }
 
-void parser::parse_tokens(vector<terminal_node>& nodes)
+void parser::parse_tokens(/*out*/ vector<terminal_node>& nodes)
 {
     int len = _plevels.size();
     for (int i = 0; i < len; ++i)
@@ -158,7 +158,7 @@ void parser::parse_tokens(vector<terminal_node>& nodes)
     }
 }
 
-void parser::operator_pass(vector<char> level, vector<terminal_node>& nodes)
+void parser::operator_pass(const vector<char> level, /*out*/ vector<terminal_node>& nodes)
 {
     int len = nodes.size();
     for (int i = 0; i < len; ++i)
