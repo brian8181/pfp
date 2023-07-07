@@ -1,13 +1,13 @@
 #include "token.hpp"
 #include "utility.hpp"
 
-int token::_prev_id = 1;
+int token::_prev_id = 0;
 
 token::token(string value) : _type(token_type::Operator)
 {
+    _id = ++_prev_id;
     _value = value;
-    _id = _prev_id++;
-    
+        
     if(is_numeric(value))
         _type = token_type::Number;
     else
@@ -16,8 +16,13 @@ token::token(string value) : _type(token_type::Operator)
 
 token::token(const token& tok)
 {
+<<<<<<< HEAD
     _value = tok._value;
     _id = tok._id;
+=======
+    _id = tok._id;
+    _value = tok._value;
+>>>>>>> debug
     _type = tok._type;
 }
 
