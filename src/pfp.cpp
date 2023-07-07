@@ -11,9 +11,6 @@
 #include "bash_color.h"
 #include "pfp.hpp"
 #include "token.hpp"
-#include "node.hpp"
-#include "terminal_node.hpp"
-#include "binary_node.hpp"
 #include "parser.hpp"
 
 using namespace std;
