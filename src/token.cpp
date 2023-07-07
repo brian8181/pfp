@@ -1,7 +1,3 @@
-#include "token.hpp"
-#include "utility.hpp"
-
-int token::_prev_id = 0;
 // License:    None
 // Author:     Brian K Preston
 // File Name:  token.cpp
@@ -9,6 +5,9 @@ int token::_prev_id = 0;
 // Version:    0.0.1
 
 #include "token.hpp"
+#include "utility.hpp"
+
+int token::_prev_id = 0;
 
 token::token(string value) : _type(token_type::Operator)
 {
