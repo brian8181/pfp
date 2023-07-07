@@ -73,50 +73,12 @@ int parse_options(int argc, char* argv[])
     cout << "Input string is " << "\"" << input << "\"" << endl;
     cout << "Initializing ..." << endl;
 
-    // test token
-    // string s = "2";
-    token t1("token 1");
-    token t2("token 2");
-    cout << "id = " << t1.get_id() << endl;
-    cout << "id = " << t2.get_id() << endl; 
-
-    //test node
-    node n1("n1");
-    node n2("n2");
-    n2.set_parent(&n1);
-    //node* pn = n2.get_parent();
-
-    terminal_node tn1("");
-    terminal_node tn2("");
-    tn2.set_parent(&tn1);
-    //node* ptn = tn1.get_parent();
-    //cout << tn2.name << " parent -> " << tn2.get_parent()->name << endl;
-
-    // //test binary node
-    // binary_node bn1;
-    // binary_node bn2;
-
-    // // test parser
-    // list<terminal_node> nodes;
-    // stack<terminal_node> stack_nodes;
-    // list<token> tokens;
-    // string s;
-    // parser p;
-    // string exp = "2+2";
+    parser p;
+    vector<token> tokens;
+    p.parse(input, tokens);
+    string s = p.post_fix_string(tokens);
     
-    // cout << "is_integer(\"2\") = " << is_integer("2") << endl;
-    cout << "is_digit(2) = " << is_digit('2') << endl;
-    cout << "is_digit(a) = " << is_digit('a') << endl;
-    cout << "is_digit(.) = " << is_digit('.') << endl;
-    cout << "is_digit(-) = " << is_digit('-') << endl;
-    //cout << "2" << " " << "is_number = " << is_numeric("2") << endl;
-    // error, 
-    // cout << "2.5 - is_number = " << is_numeric("2.5") << endl;
-    // cout << "3 - is_number = " << is_numeric("3") << endl;
-    // error! crash
-    //cout << "a - is_number = " << is_numeric("a") << endl;
-    
-	return 0;
+    return 0;
 }
 
 // Pass by reference TEST!!!

@@ -4,22 +4,17 @@
 #include "utility.hpp"
 #include "parser.hpp"
 
-parser::parser()
-{
-    std::cout << "parser::parser" << std::endl;
-}
+using std::stack;
 
-void parser::parse(const string& expression)
+void parser::parse(const string& infix, /*out*/ vector<token>& tokens)
 {
     vector<terminal_node> nodes;
-    tokenize(expression, nodes);
+    tokenize(infix, nodes);
     parse(nodes);
-    
-    vector<token> tokens;
     post_fix((binary_node*)&nodes[0], tokens);
 }
 
-void parser::parse(vector<terminal_node>& nodes)
+void parser::parse(/*out*/ vector<terminal_node>& nodes)
 {
     stack<terminal_node> stack;
     int len = nodes.size();
@@ -35,7 +30,6 @@ void parser::parse(vector<terminal_node>& nodes)
                     // add a "*"
                     terminal_node multi_op("");
                     vector<terminal_node>::iterator iter = nodes.begin();
-                    //m_pnodes.insert((*iter), multi_op);
                     nodes.insert(iter, multi_op);
                     len = nodes.size();
                     ++i;
@@ -46,13 +40,12 @@ void parser::parse(vector<terminal_node>& nodes)
         }
     }
     if (nodes.size() > 1)
-     {
+    {
         parse_tokens(nodes);
-        //return tokens;
     }
 }
 
-bool parser::post_fix(binary_node* n, vector<token>& tokens)
+bool parser::post_fix(binary_node* n, /*out*/ vector<token>& tokens)
 {
     while (n != 0)
     {
@@ -72,13 +65,13 @@ bool parser::post_fix(binary_node* n, vector<token>& tokens)
                 n = (binary_node*)n->get_parent();
             }
         }
-    }
-
+    } 
+    
     std::reverse(tokens.begin(), tokens.end());
     return true;
 }
 
-string& parser::post_fix_string(vector<token>& postfix)
+string& parser::post_fix_string(/*out*/ vector<token>& postfix)
 {
     string str;
     int len = postfix.size();
@@ -90,24 +83,34 @@ string& parser::post_fix_string(vector<token>& postfix)
     return trim(str);
 }
 
-void parser::tokenize(const string& input, vector<terminal_node>& nodes)
+void parser::tokenize(const string& input, /*out*/ vector<terminal_node>& nodes)
 {
     std::regex::flag_type REGX_FLAGS = std::regex::basic;
-    std::regex input_epx = std::regex(R"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])", REGX_FLAGS);
-
+    //std::regex input_epx = std::regex(R"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])", REGX_FLAGS);
+    std::regex input_epx = std::regex(R"(.*)", REGX_FLAGS);
+    
     auto begin = std::sregex_iterator(input.begin(), input.end(), input_epx);
     auto end = std::sregex_iterator();
+    std::sregex_iterator iter = begin;
 
     for (std::sregex_iterator iter = begin; iter != end; ++iter)
     {
         std::smatch match = *iter;
-        string s = match.str(0);
-        terminal_node n(s);
-        nodes.push_back(n);
+        int len = match.size();
+
+        for(int i = 0; i < len; ++i)
+        {
+            if(match[i].matched)
+            {
+                string s = match.str(0);
+                terminal_node n(s);
+                nodes.push_back(n);
+            }
+        }
     }
 }
 
-void parser::sub_parse(int i, vector<terminal_node>& nodes)
+void parser::sub_parse(int i, /*out*/ vector<terminal_node>& nodes)
 {
     stack<terminal_node> stack;
     // stack
@@ -146,7 +149,7 @@ void parser::sub_parse(int i, vector<terminal_node>& nodes)
     }
 }
 
-void parser::parse_tokens(vector<terminal_node>& nodes)
+void parser::parse_tokens(/*out*/ vector<terminal_node>& nodes)
 {
     int len = _plevels.size();
     for (int i = 0; i < len; ++i)
@@ -155,7 +158,7 @@ void parser::parse_tokens(vector<terminal_node>& nodes)
     }
 }
 
-void parser::operator_pass(vector<char> level, vector<terminal_node>& nodes)
+void parser::operator_pass(const vector<char> level, /*out*/ vector<terminal_node>& nodes)
 {
     int len = nodes.size();
     for (int i = 0; i < len; ++i)
@@ -163,21 +166,23 @@ void parser::operator_pass(vector<char> level, vector<terminal_node>& nodes)
         int len_ops = _plevels.size();
         for(int j = 0; j < len_ops; ++j)
         {
-            //terminal_node* node = m_pnodes[i];
+            terminal_node node = nodes[i];
+
+            // not a polymorphic class ?!
+            //binary_node& bn = dynamic_cast<binary_node&>(nodes[i]);
+
+            binary_node& bn = static_cast<binary_node&>(nodes[i]);
+
             // if (!(nodes[i] is BinaryNode))
             {
                 if (nodes[i].get_token()->get_type() == level[j])
                 {
-                    terminal_node n1("");
-                    terminal_node n2("");
-                    binary_node node("", &n1, &n2);
-                    // binary_node node = binary_node(nodes[i].get_token(), nodes[i -1], nodes[i + 1]);
-                    // vector<terminal_node>::const_iterator iter = m_pnodes.begin();
-                    // _nodes.insert(iter - (i - 1), node);
-                    // _nodes.erase(iter);
-                    // _nodes.erase(iter+1);
-                    // _nodes.erase(iter+2);
-                    // len = _nodes.size();
+                    vector<terminal_node>::const_iterator iter = nodes.begin();
+                    nodes.insert(iter - (i - 1), bn);
+                    nodes.erase(iter);
+                    nodes.erase(iter+1);
+                    nodes.erase(iter+2);
+                    len = nodes.size();
                     --i;
                     break;
                 }

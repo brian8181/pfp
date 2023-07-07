@@ -1,39 +1,31 @@
 #ifndef _parser_HPP
 #define _parser_HPP
 
-#include <iostream>
 #include <string>
 #include <vector>
-#include <stack>
-#include <list>
 #include "token.hpp"
 #include "terminal_node.hpp"
 #include "binary_node.hpp"
 
 using std::string;
-using std::list;
-using std::stack;
 using std::vector;
 
 class parser
 {
 public:
     
-    parser();
-    void parse(const string& expression);
-    void parse(vector<terminal_node>& nodes);
-    bool post_fix(binary_node* n, vector<token>& tokens);
-    string& post_fix_string(vector<token>& postfix);
-    void tokenize(const string& input, vector<terminal_node>& nodes);
-    void sub_parse(int i, vector<terminal_node>& nodes);
-    void parse_tokens(vector<terminal_node>& nodes);
-    void operator_pass(vector<char> level, vector<terminal_node>& nodes);
-
+    void parse(const string& expression, /*out*/ vector<token>& tokens);
+    void parse(/*out*/ vector<terminal_node>& nodes);
+    string& post_fix_string(/*out*/ vector<token>& postfix);
+    bool post_fix(binary_node* n, /*out*/ vector<token>& tokens);
+    void tokenize(const string& input, /*out*/ vector<terminal_node>& nodes);
+    void sub_parse(int i, /*out*/ vector<terminal_node>& nodes);
+    void parse_tokens(/*out*/ vector<terminal_node>& nodes);
+    void operator_pass(const vector<char> level, /*out*/ vector<terminal_node>& nodes);
+   
 private:
 
     vector<vector<char>> _plevels{{ '^' }, { '*', '/' }, { '+', '-' }};
 };
-
-//const vector<vector<char>> parser::plevels = {{ '^' }, { '*', '/' }, { '+', '-' }};
 
 #endif
