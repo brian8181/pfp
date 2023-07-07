@@ -175,22 +175,22 @@ void parser::operator_pass(vector<char> level, vector<terminal_node>& nodes)
         for(int j = 0; j < len_ops; ++j)
         {
             terminal_node node = nodes[i];
+
+            // not a polymorphic class ?!
+            //binary_node& bn = dynamic_cast<binary_node&>(nodes[i]);
+            
             binary_node& bn = static_cast<binary_node&>(nodes[i]);
 
             // if (!(nodes[i] is BinaryNode))
             {
                 if (nodes[i].get_token()->get_type() == level[j])
                 {
-                    terminal_node n1("");
-                    terminal_node n2("");
-                    //binary_node node("", &n1, &n2);
-                    // binary_node node = binary_node(nodes[i].get_token(), nodes[i -1], nodes[i + 1]);
-                    // vector<terminal_node>::const_iterator iter = m_pnodes.begin();
-                    // nodes.insert(iter - (i - 1), node);
-                    // nodes.erase(iter);
-                    // nodes.erase(iter+1);
-                    // nodes.erase(iter+2);
-                    // len = _nodes.size();
+                    vector<terminal_node>::const_iterator iter = nodes.begin();
+                    nodes.insert(iter - (i - 1), bn);
+                    nodes.erase(iter);
+                    nodes.erase(iter+1);
+                    nodes.erase(iter+2);
+                    len = nodes.size();
                     --i;
                     break;
                 }
