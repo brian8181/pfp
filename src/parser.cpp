@@ -93,17 +93,28 @@ string& parser::post_fix_string(vector<token>& postfix)
 void parser::tokenize(const string& input, vector<terminal_node>& nodes)
 {
     std::regex::flag_type REGX_FLAGS = std::regex::basic;
-    std::regex input_epx = std::regex(R"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])", REGX_FLAGS);
+    //std::regex input_epx = std::regex(R"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])", REGX_FLAGS);
+    std::regex input_epx = std::regex(R"(.*)", REGX_FLAGS);
 
+    
     auto begin = std::sregex_iterator(input.begin(), input.end(), input_epx);
     auto end = std::sregex_iterator();
+    std::sregex_iterator iter = begin;
 
     for (std::sregex_iterator iter = begin; iter != end; ++iter)
     {
         std::smatch match = *iter;
-        string s = match.str(0);
-        terminal_node n(s);
-        nodes.push_back(n);
+        int len = match.size();
+
+        for(int i = 0; i < len; ++i)
+        {
+            if(match[i].matched)
+            {
+                string s = match.str(0);
+                terminal_node n(s);
+                nodes.push_back(n);
+            }
+        }
     }
 }
 
