@@ -1,9 +1,11 @@
+// License:    None
+// Author:     Brian K Preston
+// File Name:  pfp.cpp
+// Build Date: Fri Jul  7 05:08:36 PM CDT 2023
+// Version:    0.0.1
+
 #include <iostream>
 #include <string>
-//#include <stack>
-//#include <list>
-//#include <memory>
-//#include <unistd.h>
 #include "pfp.hpp"
 #include "token.hpp"
 #include "node.hpp"
@@ -79,10 +81,4 @@ int parse_options(int argc, char* argv[])
     string s = p.post_fix_string(tokens);
     
     return 0;
-}
-
-// Pass by reference TEST!!!
-constexpr float exp2(const float& x, const int& n)
-{
-    return x;
 }
