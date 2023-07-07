@@ -16,13 +16,8 @@ token::token(string value) : _type(token_type::Operator)
 
 token::token(const token& tok)
 {
-<<<<<<< HEAD
-    _value = tok._value;
-    _id = tok._id;
-=======
     _id = tok._id;
     _value = tok._value;
->>>>>>> debug
     _type = tok._type;
 }
 
