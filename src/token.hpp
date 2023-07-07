@@ -1,3 +1,9 @@
+// License:    None
+// Author:     Brian K Preston
+// File Name:  token.cpp
+// Build Date: Fri Jul  7 05:08:36 PM CDT 2023
+// Version:    0.0.1
+
 #ifndef _token_HPP
 #define _token_HPP
 

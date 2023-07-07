@@ -1,3 +1,9 @@
+// License:    None
+// Author:     Brian K Preston
+// File Name:  utility.cpp
+// Build Date: Fri Jul  7 05:08:36 PM CDT 2023
+// Version:    0.0.1
+
 #include "utility.hpp"
 
 bool is_integer(const std::string& value)

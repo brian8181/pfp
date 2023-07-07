@@ -1,3 +1,9 @@
+// License:    None
+// Author:     Brian K Preston
+// File Name:  node.cpp
+// Build Date: Fri Jul  7 05:08:36 PM CDT 2023
+// Version:    0.0.1
+
 #include "node.hpp"
 
 int node::_prev_id = 0;
