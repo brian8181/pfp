@@ -6,11 +6,6 @@
 
 using std::stack;
 
-parser::parser()
-{
-    std::cout << "parser::parser" << std::endl;
-}
-
 void parser::parse(const string& expression, vector<token>& tokens)
 {
     vector<terminal_node> nodes;
@@ -35,7 +30,6 @@ void parser::parse(vector<terminal_node>& nodes)
                     // add a "*"
                     terminal_node multi_op("");
                     vector<terminal_node>::iterator iter = nodes.begin();
-                    //m_pnodes.insert((*iter), multi_op);
                     nodes.insert(iter, multi_op);
                     len = nodes.size();
                     ++i;
@@ -46,9 +40,8 @@ void parser::parse(vector<terminal_node>& nodes)
         }
     }
     if (nodes.size() > 1)
-     {
+    {
         parse_tokens(nodes);
-        //return tokens;
     }
 }
 
@@ -72,8 +65,8 @@ bool parser::post_fix(binary_node* n, vector<token>& tokens)
                 n = (binary_node*)n->get_parent();
             }
         }
-    }
-
+    } 
+    
     std::reverse(tokens.begin(), tokens.end());
     return true;
 }
@@ -178,7 +171,7 @@ void parser::operator_pass(vector<char> level, vector<terminal_node>& nodes)
 
             // not a polymorphic class ?!
             //binary_node& bn = dynamic_cast<binary_node&>(nodes[i]);
-            
+
             binary_node& bn = static_cast<binary_node&>(nodes[i]);
 
             // if (!(nodes[i] is BinaryNode))
