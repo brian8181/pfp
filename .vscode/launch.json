@@ -8,7 +8,7 @@
             "name": "std_debug",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/${fileBasenameNoExtension}",
+            "program": "${workspaceFolder}/build/pfp",
             "args": ["2+2"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
