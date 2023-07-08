@@ -15,10 +15,9 @@ class terminal_node : public node
 {
 public:
 
-    terminal_node(const token& t);
-    terminal_node(const terminal_node& n);
     terminal_node(const std::string& s);
     terminal_node(const std::string& name, const node& n);
+    terminal_node(const terminal_node& n);
     ~terminal_node();
    
     token* get_token();
