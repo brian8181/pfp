@@ -22,7 +22,7 @@ class token
 public:
 
     token(string value);
-    token(const token& tok);
+    token(const token& t);
     
     int get_id();
     token_type get_type();

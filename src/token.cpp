@@ -20,11 +20,11 @@ token::token(string value) : _type(token_type::Operator)
         _type = token_type::Operator;
 }
 
-token::token(const token& tok)
+token::token(const token& t)
 {
-    _id = tok._id;
-    _value = tok._value;
-    _type = tok._type;
+    _id = t._id;
+    _value = t._value;
+    _type = t._type;
 }
 
 int token::get_id()

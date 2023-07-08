@@ -6,7 +6,7 @@
 
 #include "binary_node.hpp"
 
-binary_node::binary_node(const string& tok, terminal_node* left, terminal_node* right) : terminal_node(tok)
+binary_node::binary_node(const string& t, terminal_node* left, terminal_node* right) : terminal_node(t)
 {
     _left = left;
     _right = right;

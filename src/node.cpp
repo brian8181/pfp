@@ -11,6 +11,7 @@ int node::_prev_id = 0;
 node::node(const std::string& name)
 {
     _id = ++_prev_id;
+    //_name = name + _id;
     _name = name;
 }
 

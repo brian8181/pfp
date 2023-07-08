@@ -13,8 +13,8 @@ class node
 {
 public:
 
-    node(const node& n);
     node(const std::string& name);
+    node(const node& n);
     int get_id();
     node* get_parent();
     void set_parent(node* parent);
