@@ -9,20 +9,20 @@
 
 terminal_node::terminal_node(const string& s) : node("node")
 {
-    _token = new token(s);
+    _ptoken = new token(s);
 }
 
 terminal_node::terminal_node(const terminal_node& n) : node(n)
 {
-   _token = n._token;
+   _ptoken = n._ptoken;
 }
 
 terminal_node::~terminal_node()
 {
-    delete _token;
+    delete _ptoken;
 }
 
 token* terminal_node::get_token()
 {
-    return _token;
+    return _ptoken;
 }

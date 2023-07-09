@@ -23,7 +23,7 @@ public:
 
 protected:
 
-    token* _token;
+    token* _ptoken;
 
 private:
 
