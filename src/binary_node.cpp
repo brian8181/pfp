@@ -21,7 +21,8 @@ terminal_node* binary_node::get_left()
 
 void binary_node::set_left(terminal_node* pleft)
 {
-    delete _pleft;
+    //debug!
+    //delete _pleft;
     _pleft = new terminal_node(*pleft);
 }
 
@@ -32,6 +33,7 @@ terminal_node* binary_node::get_right()
 
 void binary_node::set_right(terminal_node* pright)
 {
-    delete _pright;
+    //debug!
+    //delete _pright;
     _pright = new terminal_node(*pright);
 }

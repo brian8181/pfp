@@ -147,8 +147,11 @@ void parser::sub_parse(int i, /*out*/ vector<terminal_node>& nodes)
     parse_tokens(tmp_nodes);
 
     // todo BKP
-    // nodes.insert(i, tmp_nodes[0]);  // put sub list into original
-    // nodes.RemoveRange(i + 1, len + 2);
+    vector<terminal_node>::iterator it = nodes.begin();
+    nodes.insert(it + i, tmp_nodes[0]);  // put sub list into original
+    nodes.erase(it + i+1);
+    
+    //nodes.RemoveRange(i + 1, len + 2);
 
     if (stack.empty())
     {

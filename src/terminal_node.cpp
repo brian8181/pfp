@@ -19,7 +19,8 @@ terminal_node::terminal_node(const terminal_node& n) : node(n)
 
 terminal_node::~terminal_node()
 {
-    delete _ptoken;
+    //debug!
+    //delete _ptoken;
 }
 
 token* terminal_node::get_token()
