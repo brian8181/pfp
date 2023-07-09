@@ -9,12 +9,14 @@
 
 #include <string>
 #include <vector>
+#include <stack>
 #include "token.hpp"
 #include "terminal_node.hpp"
 #include "binary_node.hpp"
 
 using std::string;
 using std::vector;
+using std::stack;
 
 class parser
 {
@@ -29,7 +31,7 @@ public:
 private:
 
     void tokenize(const string& input, /*out*/ vector<terminal_node>& nodes);
-    void sub_parse(int i, /*out*/ vector<terminal_node>& nodes);
+    void sub_parse(/*out*/ vector<terminal_node>& nodes, int i, /*out*/ stack<terminal_node>& nodes_stack);
     void parse_tokens(/*out*/ vector<terminal_node>& nodes);
     void operator_pass(const vector<char> level, /*out*/ vector<terminal_node>& nodes);
 
