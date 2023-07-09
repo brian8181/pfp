@@ -93,7 +93,7 @@ void parser::tokenize(const string& input, /*out*/ vector<terminal_node>& nodes)
 {
     std::regex::flag_type REGX_FLAGS = std::regex::extended;
     //std::regex input_epx = std::regex(R"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])", REGX_FLAGS);
-    std::regex input_epx = std::regex("(([0-9]+\\.[0-9]*)|([0-9]))|([\\^\\(\\)\\/*\\+\\-])", REGX_FLAGS);
+    std::regex input_epx = std::regex("-?\b(([0-9]+\\.[0-9]*)|([0-9]+))\b|([\\^\\(\\)\\/*\\+\\-])", REGX_FLAGS);
     
     auto begin = std::sregex_iterator(input.begin(), input.end(), input_epx);
     auto end = std::sregex_iterator();
