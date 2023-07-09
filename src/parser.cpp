@@ -185,9 +185,10 @@ void parser::operator_pass(const vector<char> level, /*out*/ vector<terminal_nod
                 {
                     vector<terminal_node>::const_iterator iter = nodes.begin();
                     nodes.insert(iter - (i - 1), bn);
-                    nodes.erase(iter);
-                    nodes.erase(iter+1);
-                    nodes.erase(iter+2);
+                    nodes.erase(iter, iter+2);
+                    // nodes.erase(iter);
+                    // nodes.erase(iter+1);
+                    // nodes.erase(iter+2);
                     len = nodes.size();
                     --i;
                     break;
