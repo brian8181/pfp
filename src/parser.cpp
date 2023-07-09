@@ -93,7 +93,7 @@ void parser::tokenize(const string& input, /*out*/ vector<terminal_node>& nodes)
 {
     std::regex::flag_type REGX_FLAGS = std::regex::extended;
     //std::regex input_epx = std::regex(R"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])", REGX_FLAGS);
-    std::regex input_epx = std::regex("-?\b(([0-9]+\\.[0-9]*)|([0-9]+))\b|([\\^\\(\\)\\/*\\+\\-])", REGX_FLAGS);
+    std::regex input_epx = std::regex("-?(([0-9]+\\.[0-9]*)|([0-9]+))|([\\^\\(\\)\\/*\\+\\-])", REGX_FLAGS);
     
     auto begin = std::sregex_iterator(input.begin(), input.end(), input_epx);
     auto end = std::sregex_iterator();
@@ -140,13 +140,13 @@ void parser::sub_parse(int i, /*out*/ vector<terminal_node>& nodes)
     }
 
     // warn not used
-    //int len = m_pnodes.size();
+    //int len = nodes.size();
     std::reverse(nodes.begin(), nodes.end());
     parse_tokens(nodes);
 
     // todo BKP
-    //  nodes.Insert(i, tmp_nodes[0]);  // put sub list into original
-    //  nodes.RemoveRange(i + 1, len + 2);
+    // nodes.insert(i, tmp_nodes[0]);  // put sub list into original
+    // nodes.RemoveRange(i + 1, len + 2);
 
     if (stack.empty())
     {
@@ -173,12 +173,9 @@ void parser::operator_pass(const vector<char> level, /*out*/ vector<terminal_nod
         for(int j = 0; j < len_ops; ++j)
         {
             terminal_node node = nodes[i];
-
             // not a polymorphic class ?!
             //binary_node& bn = dynamic_cast<binary_node&>(nodes[i]);
-
             binary_node& bn = static_cast<binary_node&>(nodes[i]);
-
             // if (!(nodes[i] is BinaryNode))
             {
                 if (nodes[i].get_token()->get_type() == level[j])
