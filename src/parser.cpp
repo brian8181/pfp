@@ -131,19 +131,20 @@ void parser::sub_parse(int i, /*out*/ vector<terminal_node>& nodes)
     terminal_node n = stack.top();
     stack.pop();
     --i;
+    vector<terminal_node> tmp_nodes;
 
-    while (n.get_token()->get_value() != "(")
-    {
-        nodes.push_back(n);
-        n = stack.top();
-        stack.pop();
-        --i;
-    }
+    // while (tmp_nodes.get_token()->get_value() != "(")
+    // {
+    //     nodes.push_back(n);
+    //     n = stack.top();
+    //     stack.pop();
+    //     --i;
+    // }
 
     // warn not used
-    //int len = nodes.size();
-    std::reverse(nodes.begin(), nodes.end());
-    parse_tokens(nodes);
+    int len = tmp_nodes.size();
+    std::reverse(tmp_nodes.begin(), tmp_nodes.end());
+    parse_tokens(tmp_nodes);
 
     // todo BKP
     // nodes.insert(i, tmp_nodes[0]);  // put sub list into original
