@@ -72,11 +72,10 @@ int parse_options(int argc, char* argv[])
 
     string input( argv[1] );
     cout << "Input string is " << "\"" << input << "\"" << endl;
-    cout << "Initializing ..." << endl;
-
+    
     parser p;
     vector<token> tokens;
-    //p.parse(input, tokens);
+    p.parse(input, tokens);
     //string s = p.post_fix_string(tokens);
     
     return 0;

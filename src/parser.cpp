@@ -104,7 +104,7 @@ void parser::tokenize(const string& input, /*out*/ vector<terminal_node>& nodes)
         std::smatch match = *iter;
         int len = match.size();
 
-        for(int i = 0; i < len; ++i)
+        for(int i = 1; i < len; ++i)
         {
             if(match[i].matched)
             {
