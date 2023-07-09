@@ -34,11 +34,9 @@ int parse_options(int argc, char* argv[])
 {
 	int opt = 0;
 	int option_index = 0;
-	
 	optind = 0;
     bool verbose_flag = false;
     
-    optind = 0; // is this needed ?????
     while((opt = getopt_long(argc, argv, "hvf", long_options, &option_index)) != -1)
     {
         switch (opt)
