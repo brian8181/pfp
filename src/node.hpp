@@ -13,6 +13,7 @@ class node
 {
 public:
 
+    node();
     node(const std::string& name);
     node(const node& n);
     int get_id();

@@ -1,7 +1,7 @@
 // License:    None
 // Author:     Brian K Preston
 // File Name:  pfp.cpp
-// Build Date: Sun Jul  9 09:09:59 AM CDT 2023
+// Build Date: Mon Jul 10 11:09:17 AM CDT 2023
 // Version:    0.0.1
 
 #include <iostream>
@@ -71,6 +71,11 @@ int parse_options(int argc, char* argv[])
     string input( argv[1] );
     cout << "Input string is " << "\"" << input << "\"" << endl;
 
+    // qqtest token
+    token t("+");
+    vector<token> ts;
+    ts.push_back(t);
+
     // test node
     node n("node");
     vector<node> ns1;
@@ -80,6 +85,12 @@ int parse_options(int argc, char* argv[])
     terminal_node tn("2");
     vector<terminal_node> ns2;
     ns2.push_back(tn);
+
+    // test binary_node
+    terminal_node left_node("2");
+    terminal_node op_node("+");
+    terminal_node right_node("3");
+    vector<binary_node> ns3;
     
     parser p;
     vector<token> tokens;
