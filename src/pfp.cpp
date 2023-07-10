@@ -90,7 +90,10 @@ int parse_options(int argc, char* argv[])
     terminal_node left_node("2");
     terminal_node op_node("+");
     terminal_node right_node("3");
-    vector<binary_node> ns3;
+    string op = "+";
+    binary_node bn("+", &left_node, &right_node);
+    vector<binary_node> bns;
+    bns.push_back(bn);
     
     parser p;
     vector<token> tokens;
