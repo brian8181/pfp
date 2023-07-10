@@ -129,16 +129,16 @@ void parser::sub_parse(/*out*/ vector<terminal_node>& nodes, int i, /*out*/ stac
     // unstack
     terminal_node n = nodes_stack.top();
     nodes_stack.pop();
-    --i;
+    //--i;
     vector<terminal_node> tmp_nodes;
 
-    // while (tmp_nodes.get_token()->get_value() != "(")
-    // {
-    //     nodes.push_back(n);
-    //     n = nodes_stack.top();
-    //     stack.pop();
-    //     --i;
-    // }
+    while (n.get_token()->get_value() != "(")
+    {
+            tmp_nodes.push_back(n);
+            n = nodes_stack.top();
+            nodes_stack.pop();
+            //--i;
+    }
 
     // warn not used
     int len = tmp_nodes.size();
