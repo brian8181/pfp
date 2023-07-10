@@ -15,7 +15,7 @@ class binary_node : public terminal_node
 
 public:
     
-    binary_node(const string& t, terminal_node* pleft, terminal_node* pright);
+    binary_node(const string& op, terminal_node* pleft, terminal_node* pright);
     terminal_node* get_left();
     void set_left(terminal_node* pleft);
     terminal_node* get_right();

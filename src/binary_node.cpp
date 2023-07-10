@@ -6,7 +6,7 @@
 
 #include "binary_node.hpp"
 
-binary_node::binary_node(const string& t, terminal_node* pleft, terminal_node* pright) : terminal_node(t)
+binary_node::binary_node(const string& op, terminal_node* pleft, terminal_node* pright) : terminal_node(op)
 {
     _pleft = pleft;
     _pright = pright;
