@@ -70,6 +70,16 @@ int parse_options(int argc, char* argv[])
 
     string input( argv[1] );
     cout << "Input string is " << "\"" << input << "\"" << endl;
+
+    // test node
+    node n("node");
+    vector<node> ns1;
+    ns1.push_back(n);
+
+    // test terminal_node
+    terminal_node tn("2");
+    vector<terminal_node> ns2;
+    ns2.push_back(tn);
     
     parser p;
     vector<token> tokens;
