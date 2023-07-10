@@ -30,6 +30,33 @@ void print_help()
          << FMT_UNDERLINE << "[INPUT ...]" << FMT_RESET << "\n\n";
 }
 
+void test_a()
+{
+    // test token
+    token t("+");
+    vector<token> ts;
+    ts.push_back(t);
+
+    // test node
+    node n("node");
+    vector<node> ns1;
+    ns1.push_back(n);
+
+    // test terminal_node
+    terminal_node tn("2");
+    vector<terminal_node> ns2;
+    ns2.push_back(tn);
+
+    // test binary_node
+    terminal_node left_node("2");
+    terminal_node op_node("+");
+    terminal_node right_node("3");
+    string op = "+";
+    binary_node bn("+", &left_node, &right_node);
+    vector<binary_node> bns;
+    bns.push_back(bn);
+}
+
 int parse_options(int argc, char* argv[])
 {
 	int opt = 0;
@@ -71,29 +98,9 @@ int parse_options(int argc, char* argv[])
     string input( argv[1] );
     cout << "Input string is " << "\"" << input << "\"" << endl;
 
-    // qqtest token
-    token t("+");
-    vector<token> ts;
-    ts.push_back(t);
 
-    // test node
-    node n("node");
-    vector<node> ns1;
-    ns1.push_back(n);
-
-    // test terminal_node
-    terminal_node tn("2");
-    vector<terminal_node> ns2;
-    ns2.push_back(tn);
-
-    // test binary_node
-    terminal_node left_node("2");
-    terminal_node op_node("+");
-    terminal_node right_node("3");
-    string op = "+";
-    binary_node bn("+", &left_node, &right_node);
-    vector<binary_node> bns;
-    bns.push_back(bn);
+    // testing
+    test_a();
     
     parser p;
     vector<token> tokens;
