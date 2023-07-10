@@ -25,12 +25,12 @@ void parser::parse(/*out*/ vector<terminal_node>& nodes)
     int len = nodes.size();
     for (int i = 0; i < len; ++i)
     {
-        if (nodes[i].get_token()->get_value() == "(")
+        if (nodes[i].get_token().get_value() == "(")
         {
             // check for implied mutiplication and create explict
             if (i > 0)
             {
-                if (nodes[i - 1].get_token()->get_type() == token_type::Number)
+                if (nodes[i - 1].get_token().get_type() == token_type::Number)
                 {
                     // add a "*"
                     terminal_node multi_op("");
@@ -52,27 +52,27 @@ void parser::parse(/*out*/ vector<terminal_node>& nodes)
 
 bool parser::post_fix(binary_node* n, /*out*/ vector<token>& tokens)
 {
-    while (n != 0)
-    {
-        tokens.push_back(*n->get_token());
-        while (n != 0)
-        {
-            binary_node *p_parent = (binary_node *)n->get_parent();
-            // current is parents right move to parents Left
-            if (p_parent != 0 && p_parent->get_left() != n)
-            {
-                // warn not used
-                //terminal_node* p_tnode = ((binary_node*)p_node->get_parent())->get_left();
-                break;
-            }
-            else // current parents left move to parent.parent
-            {
-                n = (binary_node*)n->get_parent();
-            }
-        }
-    } 
+    // while (n != 0)
+    // {
+    //     tokens.push_back(*n.get_token());
+    //     while (n != 0)
+    //     {
+    //         binary_node *p_parent = (binary_node *)n->get_parent();
+    //         // current is parents right move to parents Left
+    //         if (p_parent != 0 && p_parent->get_left() != n)
+    //         {
+    //             // warn not used
+    //             //terminal_node* p_tnode = ((binary_node*)p_node->get_parent())->get_left();
+    //             break;
+    //         }
+    //         else // current parents left move to parent.parent
+    //         {
+    //             n = (binary_node*)n->get_parent();
+    //         }
+    //     }
+    //} 
     
-    std::reverse(tokens.begin(), tokens.end());
+    //std::reverse(tokens.begin(), tokens.end());
     return true;
 }
 
@@ -120,7 +120,7 @@ void parser::tokenize(const string& input, /*out*/ vector<terminal_node>& nodes)
 void parser::sub_parse(/*out*/ vector<terminal_node>& nodes, int i, /*out*/ stack<terminal_node>& nodes_stack)
 {
     // stack
-    while (nodes[i].get_token()->get_value() != ")")
+    while (nodes[i].get_token().get_value() != ")")
     {
         nodes_stack.push(nodes[i]);
         ++i;
@@ -132,7 +132,7 @@ void parser::sub_parse(/*out*/ vector<terminal_node>& nodes, int i, /*out*/ stac
     --i;
     vector<terminal_node> tmp_nodes;
 
-    while (n.get_token()->get_value() != "(")
+    while (n.get_token().get_value() != "(")
     {
             tmp_nodes.push_back(n);
             n = nodes_stack.top();
@@ -179,7 +179,7 @@ void parser::operator_pass(const vector<char> level, /*out*/ vector<terminal_nod
             binary_node& bn = static_cast<binary_node&>(nodes[i]);
             // if (!(nodes[i] is BinaryNode))
             {
-                if (nodes[i].get_token()->get_type() == level[j])
+                if (nodes[i].get_token().get_type() == level[j])
                 {
                     vector<terminal_node>::const_iterator iter = nodes.begin();
                     nodes.insert(iter - (i - 1), bn);

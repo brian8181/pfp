@@ -21,6 +21,7 @@ class token
 {
 public:
 
+    token();
     token(string value);
     token(const token& t);
     

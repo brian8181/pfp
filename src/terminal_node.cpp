@@ -7,14 +7,19 @@
 #include "terminal_node.hpp"
 #include "token.hpp"
 
-terminal_node::terminal_node(const string& s) 
+// terminal_node::terminal_node() 
+// {
+
+// }
+
+terminal_node::terminal_node(const string& s) : _token(s)
 {
-    _ptoken = new token(s);
+    //_ptoken = new token(s);
 }
 
-terminal_node::terminal_node(const terminal_node& n) : node(n)
+terminal_node::terminal_node(const terminal_node& n) : node(n), _token("")
 {
-   _ptoken = n._ptoken;
+   //_ptoken = n._ptoken;
 }
 
 terminal_node::~terminal_node()
@@ -23,7 +28,7 @@ terminal_node::~terminal_node()
     //delete _ptoken;
 }
 
-token* terminal_node::get_token()
+token& terminal_node::get_token()
 {
-    return _ptoken;
+    return _token;
 }
