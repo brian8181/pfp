@@ -5,14 +5,19 @@
 // Version:    0.0.1
 
 #include "node.hpp"
+// #include <stdio.h>
+// #include <stdlib.h>
 
 int node::_prev_id = 0;
 
 node::node(const std::string& name)
 {
-    _id = ++_prev_id;
+    // _id = ++_prev_id;
+    // char buffer[33];
+    // itoa(_id, buffer, 10);
     //_name = name + _id;
     _name = name;
+    //_name.append(itoa(_id));
 }
 
 node::node(const node& n)

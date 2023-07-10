@@ -1,7 +1,7 @@
 // License:    None
 // Author:     Brian K Preston
 // File Name:  pfp.cpp
-// Build Date: Fri Jul  7 05:08:36 PM CDT 2023
+// Build Date: Sun Jul  9 09:09:59 AM CDT 2023
 // Version:    0.0.1
 
 #include <iostream>
@@ -34,11 +34,9 @@ int parse_options(int argc, char* argv[])
 {
 	int opt = 0;
 	int option_index = 0;
-	
 	optind = 0;
     bool verbose_flag = false;
     
-    optind = 0; // is this needed ?????
     while((opt = getopt_long(argc, argv, "hvf", long_options, &option_index)) != -1)
     {
         switch (opt)
@@ -72,11 +70,20 @@ int parse_options(int argc, char* argv[])
 
     string input( argv[1] );
     cout << "Input string is " << "\"" << input << "\"" << endl;
-    cout << "Initializing ..." << endl;
 
+    // test node
+    node n("node");
+    vector<node> ns1;
+    ns1.push_back(n);
+
+    // test terminal_node
+    terminal_node tn("2");
+    vector<terminal_node> ns2;
+    ns2.push_back(tn);
+    
     parser p;
     vector<token> tokens;
-    //p.parse(input, tokens);
+    p.parse(input, tokens);
     //string s = p.post_fix_string(tokens);
     
     return 0;

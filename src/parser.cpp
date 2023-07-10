@@ -5,7 +5,6 @@
 // Version:    0.0.1
 
 #include <iostream>
-#include <stack>
 #include <regex>
 #include "utility.hpp"
 #include "parser.hpp"
@@ -22,7 +21,7 @@ void parser::parse(const string& infix, /*out*/ vector<token>& tokens)
 
 void parser::parse(/*out*/ vector<terminal_node>& nodes)
 {
-    stack<terminal_node> stack;
+    stack<terminal_node> nodes_stack;
     int len = nodes.size();
     for (int i = 0; i < len; ++i)
     {
@@ -41,7 +40,7 @@ void parser::parse(/*out*/ vector<terminal_node>& nodes)
                     ++i;
                 }
             }
-            sub_parse(i, nodes);
+            sub_parse(nodes, i, nodes_stack);
             len = nodes.size();
         }
     }
@@ -91,10 +90,12 @@ string& parser::post_fix_string(/*out*/ vector<token>& postfix)
 
 void parser::tokenize(const string& input, /*out*/ vector<terminal_node>& nodes)
 {
-    std::regex::flag_type REGX_FLAGS = std::regex::extended;
-    //std::regex input_epx = std::regex(R"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])", REGX_FLAGS);
-    std::regex input_epx = std::regex("(([0-9]+\\.[0-9]*)|([0-9]))|([\\^\\(\\)\\/*\\+\\-])", REGX_FLAGS);
-    
+    // C# .NET regular expression
+    // R"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])"
+    std::regex::flag_type REGX_FLAGS = std::regex::ECMAScript;
+    //std::regex input_epx = std::regex("-?(([0-9]+\\.[0-9]*)|([0-9]+))|([\\^\\(\\)\\/*\\+\\-])", REGX_FLAGS);   // std::regex::extented
+    std::regex input_epx = std::regex("-?\b(([0-9]+\\.[0-9]*)|([0-9]+))\b|([\\^\\(\\)\\/*\\+\\-])", REGX_FLAGS); // std::regex::ECMAScript
+        
     auto begin = std::sregex_iterator(input.begin(), input.end(), input_epx);
     auto end = std::sregex_iterator();
     std::sregex_iterator iter = begin;
@@ -104,7 +105,7 @@ void parser::tokenize(const string& input, /*out*/ vector<terminal_node>& nodes)
         std::smatch match = *iter;
         int len = match.size();
 
-        for(int i = 0; i < len; ++i)
+        for(int i = 1; i < len; ++i)
         {
             if(match[i].matched)
             {
@@ -116,42 +117,42 @@ void parser::tokenize(const string& input, /*out*/ vector<terminal_node>& nodes)
     }
 }
 
-void parser::sub_parse(int i, /*out*/ vector<terminal_node>& nodes)
+void parser::sub_parse(/*out*/ vector<terminal_node>& nodes, int i, /*out*/ stack<terminal_node>& nodes_stack)
 {
-    stack<terminal_node> stack;
     // stack
     while (nodes[i].get_token()->get_value() != ")")
     {
-        stack.push(nodes[i]);
+        nodes_stack.push(nodes[i]);
         ++i;
     }                
     
     // unstack
-    terminal_node n = stack.top();
-    stack.pop();
+    terminal_node n = nodes_stack.top();
+    nodes_stack.pop();
     --i;
+    vector<terminal_node> tmp_nodes;
 
     while (n.get_token()->get_value() != "(")
     {
-        nodes.push_back(n);
-        n = stack.top();
-        stack.pop();
-        --i;
+            tmp_nodes.push_back(n);
+            n = nodes_stack.top();
+            nodes_stack.pop();
+            --i;
     }
 
     // warn not used
-    //int len = m_pnodes.size();
-    std::reverse(nodes.begin(), nodes.end());
-    parse_tokens(nodes);
+    int len = tmp_nodes.size();
+    std::reverse(tmp_nodes.begin(), tmp_nodes.end());
+    parse_tokens(tmp_nodes);
 
-    // todo BKP
-    //  nodes.Insert(i, tmp_nodes[0]);  // put sub list into original
-    //  nodes.RemoveRange(i + 1, len + 2);
-
-    if (stack.empty())
+    vector<terminal_node>::iterator it = nodes.begin();
+    nodes.insert(it + i, tmp_nodes[0]);  // put sub list into original
+    nodes.erase(it + (i+1), it + (len+2));
+    
+    if (nodes_stack.empty())
     {
-        stack.push(nodes[0]);
-        sub_parse(i + 1, nodes);
+        nodes_stack.push(nodes[0]);
+        sub_parse(nodes, i + 1, nodes_stack);
     }
 }
 
@@ -173,21 +174,16 @@ void parser::operator_pass(const vector<char> level, /*out*/ vector<terminal_nod
         for(int j = 0; j < len_ops; ++j)
         {
             terminal_node node = nodes[i];
-
             // not a polymorphic class ?!
             //binary_node& bn = dynamic_cast<binary_node&>(nodes[i]);
-
             binary_node& bn = static_cast<binary_node&>(nodes[i]);
-
             // if (!(nodes[i] is BinaryNode))
             {
                 if (nodes[i].get_token()->get_type() == level[j])
                 {
                     vector<terminal_node>::const_iterator iter = nodes.begin();
                     nodes.insert(iter - (i - 1), bn);
-                    nodes.erase(iter);
-                    nodes.erase(iter+1);
-                    nodes.erase(iter+2);
+                    nodes.erase(iter, iter+2);
                     len = nodes.size();
                     --i;
                     break;

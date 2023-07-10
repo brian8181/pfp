@@ -21,11 +21,11 @@ public:
     
 protected:
 
-    std::string _name;
     node* _parent;
 
 private:
 
+    std::string _name;
     int _id;
     static int _prev_id;
 };

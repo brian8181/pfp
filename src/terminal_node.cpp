@@ -1,7 +1,7 @@
 // License:    None
 // Author:     Brian K Preston
 // File Name:  terminal_node.cpp
-// Build Date: Fri Jul  7 05:08:36 PM CDT 2023
+// Build Date: Sun Jul  9 09:09:59 AM CDT 2023
 // Version:    0.0.1
 
 #include "terminal_node.hpp"
@@ -9,27 +9,21 @@
 
 terminal_node::terminal_node(const string& s) : node("node")
 {
-    _token = new token(s);
+    _ptoken = new token(s);
 }
 
-terminal_node::terminal_node(const std::string& name, const node& n) : node(n)
+terminal_node::terminal_node(const terminal_node& n) : node(n)
 {
-
-}
-
-terminal_node::terminal_node(const terminal_node& n) : node("node")
-{
-    _token = n._token;
-    _name = "node";
-    set_parent(n._parent);
+   _ptoken = n._ptoken;
 }
 
 terminal_node::~terminal_node()
 {
-    delete _token;
+    //debug!
+    //delete _ptoken;
 }
 
 token* terminal_node::get_token()
 {
-    return _token;
+    return _ptoken;
 }
