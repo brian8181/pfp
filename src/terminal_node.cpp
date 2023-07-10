@@ -7,7 +7,7 @@
 #include "terminal_node.hpp"
 #include "token.hpp"
 
-terminal_node::terminal_node(const string& s) : node("node")
+terminal_node::terminal_node(const string& s) 
 {
     _ptoken = new token(s);
 }
