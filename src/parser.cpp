@@ -145,12 +145,10 @@ void parser::sub_parse(/*out*/ vector<terminal_node>& nodes, int i, /*out*/ stac
     std::reverse(tmp_nodes.begin(), tmp_nodes.end());
     parse_tokens(tmp_nodes);
 
-    // todo BKP
     vector<terminal_node>::iterator it = nodes.begin();
     nodes.insert(it + i, tmp_nodes[0]);  // put sub list into original
     nodes.erase(it + (i+1), it + (len+2));
-    //nodes.RemoveRange(i + 1, len + 2);
-
+    
     if (nodes_stack.empty())
     {
         nodes_stack.push(nodes[0]);
