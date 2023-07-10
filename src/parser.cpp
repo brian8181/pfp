@@ -118,7 +118,6 @@ void parser::tokenize(const string& input, /*out*/ vector<terminal_node>& nodes)
 
 void parser::sub_parse(/*out*/ vector<terminal_node>& nodes, int i, /*out*/ stack<terminal_node>& nodes_stack)
 {
-    //stack<terminal_node> stack;
     // stack
     while (nodes[i].get_token()->get_value() != ")")
     {
@@ -129,7 +128,7 @@ void parser::sub_parse(/*out*/ vector<terminal_node>& nodes, int i, /*out*/ stac
     // unstack
     terminal_node n = nodes_stack.top();
     nodes_stack.pop();
-    //--i;
+    --i;
     vector<terminal_node> tmp_nodes;
 
     while (n.get_token()->get_value() != "(")
@@ -137,7 +136,7 @@ void parser::sub_parse(/*out*/ vector<terminal_node>& nodes, int i, /*out*/ stac
             tmp_nodes.push_back(n);
             n = nodes_stack.top();
             nodes_stack.pop();
-            //--i;
+            --i;
     }
 
     // warn not used
