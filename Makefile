@@ -13,7 +13,7 @@ BUILDDIR = build
 SRCDIR = src
 OBJDIR = build
 
-all: $(APPNAME)
+all: $(APPNAME) test
 
 $(APPNAME): $(APPNAME).o parser.o token.o node.o terminal_node.o binary_node.o main.o utility.o
 	$(CXX) $(CXXFLAGS) $(BUILDDIR)/$(APPNAME).o $(BUILDDIR)/parser.o $(BUILDDIR)/main.o $(BUILDDIR)/utility.o \
@@ -44,6 +44,12 @@ binary_node.o: node.o token.o
 
 utility.o:
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/utility.$(EXT) -o $(BUILDDIR)/utility.o
+
+test: test.o token.o
+	$(CXX) $(CXXFLAGS) $(BUILDDIR)/test.o -o $(BUILDDIR)/test
+
+test.o: utility.o token.o node.o terminal_node.o binary_node.o
+	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/test.$(EXT) -o $(BUILDDIR)/test.o
 
 000-CatchMain.o: 
 	$(CXX) $(CXXFLAGS) -Icatch.hpp -c $(SRCDIR)/000-CatchMain.cpp -o $(BUILDDIR)/000-CatchMain.o

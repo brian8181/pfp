@@ -33,9 +33,16 @@ void print_help()
 void test_a()
 {
     // test token
-    token t("+");
+
+    // calls default ctor
+    token t1;
+
+    token t2("+");
     vector<token> ts;
-    ts.push_back(t);
+    ts.push_back(t2);
+
+    // calls copy ctor
+    token t3(t2);
 
     // test node
     node n("node");
