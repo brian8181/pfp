@@ -45,7 +45,7 @@ binary_node.o: node.o token.o
 utility.o:
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/utility.$(EXT) -o $(BUILDDIR)/utility.o
 
-main_test: main_test.o token.o
+main_test: utility.o main_test.o token.o
 	$(CXX) $(CXXFLAGS) $(BUILDDIR)/main_test.o -o $(BUILDDIR)/main_test
 
 main_test.o: utility.o token.o node.o terminal_node.o binary_node.o
