@@ -9,12 +9,10 @@
 #include <string>
 #include <iostream>
 #include "token.hpp"
-// #include "node.hpp"
-// #include "terminal_node.hpp"
-// #include "binary_node.hpp"
 
+// #define TOKEN
+#if defined TOKEN
 // #include <string>
-
 // using std::string;
 
 // enum token_type
@@ -42,6 +40,7 @@
 //     string _value;
 //     static int _prev_id;
 // };
+#endif
 
 int main(int argc, char* argv[])
 {

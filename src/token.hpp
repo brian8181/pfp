@@ -8,7 +8,6 @@
 #define _token_HPP
 
 #include <string>
-
 using std::string;
 
 enum token_type
