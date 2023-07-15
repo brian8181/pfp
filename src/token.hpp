@@ -20,7 +20,7 @@ class token
 {
 public:
 
-    token() {};
+    token();
     token(string value);
     token(const token& t);
     
