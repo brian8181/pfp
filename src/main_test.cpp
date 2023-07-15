@@ -8,7 +8,7 @@
 #include <cstring>
 #include <string>
 #include <iostream>
-#include "token.hpp"
+#include "debug/token.hpp"
 // #include "node.hpp"
 // #include "terminal_node.hpp"
 // #include "binary_node.hpp"
