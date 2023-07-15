@@ -45,7 +45,7 @@ void test_a()
     token t3(t2);
 
     // test node
-    node n("node");
+    node n;
     vector<node> ns1;
     ns1.push_back(n);
 

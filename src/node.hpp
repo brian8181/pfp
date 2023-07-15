@@ -14,19 +14,17 @@ class node
 public:
 
     node();
-    node(const std::string& name);
     node(const node& n);
     int get_id();
-    node* get_parent();
-    void set_parent(node* parent);
+    node& get_parent();
+    void set_parent(node* pparent);
     
 protected:
 
-    node* _parent;
+    node* _pparent;
 
 private:
 
-    std::string _name;
     int _id;
     static int _prev_id;
 };
