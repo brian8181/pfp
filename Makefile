@@ -46,7 +46,13 @@ utility.o:
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/utility.$(EXT) -o $(BUILDDIR)/utility.o
 
 main_test: utility.o token.o main_test.o
-	$(CXX) $(CXXFLAGS) $(BUILDDIR)/main_test.o $(BUILDDIR)/utility.o $(BUILDDIR)/token.o -o $(BUILDDIR)/main_test
+# $(CXX) $(CXXFLAGS) $(BUILDDIR)/main_test.o \
+# $(BUILDDIR)/utility.o $(BUILDDIR)/token.o \
+# $(BUILDDIR)/terminal_node.o $(BUILDDIR)/binary_node.o \
+# -o $(BUILDDIR)/main_test
+	$(CXX) $(CXXFLAGS) $(BUILDDIR)/main_test.o \
+	$(BUILDDIR)/utility.o $(BUILDDIR)/token.o \
+	-o $(BUILDDIR)/main_test
 
 main_test.o: utility.o token.o node.o terminal_node.o binary_node.o
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/main_test.$(EXT) -o $(BUILDDIR)/main_test.o

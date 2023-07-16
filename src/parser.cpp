@@ -92,8 +92,8 @@ void parser::tokenize(const string& input, /*out*/ vector<terminal_node>& nodes)
 {
     // C# .NET regular expression
     // R"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])"
+    // std::regex::flag_type REGX_FLAGS = std::regex::extended;
     std::regex::flag_type REGX_FLAGS = std::regex::ECMAScript;
-    //std::regex input_epx = std::regex("-?(([0-9]+\\.[0-9]*)|([0-9]+))|([\\^\\(\\)\\/*\\+\\-])", REGX_FLAGS);   // std::regex::extented
     std::regex input_epx = std::regex("-?\b(([0-9]+\\.[0-9]*)|([0-9]+))\b|([\\^\\(\\)\\/*\\+\\-])", REGX_FLAGS); // std::regex::ECMAScript
         
     auto begin = std::sregex_iterator(input.begin(), input.end(), input_epx);
