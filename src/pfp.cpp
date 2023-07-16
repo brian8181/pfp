@@ -59,9 +59,9 @@ void test_a()
     terminal_node op_node("+");
     terminal_node right_node("3");
     string op = "+";
-    binary_node bn("+", &left_node, &right_node);
+    //binary_node bn("+", &left_node, &right_node);
     vector<binary_node> bns;
-    bns.push_back(bn);
+    //bns.push_back(bn);
 }
 
 int parse_options(int argc, char* argv[])

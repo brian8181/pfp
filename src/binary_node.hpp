@@ -15,16 +15,18 @@ class binary_node : public terminal_node
 
 public:
     
-    binary_node(const string& op, terminal_node* pleft, terminal_node* pright);
-    terminal_node* get_left();
-    void set_left(terminal_node* pleft);
-    terminal_node* get_right();
-    void set_right(terminal_node* pright);
+    binary_node(const string& token);
+    binary_node(const binary_node& node);
+    binary_node(const string& token, terminal_node& left, terminal_node& right);
+    terminal_node& get_left();
+    void set_left(terminal_node& left);
+    terminal_node& get_right();
+    void set_right(terminal_node& right);
   
 private:
 
-    terminal_node* _pleft;
-    terminal_node* _pright;
+    terminal_node _left;
+    terminal_node _right;
 };
 
 #endif

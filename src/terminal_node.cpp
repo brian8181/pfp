@@ -9,17 +9,19 @@
 
 terminal_node::terminal_node() 
 {
-
+    
 }
 
+// preferred ctor
 terminal_node::terminal_node(const string& s) : _token(s)
 {
-    //_ptoken = new token(s);
+
 }
 
-terminal_node::terminal_node(const terminal_node& n) : node(n), _token("")
+// copy ctor
+terminal_node::terminal_node(const terminal_node& n) : node(n), _token(n._token)
 {
-   //_ptoken = n._ptoken;
+
 }
 
 terminal_node::~terminal_node()

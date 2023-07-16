@@ -58,7 +58,8 @@ main_test.o: utility.o token.o node.o terminal_node.o binary_node.o
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/main_test.$(EXT) -o $(BUILDDIR)/main_test.o
 
 000-CatchMain.o: 
-	$(CXX) $(CXXFLAGS) -Icatch.hpp -c $(SRCDIR)/000-CatchMain.cpp -o $(BUILDDIR)/000-CatchMain.o
+# $(CXX) $(CXXFLAGS) -Icatch.hpp -c $(SRCDIR)/000-CatchMain.cpp -o $(BUILDDIR)/000-CatchMain.o
+	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/000-CatchMain.cpp -o $(BUILDDIR)/000-CatchMain.o
 
 # delete object files & app executable
 .PHONY: clean
