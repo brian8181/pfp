@@ -7,18 +7,11 @@
 #include "terminal_node.hpp"
 #include "token.hpp"
 
-terminal_node::terminal_node() 
-{
-    
-}
-
-// preferred ctor
 terminal_node::terminal_node(const string& s) : _token(s)
 {
 
 }
 
-// copy ctor
 terminal_node::terminal_node(const terminal_node& n) : node(n), _token(n._token)
 {
 

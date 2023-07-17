@@ -14,7 +14,6 @@ token::token()
     
 }
 
-
 token::token(string value) : _type(token_type::Operator)
 {
     _id = ++_prev_id;
