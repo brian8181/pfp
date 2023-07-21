@@ -27,3 +27,8 @@ token& terminal_node::get_token()
 {
     return _token;
 }
+
+void terminal_node::foo()
+{
+    
+}
