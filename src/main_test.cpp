@@ -7,8 +7,12 @@
 #include <iostream>
 #include <cstring>
 #include <string>
+#include <vector>
 #include <iostream>
 #include "token.hpp"
+#include "terminal_node.hpp"
+#include "binary_node.hpp"
+#include "parser.hpp"
 
 // #define TOKEN
 #if defined TOKEN
@@ -16,13 +20,7 @@
 // using std::string;
 
 // enum token_type
-// {
-//     Number = 0x0,
-//     Operator = 0x2
-// };
-
-// class token
-// {
+// {￼
 // public:
 
 //     token() {};
@@ -42,6 +40,38 @@
 // };
 #endif
 
+using namespace std;
+
+void test_1()
+{
+    cout << "create terminal_node..." << endl;
+    terminal_node tn1("2");
+    terminal_node tn2("+");
+    terminal_node tn3("3");
+
+    cout << "create binary_node..." << endl;
+    binary_node bn("+", tn1, tn3);
+
+    cout << "create vector<terminal_node>..." << endl;
+    std::vector<terminal_node> nodes;
+    nodes.push_back(tn1);
+    nodes.push_back(tn3);
+    nodes.push_back(tn2);
+
+
+    string s = "2+3";
+
+    vector<token> tokens;
+    parser p;
+    p.parse(s, tokens);
+
+    int len = nodes.size();
+    for(int i = 0; i < len; ++i)
+    {
+        string s = nodes[i].get_token().get_value();
+        cout << s << endl;
+    }
+}
 
 int main(int argc, char* argv[])
 {
@@ -50,6 +80,8 @@ int main(int argc, char* argv[])
     //node n;
 
     std::string s = "test";
+
+    test_1();
     
     return 0;
 }

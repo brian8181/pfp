@@ -52,27 +52,27 @@ void parser::parse(/*out*/ vector<terminal_node>& nodes)
 
 bool parser::post_fix(binary_node* n, /*out*/ vector<token>& tokens)
 {
-    // while (n != 0)
-    // {
-    //     tokens.push_back(*n.get_token());
-    //     while (n != 0)
-    //     {
-    //         binary_node *p_parent = (binary_node *)n->get_parent();
-    //         // current is parents right move to parents Left
-    //         if (p_parent != 0 && p_parent->get_left() != n)
-    //         {
-    //             // warn not used
-    //             //terminal_node* p_tnode = ((binary_node*)p_node->get_parent())->get_left();
-    //             break;
-    //         }
-    //         else // current parents left move to parent.parent
-    //         {
-    //             n = (binary_node*)n->get_parent();
-    //         }
-    //     }
-    //} 
+    while (n != 0)
+    {
+        tokens.push_back(n->get_token());
+        while (n != 0)
+        {
+            binary_node *p_parent = (binary_node*)&n->get_parent();
+            // current is parents right move to parents Left
+            if (p_parent != 0 && p_parent->get_left().get_id() != n->get_id())
+            {
+                // warn not used
+                //terminal_node* p_tnode = ((binary_node*)p_node->get_parent())->get_left();
+                break;
+            }
+            else // current parents left move to parent.parent
+            {
+                n = (binary_node*)&n->get_parent();
+            }
+        }
+    } 
     
-    //std::reverse(tokens.begin(), tokens.end());
+    std::reverse(tokens.begin(), tokens.end());
     return true;
 }
 
