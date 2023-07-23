@@ -21,11 +21,12 @@ public:
     terminal_node(const terminal_node& n);
     ~terminal_node();
     token& get_token();
-
+    
 protected:
 
     //token* _ptoken;
     token _token;
+    virtual void foo();
 
 private:
 
