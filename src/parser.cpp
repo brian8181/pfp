@@ -42,7 +42,7 @@ void parser::parse(/*out*/ vector<terminal_node>& nodes)
             }
             sub_parse(nodes, i, nodes_stack);
             len = nodes.size();
-        }#include <typeinfo>
+        }
     }
     if (nodes.size() > 1)
     {
@@ -86,7 +86,13 @@ string& parser::post_fix_string(/*out*/ vector<token>& postfix)
         str.append(t.get_value() + " ");
     }
     return trim(str);
-}#include <typeinfo>
+}
+
+void parser::tokenize(const string& input, /*out*/ vector<terminal_node>& nodes)
+{
+    // C# .NET regular expression
+    // R"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])"
+    // std::regex::flag_type REGX_FLAGS = std::regex::extended;
     std::regex::flag_type REGX_FLAGS = std::regex::ECMAScript;
     std::regex input_epx = std::regex("-?\b(([0-9]+\\.[0-9]*)|([0-9]+))\b|([\\^\\(\\)\\/*\\+\\-])", REGX_FLAGS); // std::regex::ECMAScript
         
@@ -168,11 +174,11 @@ void parser::operator_pass(const vector<char> level, /*out*/ vector<terminal_nod
         for(int j = 0; j < len_ops; ++j)
         {
             terminal_node node = nodes[i];
-            // not a polymorphic class ?!
-            binary_node& bn = dynamic_cast<binary_node&>(nodes[i]);
-            //binary_node& bn = static_cast<binary_node&>(nodes[i]);
-            // if (!(nodes[i] is BinaryNode))
+
+            // binary_node needs to be polymorphic?
+            try
             {
+                binary_node& bn = dynamic_cast<binary_node&>(nodes[i]);
                 if (nodes[i].get_token().get_type() == level[j])
                 {
                     vector<terminal_node>::const_iterator iter = nodes.begin();
@@ -182,6 +188,10 @@ void parser::operator_pass(const vector<char> level, /*out*/ vector<terminal_nod
                     --i;
                     break;
                 }
+            }
+            catch(const std::exception& e)
+            {
+                std::cerr << e.what() << '\n';
             }
         }
     }

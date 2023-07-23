@@ -24,12 +24,9 @@ public:
     
 protected:
 
-    //token* _ptoken;
     token _token;
+    // needs to be polymorphic
     virtual void foo();
-
-private:
-
 };
 
 #endif
