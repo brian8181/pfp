@@ -42,7 +42,7 @@ void parser::parse(/*out*/ vector<terminal_node>& nodes)
             }
             sub_parse(nodes, i, nodes_stack);
             len = nodes.size();
-        }
+        }#include <typeinfo>
     }
     if (nodes.size() > 1)
     {
@@ -86,13 +86,7 @@ string& parser::post_fix_string(/*out*/ vector<token>& postfix)
         str.append(t.get_value() + " ");
     }
     return trim(str);
-}
-
-void parser::tokenize(const string& input, /*out*/ vector<terminal_node>& nodes)
-{
-    // C# .NET regular expression
-    // R"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])"
-    // std::regex::flag_type REGX_FLAGS = std::regex::extended;
+}#include <typeinfo>
     std::regex::flag_type REGX_FLAGS = std::regex::ECMAScript;
     std::regex input_epx = std::regex("-?\b(([0-9]+\\.[0-9]*)|([0-9]+))\b|([\\^\\(\\)\\/*\\+\\-])", REGX_FLAGS); // std::regex::ECMAScript
         
