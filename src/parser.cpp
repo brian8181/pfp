@@ -15,6 +15,15 @@ void parser::parse(const string& infix, /*out*/ vector<token>& tokens)
 {
     vector<terminal_node> nodes;
     tokenize(infix, nodes);
+
+    // print matched tokens
+    int len = nodes.size();
+    for(int i = 0; i < len; ++i)
+    {
+        token t = nodes[i].get_token();
+        std::cout << "matched token: " << t.get_value() << std::endl;
+    }
+
     // parse(nodes);
     // post_fix((binary_node*)&nodes[0], tokens);
 }
@@ -112,7 +121,7 @@ void parser::tokenize(const string& input, /*out*/ vector<terminal_node>& nodes)
                 string s = match.str(0);
                 terminal_node n(s);
                 nodes.push_back(n);
-                std::cout << "matched token: " << s << std::endl;
+                //std::cout << "matched token: " << s << std::endl;
             }
         }
     }
@@ -175,10 +184,9 @@ void parser::operator_pass(const vector<char> level, /*out*/ vector<terminal_nod
         for(int j = 0; j < len_ops; ++j)
         {
             terminal_node node = nodes[i];
-
-            // binary_node needs to be polymorphic?
             try
             {
+                // binary_node needs to be polymorphic?
                 binary_node& bn = dynamic_cast<binary_node&>(nodes[i]);
                 if (nodes[i].get_token().get_type() == level[j])
                 {
