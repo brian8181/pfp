@@ -103,7 +103,7 @@ void parser::tokenize(const string& input, /*out*/ vector<terminal_node>& nodes)
     // R"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])"
     // std::regex::flag_type REGX_FLAGS = std::regex::extended;
     std::regex::flag_type REGX_FLAGS = std::regex::ECMAScript;
-    std::regex input_epx = std::regex("([0-9]+)|([-+*^/\\(\\)])", REGX_FLAGS); // debug!
+    std::regex input_epx = std::regex("(([0-9]+)|([-+*^/\\(\\)]))", REGX_FLAGS); // debug!
         
     auto begin = std::sregex_iterator(input.begin(), input.end(), input_epx);
     auto end = std::sregex_iterator();
@@ -115,19 +115,6 @@ void parser::tokenize(const string& input, /*out*/ vector<terminal_node>& nodes)
         string s = match.str(0);
         terminal_node n(s);
         nodes.push_back(n);
-
-        // sub matches
-        // int len = match.size();
-        // for(int i = 0; i < len; ++i)
-        // {
-        //     if(match[i].matched)
-        //     {
-        //         string s = match.str(0);
-        //         terminal_node n(s);
-        //         nodes.push_back(n);
-        //         //std::cout << "matched token: " << s << std::endl;
-        //     }
-        // }
     }
 }
 
