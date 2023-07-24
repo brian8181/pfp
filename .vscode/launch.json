@@ -26,7 +26,28 @@
             "miDebuggerPath": "/usr/bin/gdb"
         },
         {
-            "name": "std_debug 2",
+            "name": "std_debug2",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/pfp",
+            "args": ["-2+2"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "MAKE DEBUGGDB",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "std_debug3",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/pfp",
@@ -47,7 +68,28 @@
             "miDebuggerPath": "/usr/bin/gdb"
         },
         {
-            "name": "std_debug 3",
+            "name": "std_debug3.1",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/pfp",
+            "args": ["1*2+3/4"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "MAKE DEBUGGDB",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "std_debug4",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/pfp",
