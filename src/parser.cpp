@@ -112,18 +112,22 @@ void parser::tokenize(const string& input, /*out*/ vector<terminal_node>& nodes)
     for (std::sregex_iterator iter = begin; iter != end; ++iter)
     {
         std::smatch match = *iter;
-        int len = match.size();
+        string s = match.str(0);
+        terminal_node n(s);
+        nodes.push_back(n);
 
-        for(int i = 0; i < len; ++i)
-        {
-            if(match[i].matched)
-            {
-                string s = match.str(0);
-                terminal_node n(s);
-                nodes.push_back(n);
-                //std::cout << "matched token: " << s << std::endl;
-            }
-        }
+        // sub matches
+        // int len = match.size();
+        // for(int i = 0; i < len; ++i)
+        // {
+        //     if(match[i].matched)
+        //     {
+        //         string s = match.str(0);
+        //         terminal_node n(s);
+        //         nodes.push_back(n);
+        //         //std::cout << "matched token: " << s << std::endl;
+        //     }
+        // }
     }
 }
 
