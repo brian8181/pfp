@@ -187,7 +187,13 @@ void parser::operator_pass(const vector<char> level, /*out*/ vector<terminal_nod
         for(int j = 0; j < len_ops; ++j)
         {
             terminal_node node = nodes[i];
+<<<<<<< HEAD
+            // not a polymorphic class ?!
+            binary_node& bn = dynamic_cast<binary_node&>(nodes[i])
+            if (!(nodes[i] is BinaryNode))
+=======
             try
+>>>>>>> 73b63b8d8aa734ad487eb097e436921401d34798
             {
                 // binary_node needs to be polymorphic?
                 binary_node& bn = dynamic_cast<binary_node&>(nodes[i]);
