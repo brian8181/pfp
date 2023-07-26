@@ -12,7 +12,7 @@ using std::string;
 
 enum token_type
 {
-    Number = 0x0,
+    Number = 0x1,
     Operator = 0x2
 };
 

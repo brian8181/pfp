@@ -16,19 +16,17 @@ class terminal_node : public node
 
 public:
 
-    terminal_node();
+    terminal_node() {};
     terminal_node(const std::string& s);
     terminal_node(const terminal_node& n);
     ~terminal_node();
     token& get_token();
-
+    
 protected:
 
-    //token* _ptoken;
     token _token;
-
-private:
-
+    // needs to be polymorphic
+    virtual void foo();
 };
 
 #endif

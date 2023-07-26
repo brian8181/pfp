@@ -5,14 +5,11 @@
 // Version:    0.0.1
 
 #include "node.hpp"
-// #include <stdio.h>
-// #include <stdlib.h>
 
 int node::_prev_id = 0;
 
 node::node() : _pparent(0)
 {
-
 }
 
 node::node(const node& n)

@@ -17,26 +17,6 @@
 			"label": "echo",
 			"type": "shell",
 			"command": "echo ${workspaceFolder}"
-		},
-		{
-			"type": "cppbuild",
-			"label": "C/C++: cpp build active file",
-			"command": "/usr/bin/cpp",
-			"args": [
-				"-fdiagnostics-color=always",
-				"-g",
-				"${file}",
-				"-o",
-				"${fileDirname}/${fileBasenameNoExtension}"
-			],
-			"options": {
-				"cwd": "${fileDirname}"
-			},
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": "build",
-			"detail": "compiler: /usr/bin/cpp"
 		}
 	]
 }
