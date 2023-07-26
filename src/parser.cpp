@@ -29,7 +29,7 @@ void parser::parse(const string& infix, /*out*/ vector<token>& tokens)
 
 #endif
     
-    //parse(nodes);
+    // parse(nodes);
     // post_fix((binary_node*)&nodes[0], tokens);
 }
 
