@@ -29,11 +29,11 @@ void parser::parse(const string& infix, /*out*/ vector<token>& tokens)
 
 #endif
     
-    // parse(nodes);
+    // parse_tokens(nodes);
     // post_fix((binary_node*)&nodes[0], tokens);
 }
 
-void parser::parse(/*out*/ vector<terminal_node>& nodes)
+void parser::parse_tokens(/*out*/ vector<terminal_node>& nodes)
 {
     stack<terminal_node> nodes_stack;
     int len = nodes.size();
@@ -174,11 +174,11 @@ void parser::operator_scans(/*out*/ vector<terminal_node>& nodes)
     int len = _plevels.size();
     for (int i = 0; i < len; ++i)
     {
-        operator_pass(_plevels[i], nodes);
+        operator_scan(_plevels[i], nodes);
     }
 }
 
-void parser::operator_pass(const vector<char> level, /*out*/ vector<terminal_node>& nodes)
+void parser::operator_scan(const vector<char> level, /*out*/ vector<terminal_node>& nodes)
 {
     int len = nodes.size();
     for (int i = 0; i < len; ++i)
