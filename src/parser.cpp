@@ -19,12 +19,12 @@ void parser::parse(const string& infix, /*out*/ vector<token>& tokens)
     // debugging tokenize!
 #if DEBUG
 
-    // print matched tokens
+    // print matched tokensgit
     int len = nodes.size();
     for(int i = 0; i < len; ++i)
     {
         token t = nodes[i].get_token();
-        std::cout << "matched token: " << "type->" << t.get_type() <<  " value->"  << t.get_value() << std::endl;
+        std::cout << "matched token:" << " type->" << t.get_type() <<  " value->"  << t.get_value() << std::endl;
     }
 
 #endif
