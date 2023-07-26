@@ -24,12 +24,12 @@ void parser::parse(const string& infix, /*out*/ vector<token>& tokens)
     for(int i = 0; i < len; ++i)
     {
         token t = nodes[i].get_token();
-        std::cout << "matched token: " << t.get_value() << std::endl;
+        std::cout << "matched token: " << "type->" << t.get_type() <<  " value->"  << t.get_value() << std::endl;
     }
 
 #endif
     
-    // parse_tokens(nodes);
+    parse_tokens(nodes);
     // post_fix((binary_node*)&nodes[0], tokens);
 }
 
@@ -113,9 +113,9 @@ void parser::tokenize(const string& input, /*out*/ vector<terminal_node>& nodes)
 {
     // C# .NET regular expression
     // R"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])"
-    // std::regex::flag_type REGX_FLAGS = std::regex::extended;
+    
     std::regex::flag_type REGX_FLAGS = std::regex::ECMAScript;
-    std::regex input_epx = std::regex("(([0-9]+(\\.[0-9]*)?)|([-+*^/\\(\\)]))", REGX_FLAGS); // debug!
+    std::regex input_epx = std::regex("(([0-9]+(\\.[0-9]*)?)|([-+*^/\\(\\)]))", REGX_FLAGS);
         
     auto begin = std::sregex_iterator(input.begin(), input.end(), input_epx);
     auto end = std::sregex_iterator();
@@ -190,16 +190,16 @@ void parser::operator_scan(const vector<char> level, /*out*/ vector<terminal_nod
             try
             {
                 // binary_node needs to be polymorphic?
-                binary_node& bn = dynamic_cast<binary_node&>(nodes[i]);
-                if (nodes[i].get_token().get_type() == level[j])
-                {
-                    vector<terminal_node>::const_iterator iter = nodes.begin();
-                    nodes.insert(iter - (i - 1), bn);
-                    nodes.erase(iter, iter+2);
-                    len = nodes.size();
-                    --i;
-                    break;
-                }
+                // binary_node& bn = dynamic_cast<binary_node&>(nodes[i]);
+                // if (nodes[i].get_token().get_type() == level[j])
+                // {
+                //     vector<terminal_node>::const_iterator iter = nodes.begin();
+                //     nodes.insert(iter - (i - 1), bn);
+                //     nodes.erase(iter, iter+2);
+                //     len = nodes.size();
+                //     --i;
+                //     break;
+                // }
             }
             catch(const std::exception& e)
             {
