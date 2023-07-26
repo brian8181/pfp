@@ -17,9 +17,9 @@ void parser::parse(const string& infix, /*out*/ vector<token>& tokens)
     tokenize(infix, nodes);
 
     // debugging tokenize!
-    // print matched tokens
 #if DEBUG
 
+    // print matched tokens
     int len = nodes.size();
     for(int i = 0; i < len; ++i)
     {
