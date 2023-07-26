@@ -32,7 +32,7 @@ private:
 
     void tokenize(const string& input, /*out*/ vector<terminal_node>& nodes);
     void sub_parse(/*out*/ vector<terminal_node>& nodes, int i, /*out*/ stack<terminal_node>& nodes_stack);
-    void parse_tokens(/*out*/ vector<terminal_node>& nodes);
+    void operator_scans(/*out*/ vector<terminal_node>& nodes);
     void operator_pass(const vector<char> level, /*out*/ vector<terminal_node>& nodes);
 
     vector<vector<char>> _plevels{{ '^' }, { '*', '/' }, { '+', '-' }};

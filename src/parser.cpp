@@ -18,14 +18,18 @@ void parser::parse(const string& infix, /*out*/ vector<token>& tokens)
 
     // debugging tokenize!
     // print matched tokens
+#if DEBUG
+
     int len = nodes.size();
     for(int i = 0; i < len; ++i)
     {
         token t = nodes[i].get_token();
         std::cout << "matched token: " << t.get_value() << std::endl;
     }
+
+#endif
     
-    // parse(nodes);
+    //parse(nodes);
     // post_fix((binary_node*)&nodes[0], tokens);
 }
 
@@ -43,7 +47,7 @@ void parser::parse(/*out*/ vector<terminal_node>& nodes)
                 if (nodes[i - 1].get_token().get_type() == token_type::Number)
                 {
                     // add a "*"
-                    terminal_node multi_op("");
+                    terminal_node multi_op("*");
                     vector<terminal_node>::iterator iter = nodes.begin();
                     nodes.insert(iter, multi_op);
                     len = nodes.size();
@@ -56,7 +60,7 @@ void parser::parse(/*out*/ vector<terminal_node>& nodes)
     }
     if (nodes.size() > 1)
     {
-        parse_tokens(nodes);
+        operator_scans(nodes);
     }
 }
 
@@ -67,17 +71,24 @@ bool parser::post_fix(binary_node* n, /*out*/ vector<token>& tokens)
         tokens.push_back(n->get_token());
         while (n != 0)
         {
-            binary_node *p_parent = (binary_node*)&n->get_parent();
-            // current is parents right move to parents Left
-            if (p_parent != 0 && p_parent->get_left().get_id() != n->get_id())
+            if(true)
             {
-                // warn not used
-                //terminal_node* p_tnode = ((binary_node*)p_node->get_parent())->get_left();
-                break;
+                
             }
-            else // current parents left move to parent.parent
+            else
             {
-                n = (binary_node*)&n->get_parent();
+                binary_node *p_parent = (binary_node*)&n->get_parent();
+                // current is parents right move to parents Left
+                if (p_parent != 0 && p_parent->get_left().get_id() != n->get_id())
+                {
+                    // warn not used
+                    //terminal_node* p_tnode = ((binary_node*)p_node->get_parent())->get_left();
+                    break;
+                }
+                else // current parents left move to parent.parent
+                {
+                    n = (binary_node*)&n->get_parent();
+                }
             }
         }
     } 
@@ -145,7 +156,7 @@ void parser::sub_parse(/*out*/ vector<terminal_node>& nodes, int i, /*out*/ stac
     // warn not used
     int len = tmp_nodes.size();
     std::reverse(tmp_nodes.begin(), tmp_nodes.end());
-    parse_tokens(tmp_nodes);
+    operator_scans(tmp_nodes);
 
     vector<terminal_node>::iterator it = nodes.begin();
     nodes.insert(it + i, tmp_nodes[0]);  // put sub list into original
@@ -158,7 +169,7 @@ void parser::sub_parse(/*out*/ vector<terminal_node>& nodes, int i, /*out*/ stac
     }
 }
 
-void parser::parse_tokens(/*out*/ vector<terminal_node>& nodes)
+void parser::operator_scans(/*out*/ vector<terminal_node>& nodes)
 {
     int len = _plevels.size();
     for (int i = 0; i < len; ++i)
