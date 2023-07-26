@@ -15,8 +15,18 @@ void parser::parse(const string& infix, /*out*/ vector<token>& tokens)
 {
     vector<terminal_node> nodes;
     tokenize(infix, nodes);
-    parse(nodes);
-    post_fix((binary_node*)&nodes[0], tokens);
+
+    // debugging tokenize!
+    // print matched tokens
+    int len = nodes.size();
+    for(int i = 0; i < len; ++i)
+    {
+        token t = nodes[i].get_token();
+        std::cout << "matched token: " << t.get_value() << std::endl;
+    }
+    
+    // parse(nodes);
+    // post_fix((binary_node*)&nodes[0], tokens);
 }
 
 void parser::parse(/*out*/ vector<terminal_node>& nodes)
@@ -94,7 +104,7 @@ void parser::tokenize(const string& input, /*out*/ vector<terminal_node>& nodes)
     // R"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])"
     // std::regex::flag_type REGX_FLAGS = std::regex::extended;
     std::regex::flag_type REGX_FLAGS = std::regex::ECMAScript;
-    std::regex input_epx = std::regex("-?\b(([0-9]+\\.[0-9]*)|([0-9]+))\b|([\\^\\(\\)\\/*\\+\\-])", REGX_FLAGS); // std::regex::ECMAScript
+    std::regex input_epx = std::regex("(([0-9]+(\\.[0-9]*)?)|([-+*^/\\(\\)]))", REGX_FLAGS); // debug!
         
     auto begin = std::sregex_iterator(input.begin(), input.end(), input_epx);
     auto end = std::sregex_iterator();
@@ -103,17 +113,9 @@ void parser::tokenize(const string& input, /*out*/ vector<terminal_node>& nodes)
     for (std::sregex_iterator iter = begin; iter != end; ++iter)
     {
         std::smatch match = *iter;
-        int len = match.size();
-
-        for(int i = 1; i < len; ++i)
-        {
-            if(match[i].matched)
-            {
-                string s = match.str(0);
-                terminal_node n(s);
-                nodes.push_back(n);
-            }
-        }
+        string s = match.str(0);
+        terminal_node n(s);
+        nodes.push_back(n);
     }
 }
 
@@ -174,10 +176,16 @@ void parser::operator_pass(const vector<char> level, /*out*/ vector<terminal_nod
         for(int j = 0; j < len_ops; ++j)
         {
             terminal_node node = nodes[i];
+<<<<<<< HEAD
             // not a polymorphic class ?!
             binary_node& bn = dynamic_cast<binary_node&>(nodes[i])
             if (!(nodes[i] is BinaryNode))
+=======
+            try
+>>>>>>> 73b63b8d8aa734ad487eb097e436921401d34798
             {
+                // binary_node needs to be polymorphic?
+                binary_node& bn = dynamic_cast<binary_node&>(nodes[i]);
                 if (nodes[i].get_token().get_type() == level[j])
                 {
                     vector<terminal_node>::const_iterator iter = nodes.begin();
@@ -187,6 +195,10 @@ void parser::operator_pass(const vector<char> level, /*out*/ vector<terminal_nod
                     --i;
                     break;
                 }
+            }
+            catch(const std::exception& e)
+            {
+                std::cerr << e.what() << '\n';
             }
         }
     }

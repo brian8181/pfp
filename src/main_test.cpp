@@ -60,7 +60,6 @@ void test_1()
 
 
     string s = "2+3";
-
     vector<token> tokens;
     parser p;
     p.parse(s, tokens);
