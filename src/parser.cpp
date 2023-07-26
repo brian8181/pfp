@@ -175,9 +175,8 @@ void parser::operator_pass(const vector<char> level, /*out*/ vector<terminal_nod
         {
             terminal_node node = nodes[i];
             // not a polymorphic class ?!
-            binary_node& bn = dynamic_cast<binary_node&>(nodes[i]);
-            //binary_node& bn = static_cast<binary_node&>(nodes[i]);
-            // if (!(nodes[i] is BinaryNode))
+            binary_node& bn = dynamic_cast<binary_node&>(nodes[i])
+            if (!(nodes[i] is BinaryNode))
             {
                 if (nodes[i].get_token().get_type() == level[j])
                 {
