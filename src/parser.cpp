@@ -70,10 +70,10 @@ void parser::parse_tokens(/*out*/ vector<terminal_node*>& nodes, /*out*/ stack<t
 
 bool parser::post_fix(binary_node* n, /*out*/ vector<token>& tokens)
 {
-    terminal_node* ptn;
+    terminal_node* ptn = n;
     while (n != 0)
     {
-         tokens.push_back(n->get_token());
+         tokens.push_back(ptn->get_token());
          while (n != 0)
          {
             try
@@ -83,9 +83,9 @@ bool parser::post_fix(binary_node* n, /*out*/ vector<token>& tokens)
             }
             catch(const std::exception& e)
             {
-                binary_node* p_parent = (binary_node*)n->get_parent();
+                ptn = (binary_node*)n->get_parent();
                 // current is parents right move to parents Left
-                if (p_parent != 0 && dynamic_cast<binary_node*>(p_parent->get_left())->get_id() != n->get_id())
+                if (ptn != 0 && dynamic_cast<binary_node*>(ptn)->get_left()->get_id() != n->get_id())
                 {
                     // warn not used
                     terminal_node* ptn = ((binary_node*)n->get_parent())->get_left();
@@ -93,7 +93,7 @@ bool parser::post_fix(binary_node* n, /*out*/ vector<token>& tokens)
                 }
                 else // current parents left move to parent.parent
                 {
-                    n = (binary_node*)n->get_parent();
+                    ptn = (binary_node*)n->get_parent();
                 }
             }   
         }
