@@ -33,7 +33,7 @@ private:
     void parse_tokens(/*out*/ vector<terminal_node*>& nodes, /*out*/ stack<terminal_node>& nodes_stack);
     void sub_parse(/*out*/ vector<terminal_node*>& nodes, int i, /*out*/ stack<terminal_node>& nodes_stack);
     void operator_scans(/*out*/ vector<terminal_node*>& nodes);
-    void operator_scan(const vector<char> level, /*out*/ vector<terminal_node*>& nodes);
+    void operator_scan(const vector<char> level, /*out*/ vector<terminal_node*> nodes);
 
     vector<vector<char>> _plevels{{ '^' }, { '*', '/' }, { '+', '-' }};
 };
