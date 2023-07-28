@@ -12,9 +12,9 @@
 
 using std::stack;
 
-void parser::parse(const string& infix, /*out*/ vector<token>& tokens, stack<terminal_node>& nodes_stack)
+void parser::parse(const string& infix, /*out*/ vector<token>& tokens, /*out*/ stack<terminal_node>& nodes_stack)
 {
-    vector<terminal_node> nodes;
+    vector<terminal_node*> nodes;
     tokenize(infix, nodes);
 
     // debugging tokenize!
@@ -24,7 +24,7 @@ void parser::parse(const string& infix, /*out*/ vector<token>& tokens, stack<ter
     int len = nodes.size();
     for(int i = 0; i < len; ++i)
     {
-        token t = nodes[i].get_token();
+        token t = nodes[i]->get_token();
         std::string str_type = (t.get_type() == token_type::Number) ? "Number" : "Operator";
         std::cout << "matched token:" << " type->" << str_type <<  " value->"  << t.get_value() << std::endl;
     }
@@ -33,25 +33,27 @@ void parser::parse(const string& infix, /*out*/ vector<token>& tokens, stack<ter
     
     parse_tokens(nodes, nodes_stack);
     // post_fix((binary_node*)&nodes[0], tokens);
+
+    // delete nodes
 }
 
-void parser::parse_tokens(/*out*/ vector<terminal_node>& nodes, stack<terminal_node>& nodes_stack)
+void parser::parse_tokens(/*out*/ vector<terminal_node*>& nodes, /*out*/ stack<terminal_node>& nodes_stack)
 {
     //stack<terminal_node> nodes_stack;
     int len = nodes.size();
     for (int i = 0; i < len; ++i)
     {
-        if (nodes[i].get_token().get_value() == "(")
+        if (nodes[i]->get_token().get_value() == "(")
         {
             // check for implied mutiplication and create explict
             if (i > 0)
             {
-                if (nodes[i - 1].get_token().get_type() == token_type::Number)
+                if (nodes[i - 1]->get_token().get_type() == token_type::Number)
                 {
                     // add a "*"
                     terminal_node multi_op("*");
-                    vector<terminal_node>::iterator iter = nodes.begin();
-                    nodes.insert(iter, multi_op);
+                    vector<terminal_node*>::iterator iter = nodes.begin();
+                    nodes.insert(iter, &multi_op);
                     len = nodes.size();
                     ++i;
                 }
@@ -111,7 +113,7 @@ string& parser::post_fix_string(/*out*/ vector<token>& postfix)
     return trim(str);
 }
 
-void parser::tokenize(const string& input, /*out*/ vector<terminal_node>& nodes)
+void parser::tokenize(const string& input, /*out*/ vector<terminal_node*>& nodes)
 {
     std::regex::flag_type REGX_FLAGS = std::regex::ECMAScript;
     std::regex input_epx = std::regex("(([0-9]+(\\.[0-9]*)?)|([-+*^/\\(\\)]))", REGX_FLAGS);
@@ -124,17 +126,17 @@ void parser::tokenize(const string& input, /*out*/ vector<terminal_node>& nodes)
     {
         std::smatch match = *iter;
         string s = match.str(0);
-        terminal_node n(s);
-        nodes.push_back(n);
+        terminal_node* pn = new terminal_node(s);
+        nodes.push_back(pn);
     }
 }
 
-void parser::sub_parse(/*out*/ vector<terminal_node>& nodes, int i, /*out*/ stack<terminal_node>& nodes_stack)
+void parser::sub_parse(/*out*/ vector<terminal_node*>& nodes, int i, /*out*/ stack<terminal_node>& nodes_stack)
 {
     // stack
-    while (nodes[i].get_token().get_value() != ")")
+    while (nodes[i]->get_token().get_value() != ")")
     {
-        nodes_stack.push(nodes[i]);
+        nodes_stack.push(*(nodes[i]));
         ++i;
     }                
     
@@ -142,11 +144,11 @@ void parser::sub_parse(/*out*/ vector<terminal_node>& nodes, int i, /*out*/ stac
     terminal_node n = nodes_stack.top();
     nodes_stack.pop();
     --i;
-    vector<terminal_node> tmp_nodes;
+    vector<terminal_node*> tmp_nodes;
 
     while (n.get_token().get_value() != "(")
     {
-            tmp_nodes.push_back(n);
+            tmp_nodes.push_back(&n);
             n = nodes_stack.top();
             nodes_stack.pop();
             --i;
@@ -157,18 +159,18 @@ void parser::sub_parse(/*out*/ vector<terminal_node>& nodes, int i, /*out*/ stac
     std::reverse(tmp_nodes.begin(), tmp_nodes.end());
     operator_scans(tmp_nodes);
 
-    vector<terminal_node>::iterator it = nodes.begin();
+    vector<terminal_node*>::iterator it = nodes.begin();
     nodes.insert(it + i, tmp_nodes[0]);  // put sub list into original
     nodes.erase(it + (i+1), it + (len+2));
     
     if (nodes_stack.empty())
     {
-        nodes_stack.push(nodes[0]);
+        nodes_stack.push(*nodes[0]);
         sub_parse(nodes, i + 1, nodes_stack);
     }
 }
 
-void parser::operator_scans(/*out*/ vector<terminal_node>& nodes)
+void parser::operator_scans(/*out*/ vector<terminal_node*>& nodes)
 {
     int len = _plevels.size();
     for (int i = 0; i < len; ++i)
@@ -177,7 +179,7 @@ void parser::operator_scans(/*out*/ vector<terminal_node>& nodes)
     }
 }
 
-void parser::operator_scan(const vector<char> level, /*out*/ vector<terminal_node>& nodes)
+void parser::operator_scan(const vector<char> level, /*out*/ vector<terminal_node*>& nodes)
 {
     int len = nodes.size();
     for (int i = 0; i < len; ++i)
@@ -185,7 +187,7 @@ void parser::operator_scan(const vector<char> level, /*out*/ vector<terminal_nod
         int len_ops = _plevels.size();
         for(int j = 0; j < len_ops; ++j)
         {
-            terminal_node node = nodes[i];
+            terminal_node* node = nodes[i];
             try
             {
                 // binary_node needs to be polymorphic?
