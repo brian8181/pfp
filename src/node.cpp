@@ -23,9 +23,9 @@ int node::get_id()
     return _id;
 }
 
-node& node::get_parent()
+node* node::get_parent()
 {
-    return *(_pparent);
+    return _pparent;
 }
 
 void node::set_parent(node* pparent)

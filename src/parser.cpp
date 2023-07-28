@@ -32,7 +32,7 @@ void parser::parse(const string& infix, /*out*/ vector<token>& tokens, /*out*/ s
 #endif
     
     parse_tokens(nodes, nodes_stack);
-    // post_fix((binary_node*)&nodes[0], tokens);
+    post_fix((binary_node*)&nodes[0], tokens);
 
     // delete nodes
 }
@@ -70,34 +70,38 @@ void parser::parse_tokens(/*out*/ vector<terminal_node*>& nodes, /*out*/ stack<t
 
 bool parser::post_fix(binary_node* n, /*out*/ vector<token>& tokens)
 {
-    while (n != 0)
-    {
-        tokens.push_back(n->get_token());
-        while (n != 0)
-        {
-            if(true)
-            {
-                
-            }
-            else
-            {
-                binary_node *p_parent = (binary_node*)&n->get_parent();
-                // current is parents right move to parents Left
-                if (p_parent != 0 && p_parent->get_left().get_id() != n->get_id())
-                {
-                    // warn not used
-                    //terminal_node* p_tnode = ((binary_node*)p_node->get_parent())->get_left();
-                    break;
-                }
-                else // current parents left move to parent.parent
-                {
-                    n = (binary_node*)&n->get_parent();
-                }
-            }
-        }
-    } 
+    // terminal_node* ptn;
+    // while (n != 0)
+    // {
+    //     tokens.push_back(n->get_token());
+    //     while (n != 0)
+    //     {
+    //         try
+    //         {
+    //             ptn = dynamic_cast<binary_node*>(n);
+    //             ptn = n->get_right();
+    //         }
+    //         catch(const std::exception& e)
+    //         {
+                       
+    //             binary_node* p_parent = (binary_node*)&n->get_parent();
+    //             // current is parents right move to parents Left
+    //             if (p_parent != 0 && dynamic_cast<binary_node*>(p_parent->get_left())->get_id() != n->get_id())
+    //             {
+    //                 // warn not used
+    //                 //terminal_node* p_tnode = ((binary_node*)p_node->get_parent())->get_left();
+    //                 break;
+    //             }
+    //             else // current parents left move to parent.parent
+    //             {
+    //                 n = (binary_node*)&n->get_parent();
+    //             }
+            
+    //         }
+    //     }
+    //} 
     
-    std::reverse(tokens.begin(), tokens.end());
+    // std::reverse(tokens.begin(), tokens.end());
     return true;
 }
 
@@ -179,7 +183,7 @@ void parser::operator_scans(/*out*/ vector<terminal_node*>& nodes)
     }
 }
 
-void parser::operator_scan(const vector<char> level, /*out*/ vector<terminal_node*>& nodes)
+void parser::operator_scan(const vector<char> level, /*out*/ vector<terminal_node*> nodes)
 {
     int len = nodes.size();
     for (int i = 0; i < len; ++i)
@@ -187,25 +191,19 @@ void parser::operator_scan(const vector<char> level, /*out*/ vector<terminal_nod
         int len_ops = _plevels.size();
         for(int j = 0; j < len_ops; ++j)
         {
-            terminal_node* node = nodes[i];
-            try
+            string token = nodes[i]->get_token().get_value();
+            binary_node* pbn = new binary_node(token, nodes[i-1], nodes[i+1]);
+
+            if (nodes[i]->get_token().get_type() == level[j])
             {
-                // binary_node needs to be polymorphic?
-                // binary_node& bn = dynamic_cast<binary_node&>(nodes[i]);
-                // if (nodes[i].get_token().get_type() == level[j])
-                // {
-                //     vector<terminal_node>::const_iterator iter = nodes.begin();
-                //     nodes.insert(iter - (i - 1), bn);
-                //     nodes.erase(iter, iter+2);
-                //     len = nodes.size();
-                //     --i;
-                //     break;
-                // }
+                vector<terminal_node*>::const_iterator iter = nodes.begin();
+                nodes.insert(iter - (i - 1), pbn);
+                nodes.erase(iter, iter+2);
+                len = nodes.size();
+                --i;
+                break;
             }
-            catch(const std::exception& e)
-            {
-                std::cerr << e.what() << '\n';
-            }
+
         }
     }
 }
