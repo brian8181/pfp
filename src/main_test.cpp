@@ -50,7 +50,7 @@ void test_1()
     terminal_node tn3("3");
 
     cout << "create binary_node..." << endl;
-    binary_node bn("+", tn1, tn3);
+    binary_node bn("+", &tn1, &tn3);
 
     cout << "create vector<terminal_node>..." << endl;
     std::vector<terminal_node> nodes;

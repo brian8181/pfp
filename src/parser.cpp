@@ -70,20 +70,23 @@ void parser::parse_tokens(/*out*/ vector<terminal_node*>& nodes, /*out*/ stack<t
 
 bool parser::post_fix(binary_node* n, /*out*/ vector<token>& tokens)
 {
+    terminal_node* ptn;
     while (n != 0)
     {
         tokens.push_back(n->get_token());
         while (n != 0)
         {
-            if(true)
+            try
             {
-                
+                ptn = dynamic_cast<binary_node*>(n);
+                ptn = n->get_right();
             }
-            else
+            catch(const std::exception& e)
             {
-                binary_node *p_parent = (binary_node*)&n->get_parent();
+                       
+                binary_node* p_parent = (binary_node*)&n->get_parent();
                 // current is parents right move to parents Left
-                if (p_parent != 0 && p_parent->get_left().get_id() != n->get_id())
+                if (p_parent != 0 && dynamic_cast<binary_node*>(p_parent->get_left())->get_id() != n->get_id())
                 {
                     // warn not used
                     //terminal_node* p_tnode = ((binary_node*)p_node->get_parent())->get_left();
@@ -93,6 +96,7 @@ bool parser::post_fix(binary_node* n, /*out*/ vector<token>& tokens)
                 {
                     n = (binary_node*)&n->get_parent();
                 }
+            
             }
         }
     } 
@@ -191,7 +195,7 @@ void parser::operator_scan(const vector<char> level, /*out*/ vector<terminal_nod
             try
             {
                 // binary_node needs to be polymorphic?
-                // binary_node& bn = dynamic_cast<binary_node&>(nodes[i]);
+                binary_node* bn = dynamic_cast<binary_node*>(nodes[i]);
                 // if (nodes[i].get_token().get_type() == level[j])
                 // {
                 //     vector<terminal_node>::const_iterator iter = nodes.begin();
