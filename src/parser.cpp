@@ -50,7 +50,7 @@ void parser::parse_tokens(/*out*/ vector<terminal_node*>& nodes, /*out*/ stack<t
             {
                 if (nodes[i - 1]->get_token().get_type() == token_type::Number)
                 {
-                    // add a "*"
+                    // add a "*" in before expression 3(2 + 2) -> 3*(2+2)
                     terminal_node multi_op("*");
                     vector<terminal_node*>::iterator iter = nodes.begin();
                     nodes.insert(iter, &multi_op);
@@ -70,38 +70,35 @@ void parser::parse_tokens(/*out*/ vector<terminal_node*>& nodes, /*out*/ stack<t
 
 bool parser::post_fix(binary_node* n, /*out*/ vector<token>& tokens)
 {
-    // terminal_node* ptn;
-    // while (n != 0)
-    // {
-    //     tokens.push_back(n->get_token());
-    //     while (n != 0)
-    //     {
-    //         try
-    //         {
-    //             ptn = dynamic_cast<binary_node*>(n);
-    //             ptn = n->get_right();
-    //         }
-    //         catch(const std::exception& e)
-    //         {
-                       
-    //             binary_node* p_parent = (binary_node*)&n->get_parent();
-    //             // current is parents right move to parents Left
-    //             if (p_parent != 0 && dynamic_cast<binary_node*>(p_parent->get_left())->get_id() != n->get_id())
-    //             {
-    //                 // warn not used
-    //                 //terminal_node* p_tnode = ((binary_node*)p_node->get_parent())->get_left();
-    //                 break;
-    //             }
-    //             else // current parents left move to parent.parent
-    //             {
-    //                 n = (binary_node*)&n->get_parent();
-    //             }
-            
-    //         }
-    //     }
-    //} 
-    
-    // std::reverse(tokens.begin(), tokens.end());
+    terminal_node* ptn;
+    while (n != 0)
+    {
+         tokens.push_back(n->get_token());
+         while (n != 0)
+         {
+            try
+            {
+                ptn = dynamic_cast<binary_node*>(n);
+                ptn = n->get_right();
+            }
+            catch(const std::exception& e)
+            {
+                binary_node* p_parent = (binary_node*)n->get_parent();
+                // current is parents right move to parents Left
+                if (p_parent != 0 && dynamic_cast<binary_node*>(p_parent->get_left())->get_id() != n->get_id())
+                {
+                    // warn not used
+                    terminal_node* ptn = ((binary_node*)n->get_parent())->get_left();
+                    break;
+                }
+                else // current parents left move to parent.parent
+                {
+                    n = (binary_node*)n->get_parent();
+                }
+            }   
+        }
+    } 
+    std::reverse(tokens.begin(), tokens.end());
     return true;
 }
 
