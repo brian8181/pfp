@@ -73,7 +73,8 @@ int parse_options(int argc, char* argv[])
   
     parser p;
     vector<token> tokens;
-    p.parse(input, tokens);
+    stack<terminal_node> sub_nodes;
+    p.parse(input, tokens, sub_nodes);
     //string s = p.post_fix_string(tokens);
     return 0;
 }

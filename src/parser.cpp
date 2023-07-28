@@ -6,12 +6,13 @@
 
 #include <iostream>
 #include <regex>
+#include <string>
 #include "utility.hpp"
 #include "parser.hpp"
 
 using std::stack;
 
-void parser::parse(const string& infix, /*out*/ vector<token>& tokens)
+void parser::parse(const string& infix, /*out*/ vector<token>& tokens, stack<terminal_node>& nodes_stack)
 {
     vector<terminal_node> nodes;
     tokenize(infix, nodes);
@@ -24,18 +25,19 @@ void parser::parse(const string& infix, /*out*/ vector<token>& tokens)
     for(int i = 0; i < len; ++i)
     {
         token t = nodes[i].get_token();
-        std::cout << "matched token:" << " type->" << t.get_type() <<  " value->"  << t.get_value() << std::endl;
+        std::string str_type = (t.get_type() == token_type::Number) ? "Number" : "Operator";
+        std::cout << "matched token:" << " type->" << str_type <<  " value->"  << t.get_value() << std::endl;
     }
 
 #endif
     
-    parse_tokens(nodes);
+    parse_tokens(nodes, nodes_stack);
     // post_fix((binary_node*)&nodes[0], tokens);
 }
 
-void parser::parse_tokens(/*out*/ vector<terminal_node>& nodes)
+void parser::parse_tokens(/*out*/ vector<terminal_node>& nodes, stack<terminal_node>& nodes_stack)
 {
-    stack<terminal_node> nodes_stack;
+    //stack<terminal_node> nodes_stack;
     int len = nodes.size();
     for (int i = 0; i < len; ++i)
     {
@@ -111,9 +113,6 @@ string& parser::post_fix_string(/*out*/ vector<token>& postfix)
 
 void parser::tokenize(const string& input, /*out*/ vector<terminal_node>& nodes)
 {
-    // C# .NET regular expression
-    // R"(-?\b((\d+\.\d+)|(\d+))\b)|([\^\(\)\*/\+\-])"
-    
     std::regex::flag_type REGX_FLAGS = std::regex::ECMAScript;
     std::regex input_epx = std::regex("(([0-9]+(\\.[0-9]*)?)|([-+*^/\\(\\)]))", REGX_FLAGS);
         
