@@ -97,7 +97,6 @@ void parser::post_fix(binary_node* n, /*out*/ vector<token>& tokens)
             }   
         }
     } 
-
     ptn = 0;
     std::reverse(tokens.begin(), tokens.end());
 }
@@ -200,7 +199,6 @@ void parser::operator_scan(const vector<char> level, /*out*/ vector<terminal_nod
                 --i;
                 break;
             }
-
         }
     }
 }
