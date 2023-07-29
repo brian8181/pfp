@@ -25,7 +25,7 @@ public:
     
     void parse(const string& expression, /*out*/ vector<token>& tokens, /*out*/ stack<terminal_node*>& nodes_stack);
     string& post_fix_string(/*out*/ vector<token>& postfix);
-    bool post_fix(binary_node* n, /*out*/ vector<token>& tokens);
+    void post_fix(binary_node* n, /*out*/ vector<token>& tokens);
 
 private:
 
