@@ -12,7 +12,7 @@
 
 using std::stack;
 
-void parser::parse(const string& infix, /*out*/ vector<token>& tokens, /*out*/ stack<terminal_node>& nodes_stack)
+void parser::parse(const string& infix, /*out*/ vector<token>& tokens, /*out*/ stack<terminal_node*>& nodes_stack)
 {
     vector<terminal_node*> nodes;
     tokenize(infix, nodes);
@@ -37,7 +37,7 @@ void parser::parse(const string& infix, /*out*/ vector<token>& tokens, /*out*/ s
     // delete nodes
 }
 
-void parser::parse_tokens(/*out*/ vector<terminal_node*>& nodes, /*out*/ stack<terminal_node>& nodes_stack)
+void parser::parse_tokens(/*out*/ vector<terminal_node*> nodes, /*out*/ stack<terminal_node*> nodes_stack)
 {
     //stack<terminal_node> nodes_stack;
     int len = nodes.size();
@@ -114,7 +114,7 @@ string& parser::post_fix_string(/*out*/ vector<token>& postfix)
     return trim(str);
 }
 
-void parser::tokenize(const string& input, /*out*/ vector<terminal_node*>& nodes)
+void parser::tokenize(const string& input, /*out*/ vector<terminal_node*> nodes)
 {
     std::regex::flag_type REGX_FLAGS = std::regex::ECMAScript;
     std::regex input_epx = std::regex("(([0-9]+(\\.[0-9]*)?)|([-+*^/\\(\\)]))", REGX_FLAGS);
@@ -132,24 +132,24 @@ void parser::tokenize(const string& input, /*out*/ vector<terminal_node*>& nodes
     }
 }
 
-void parser::sub_parse(/*out*/ vector<terminal_node*>& nodes, int i, /*out*/ stack<terminal_node>& nodes_stack)
+void parser::sub_parse(/*out*/ vector<terminal_node*> nodes, int i, /*out*/ stack<terminal_node*> nodes_stack)
 {
     // stack
     while (nodes[i]->get_token().get_value() != ")")
     {
-        nodes_stack.push(*(nodes[i]));
+        nodes_stack.push(nodes[i]);
         ++i;
     }                
     
     // unstack
-    terminal_node n = nodes_stack.top();
+    terminal_node* n = nodes_stack.top();
     nodes_stack.pop();
     --i;
     vector<terminal_node*> tmp_nodes;
 
-    while (n.get_token().get_value() != "(")
+    while (n->get_token().get_value() != "(")
     {
-            tmp_nodes.push_back(&n);
+            tmp_nodes.push_back(n);
             n = nodes_stack.top();
             nodes_stack.pop();
             --i;
@@ -166,12 +166,12 @@ void parser::sub_parse(/*out*/ vector<terminal_node*>& nodes, int i, /*out*/ sta
     
     if (nodes_stack.empty())
     {
-        nodes_stack.push(*nodes[0]);
+        nodes_stack.push(nodes[0]);
         sub_parse(nodes, i + 1, nodes_stack);
     }
 }
 
-void parser::operator_scans(/*out*/ vector<terminal_node*>& nodes)
+void parser::operator_scans(/*out*/ vector<terminal_node*> nodes)
 {
     int len = _plevels.size();
     for (int i = 0; i < len; ++i)

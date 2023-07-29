@@ -23,16 +23,16 @@ class parser
     
 public:
     
-    void parse(const string& expression, /*out*/ vector<token>& tokens, /*out*/ stack<terminal_node>& nodes_stack);
+    void parse(const string& expression, /*out*/ vector<token>& tokens, /*out*/ stack<terminal_node*>& nodes_stack);
     string& post_fix_string(/*out*/ vector<token>& postfix);
     bool post_fix(binary_node* n, /*out*/ vector<token>& tokens);
 
 private:
 
-    void tokenize(const string& input, /*out*/ vector<terminal_node*>& nodes);
-    void parse_tokens(/*out*/ vector<terminal_node*>& nodes, /*out*/ stack<terminal_node>& nodes_stack);
-    void sub_parse(/*out*/ vector<terminal_node*>& nodes, int i, /*out*/ stack<terminal_node>& nodes_stack);
-    void operator_scans(/*out*/ vector<terminal_node*>& nodes);
+    void tokenize(const string& input, /*out*/ vector<terminal_node*> nodes);
+    void parse_tokens(/*out*/ vector<terminal_node*> nodes, /*out*/ stack<terminal_node*> nodes_stack);
+    void sub_parse(/*out*/ vector<terminal_node*> nodes, int i, /*out*/ stack<terminal_node*> nodes_stack);
+    void operator_scans(/*out*/ vector<terminal_node*> nodes);
     void operator_scan(const vector<char> level, /*out*/ vector<terminal_node*> nodes);
 
     vector<vector<char>> _plevels{{ '^' }, { '*', '/' }, { '+', '-' }};

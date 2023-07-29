@@ -13,20 +13,19 @@ binary_node::binary_node(const string& token) : terminal_node(token)
 
 binary_node::binary_node(const string& token, terminal_node* left, terminal_node* right) : terminal_node(token)
 {
-    left->set_parent(this);
-    right->set_parent(this);
-
     _left = left;
     _right = right;
+    left->set_parent(this);
+    right->set_parent(this);
 }
 
 binary_node::binary_node(const binary_node* node)
 {
-    _left->set_parent(this);
-    _right->set_parent(this);
     _token = node->_token;
     _left = node->_left;
     _right = node->_right;
+    _left->set_parent(this);
+    _right->set_parent(this);
 }
 
 terminal_node* binary_node::get_left()

@@ -61,7 +61,7 @@ void test_1()
 
     string s = "2+3";
     vector<token> tokens;
-    stack<terminal_node> sub_nodes;
+    stack<terminal_node*> sub_nodes;
     parser p;
     p.parse(s, tokens, sub_nodes);
 
