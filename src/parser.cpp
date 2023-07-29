@@ -79,7 +79,6 @@ void parser::post_fix(binary_node* n, /*out*/ vector<token>& tokens)
             try
             {
                 ptn = dynamic_cast<binary_node*>(n);
-                //ptn = ptn->get_right();
             }
             catch(const std::exception& e)
             {
