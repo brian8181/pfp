@@ -41,6 +41,11 @@ binary_node::binary_node(const binary_node* node)
     _right->set_parent(this);
 }
 
+binary_node::~binary_node()
+{
+    // ?
+}
+
 terminal_node* binary_node::get_left()
 {
     return _left;

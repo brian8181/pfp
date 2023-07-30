@@ -48,6 +48,19 @@ void parser::parse(const string& infix, /*out*/ vector<token>& tokens, /*out*/ s
     post_fix((binary_node*)&nodes[0], tokens);
 
     // delete nodes
+    int len_ = nodes.size();
+    for(int i = 0; i < len_; ++i)
+    {
+        try
+        {
+            binary_node* pbn = dynamic_cast<binary_node*>(nodes[i]);
+            delete pbn;
+        }
+        catch(const std::bad_cast& e)
+        {
+            continue; // not a binary_node
+        }
+    }
 }
 
 void parser::parse_tokens(/*out*/ vector<terminal_node*>& nodes, /*out*/ stack<terminal_node*>& nodes_stack)
@@ -206,8 +219,8 @@ void parser::operator_scan(const vector<char> level, /*out*/ vector<terminal_nod
             if (nodes[i]->get_token().get_type() == level[j])
             {
                 vector<terminal_node*>::const_iterator iter = nodes.begin();
-                nodes.insert(iter - (i - 1), pbn);
-                nodes.erase(iter, iter+2);
+                nodes.insert(iter - (i - 1), pbn); // insert ew binary_node
+                nodes.erase(iter, iter+2); // erase terminals
                 len = nodes.size();
                 --i;
                 break;
