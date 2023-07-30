@@ -50,7 +50,7 @@ void parser::parse(const string& infix, /*out*/ vector<token>& tokens, /*out*/ s
     // delete nodes
 }
 
-void parser::parse_tokens(/*out*/ vector<terminal_node*> nodes, /*out*/ stack<terminal_node*> nodes_stack)
+void parser::parse_tokens(/*out*/ vector<terminal_node*>& nodes, /*out*/ stack<terminal_node*>& nodes_stack)
 {
     //stack<terminal_node> nodes_stack;
     int len = nodes.size();
@@ -125,7 +125,7 @@ string& parser::post_fix_string(/*out*/ vector<token>& postfix)
     return trim(str);
 }
 
-void parser::tokenize(const string& input, /*out*/ vector<terminal_node*> nodes)
+void parser::tokenize(const string& input, /*out*/ vector<terminal_node*>& nodes)
 {
     std::regex::flag_type REGX_FLAGS = std::regex::ECMAScript;
     std::regex input_epx = std::regex("(([0-9]+(\\.[0-9]*)?)|([-+*^/\\(\\)]))", REGX_FLAGS);
@@ -143,7 +143,7 @@ void parser::tokenize(const string& input, /*out*/ vector<terminal_node*> nodes)
     }
 }
 
-void parser::sub_parse(const int& beg_i, /*out*/ vector<terminal_node*> nodes, /*out*/ stack<terminal_node*> nodes_stack)
+void parser::sub_parse(const int& beg_i, /*out*/ vector<terminal_node*>& nodes, /*out*/ stack<terminal_node*>& nodes_stack)
 {
     int i = beg_i;
     // stack
@@ -183,7 +183,7 @@ void parser::sub_parse(const int& beg_i, /*out*/ vector<terminal_node*> nodes, /
     }
 }
 
-void parser::operator_scans(/*out*/ vector<terminal_node*> nodes)
+void parser::operator_scans(/*out*/ vector<terminal_node*>& nodes)
 {
     int len = _plevels.size();
     for (int i = 0; i < len; ++i)
@@ -192,7 +192,7 @@ void parser::operator_scans(/*out*/ vector<terminal_node*> nodes)
     }
 }
 
-void parser::operator_scan(const vector<char> level, /*out*/ vector<terminal_node*> nodes)
+void parser::operator_scan(const vector<char> level, /*out*/ vector<terminal_node*>& nodes)
 {
     int len = nodes.size();
     for (int i = 0; i < len; ++i)
