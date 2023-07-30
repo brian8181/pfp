@@ -38,10 +38,10 @@ public:
     
     void parse(const string& expression, /*out*/ vector<token>& tokens, /*out*/ stack<terminal_node*>& nodes_stack);
     string& post_fix_string(/*out*/ vector<token>& postfix);
-    void post_fix(binary_node* n, /*out*/ vector<token>& tokens);
 
 private:
 
+    void post_fix(binary_node* n, /*out*/ vector<token>& tokens);
     void tokenize(const string& input, /*out*/ vector<terminal_node*>& nodes);
     void parse_tokens(/*out*/ vector<terminal_node*>& nodes, /*out*/ stack<terminal_node*>& nodes_stack);
     void sub_parse(const int& beg_i, /*out*/ vector<terminal_node*>& nodes, /*out*/ stack<terminal_node*>& nodes_stack);

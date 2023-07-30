@@ -158,8 +158,8 @@ void parser::tokenize(const string& input, /*out*/ vector<terminal_node*>& nodes
 
 void parser::sub_parse(const int& beg_i, /*out*/ vector<terminal_node*>& nodes, /*out*/ stack<terminal_node*>& nodes_stack)
 {
-    int i = beg_i;
     // stack
+    int i = beg_i;
     while (nodes[i]->get_token().get_value() != ")")
     {
         nodes_stack.push(nodes[i]);

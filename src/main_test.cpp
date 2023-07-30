@@ -56,6 +56,11 @@ using namespace std;
 
 void test_1()
 {
+    cout << "create toekn ..." << endl;
+    token t1("test");
+    string s = "+";
+    token t2(s);
+
     cout << "create terminal_node..." << endl;
     terminal_node tn1("2");
     terminal_node tn2("+");
@@ -71,24 +76,24 @@ void test_1()
     nodes.push_back(tn2);
 
 
-    string s = "2+3";
+    string s2 = "2+3";
     vector<token> tokens;
     stack<terminal_node*> sub_nodes;
     parser p;
-    p.parse(s, tokens, sub_nodes);
+    p.parse(s2, tokens, sub_nodes);
 
-    int len = nodes.size();
-    for(int i = 0; i < len; ++i)
-    {
-        string s = nodes[i].get_token().get_value();
-        cout << s << endl;
-    }
+    // int len = nodes.size();
+    // for(int i = 0; i < len; ++i)
+    // {
+    //     string s = nodes[i].get_token().get_value();
+    //     cout << s << endl;
+    // }
 }
 
 int main(int argc, char* argv[])
 {
 	//
-    token t;
+    token t("test");
     //node n;
 
     std::string s = "test";

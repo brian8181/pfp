@@ -19,7 +19,12 @@
 
 #include "binary_node.hpp"
 
-binary_node::binary_node(const string& token) : terminal_node(token)
+// binary_node::binary_node(const string& token) : terminal_node(token)
+// {
+    
+// }
+
+binary_node::binary_node(string& token) : terminal_node(token)
 {
     
 }
@@ -32,7 +37,16 @@ binary_node::binary_node(const string& token, terminal_node* left, terminal_node
     right->set_parent(this);
 }
 
-binary_node::binary_node(const binary_node* node)
+// binary_node::binary_node(const binary_node* node) : terminal_node(node->get_token().get_value())
+// {
+//     _token = node->_token;
+//     _left = node->_left;
+//     _right = node->_right;
+//     _left->set_parent(this);
+//     _right->set_parent(this);
+// }
+
+binary_node::binary_node(binary_node* node) : terminal_node(node->get_token().get_value())
 {
     _token = node->_token;
     _left = node->_left;

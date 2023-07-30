@@ -33,13 +33,12 @@ class token
 {
 public:
 
-    token();
-    token(string value);
+    token(const string& value);
     token(const token& t);
     
     int get_id();
     token_type get_type();
-    string get_value();
+    string& get_value();
    
 private:
 
