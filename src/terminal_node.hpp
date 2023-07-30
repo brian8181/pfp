@@ -32,7 +32,7 @@ public:
     terminal_node() {};
     terminal_node(const std::string& s);
     terminal_node(const terminal_node& n);
-    ~terminal_node();
+    //~terminal_node();
     token& get_token();
     
 protected:

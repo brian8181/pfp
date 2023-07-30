@@ -30,11 +30,10 @@ terminal_node::terminal_node(const terminal_node& n) : node(n), _token(n._token)
 
 }
 
-terminal_node::~terminal_node()
-{
-    //debug!
-    //delete _ptoken;
-}
+// terminal_node::~terminal_node()
+// {
+    
+// }
 
 token& terminal_node::get_token()
 {
