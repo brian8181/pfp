@@ -214,7 +214,8 @@ void parser::operator_scan(const vector<char> level, /*out*/ vector<terminal_nod
         for(int j = 0; j < len_ops; ++j)
         {
             // find operators
-            if (nodes[i]->get_token().get_type() == level[j])
+            //if (nodes[i]->get_token().get_type() == level[j])
+            if (nodes[i]->get_token().get_type() == token_type::Operator)
             {
                 // found operator, now create a binary operation
                 string token = nodes[i]->get_token().get_value();
