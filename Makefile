@@ -58,6 +58,9 @@ main_test.o:
 # $(CXX) $(CXXFLAGS) -Icatch.hpp -c $(SRCDIR)/000-CatchMain.cpp -o $(BUILDDIR)/000-CatchMain.o
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/000-CatchMain.cpp -o $(BUILDDIR)/000-CatchMain.o
 
+uTest1:
+	$(CXX) $(CXXFLAGS) -I "/home/brian/src/Catch2-3.4.0/src/" -c $(SRCDIR)/uTest1.cpp -o $(BUILDDIR)/uTest1
+
 # delete object files & app executable
 .PHONY: clean
 clean:

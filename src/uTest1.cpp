@@ -9,26 +9,11 @@
 // GNU General Public License for more details.
 
 // You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <https://www.gnu.org/licensesGPL
-// License:    GPL
-// Author:     GPLn K Preston
-// File Name:  utility.hpp
-// Build Date: Sun Jul 30 04:02:44 PM CDT 2023
-// Version:    0.0.1
+// along with this program.  If not, see <https://www.gnu.org/licenses/>. 
 
-#ifndef _utility_HPP
-#define _utility_HPP
-
+// #include "/home/brian/src/Catch2-3.4.0/src/catch2/catch_test_macros.hpp"
 #include <iostream>
-#include <algorithm>
-#include <string>
 
-bool is_integer(const std::string& value);
-bool is_digit(const char value);
-bool is_numeric(const std::string& value) ;
 
-std::string &ltrim(std::string &s);
-std::string &rtrim(std::string &s);
-std::string &trim(std::string &s);
 
-#endif
+
