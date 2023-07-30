@@ -14,7 +14,7 @@
 // License:    GPL
 // Author:     Brian K Preston
 // File Name:  token.hpp
-// Build Date: Sun Jul  9 09:09:59 AM CDT 2023
+// Build Date: Sun Jul 30 04:02:44 PM CDT 2023
 // Version:    0.0.1
 
 #ifndef _token_HPP

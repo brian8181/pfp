@@ -14,7 +14,7 @@
 // License:    GPL
 // Author:     Brian K Preston
 // File Name:  terminal_node.cpp
-// Build Date: Sun Jul  9 09:09:59 AM CDT 2023
+// Build Date: Sun Jul 30 04:02:44 PM CDT 2023
 // Version:    0.0.1
 
 #ifndef _terminal_node_HPP
