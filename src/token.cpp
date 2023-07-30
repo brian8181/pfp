@@ -11,7 +11,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-// License:    None
+// License:    GPL
 // Author:     Brian K Preston
 // File Name:  token.cpp
 // Build Date: Sun Jul  9 09:09:59 AM CDT 2023

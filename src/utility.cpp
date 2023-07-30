@@ -11,7 +11,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-// License:    None
+// License:    GPL
 // Author:     Brian K Preston
 // File Name:  utility.cpp
 // Build Date: Fri Jul  7 05:08:36 PM CDT 2023

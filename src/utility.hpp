@@ -9,10 +9,9 @@
 // GNU General Public License for more details.
 
 // You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-// License:    None
-// Author:     Brian K Preston
+// along with this program.  If not, see <https://www.gnu.org/licensesGPL
+// License:    GPL
+// Author:     GPLn K Preston
 // File Name:  utility.hpp
 // Build Date: Fri Jul  7 05:08:36 PM CDT 2023
 // Version:    0.0.1
