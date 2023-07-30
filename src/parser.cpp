@@ -213,13 +213,15 @@ void parser::operator_scan(const vector<char> level, /*out*/ vector<terminal_nod
         int len_ops = _plevels.size();
         for(int j = 0; j < len_ops; ++j)
         {
-            string token = nodes[i]->get_token().get_value();
-            binary_node* pbn = new binary_node(token, nodes[i-1], nodes[i+1]);
-
+            // find operators
             if (nodes[i]->get_token().get_type() == level[j])
             {
+                // found operator, now create a binary operation
+                string token = nodes[i]->get_token().get_value();
+                binary_node* pbn = new binary_node(token, nodes[i-1], nodes[i+1]);
+
                 vector<terminal_node*>::const_iterator iter = nodes.begin();
-                nodes.insert(iter - (i - 1), pbn); // insert ew binary_node
+                nodes.insert(iter - (i - 1), pbn); // insert new binary_node
                 nodes.erase(iter, iter+2); // erase terminals
                 len = nodes.size();
                 --i;
