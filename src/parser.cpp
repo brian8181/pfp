@@ -71,7 +71,7 @@ void parser::parse_tokens(/*out*/ vector<terminal_node*> nodes, /*out*/ stack<te
                     ++i;
                 }
             }
-            sub_parse(nodes, i, nodes_stack);
+            sub_parse(i, nodes, nodes_stack);
             len = nodes.size();
         }
     }
@@ -110,7 +110,6 @@ void parser::post_fix(binary_node* n, /*out*/ vector<token>& tokens)
             }   
         }
     } 
-    ptn = 0;
     std::reverse(tokens.begin(), tokens.end());
 }
 
@@ -144,8 +143,9 @@ void parser::tokenize(const string& input, /*out*/ vector<terminal_node*> nodes)
     }
 }
 
-void parser::sub_parse(/*out*/ vector<terminal_node*> nodes, int i, /*out*/ stack<terminal_node*> nodes_stack)
+void parser::sub_parse(const int& beg_i, /*out*/ vector<terminal_node*> nodes, /*out*/ stack<terminal_node*> nodes_stack)
 {
+    int i = beg_i;
     // stack
     while (nodes[i]->get_token().get_value() != ")")
     {
@@ -179,7 +179,7 @@ void parser::sub_parse(/*out*/ vector<terminal_node*> nodes, int i, /*out*/ stac
     if (nodes_stack.empty())
     {
         nodes_stack.push(nodes[0]);
-        sub_parse(nodes, i + 1, nodes_stack);
+        sub_parse(i + 1, nodes, nodes_stack);
     }
 }
 
