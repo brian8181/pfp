@@ -21,14 +21,13 @@
 
 int node::_prev_id = 0;
 
-node::node() //: _pparent(0)
+node::node() 
 {
 }
 
 node::node(const node& n)
 {
     _id = ++_prev_id;
-   // _pparent = n._pparent;
 }
 
 int node::get_id()
@@ -36,12 +35,3 @@ int node::get_id()
     return _id;
 }
 
-// node* node::get_parent()
-// {
-//     return _pparent;
-// }
-
-// void node::set_parent(node* pparent)
-// {
-//     _pparent = pparent;
-// }
