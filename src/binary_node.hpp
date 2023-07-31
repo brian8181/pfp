@@ -28,16 +28,12 @@ class binary_node : public terminal_node
 
 public:
     
-    //binary_node(const string& token);
-    //binary_node(const binary_node* node);
     binary_node(const string& op, terminal_node* left, terminal_node* right);
-    virtual ~binary_node();
     terminal_node* get_left();
     terminal_node* get_right();
   
 private:
 
-    terminal_node* _op;
     terminal_node* _left;
     terminal_node* _right;
 };

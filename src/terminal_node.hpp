@@ -29,10 +29,8 @@ class terminal_node : public node
 
 public:
 
-    terminal_node();
     terminal_node(const std::string& s);
     terminal_node(const terminal_node& n);
-    //const token& get_token() const;
     token& get_token();
     
 protected:
