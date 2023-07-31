@@ -108,7 +108,7 @@ void parser::post_fix(binary_node* n, /*out*/ vector<token>& tokens)
             }
             catch(const std::exception& e)
             {
-                ptn = (binary_node*)n->get_parent();
+                //ptn = (binary_node*)n->get_parent();
                 // current is parents right move to parents Left
                 if (ptn != 0 && dynamic_cast<binary_node*>(ptn)->get_left()->get_id() != n->get_id())
                 {
@@ -118,7 +118,7 @@ void parser::post_fix(binary_node* n, /*out*/ vector<token>& tokens)
                 }
                 else // current parents left move to parent.parent
                 {
-                    ptn = (binary_node*)ptn->get_parent();
+                    //ptn = (binary_node*)ptn->get_parent();
                 }
             }   
         }

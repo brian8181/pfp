@@ -29,12 +29,12 @@ public:
     node();
     node(const node& n);
     int get_id();
-    node* get_parent();
-    void set_parent(node* pparent);
+    //node* get_parent();
+    //void set_parent(node* pparent);
     
 protected:
 
-    node* _pparent;
+    //node* _pparent;
 
 private:
 
