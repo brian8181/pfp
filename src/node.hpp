@@ -27,7 +27,6 @@ class node
 public:
 
     node();
-    node(const node& n);
     int get_id();
   
 private:

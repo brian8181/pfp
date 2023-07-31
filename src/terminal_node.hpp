@@ -36,8 +36,6 @@ public:
 protected:
 
     token _token;
-    // needs to be polymorphic
-    virtual void foo();
 };
 
 #endif

@@ -25,15 +25,16 @@
 
 using std::stack;
 
-void parser::parse(const string& infix, /*out*/ vector<token>& tokens, /*out*/ stack<terminal_node*>& nodes_stack)
+void parser::parse(const string& expression, /*out*/ vector<token>& tokens)
 {
+
     vector<terminal_node*> nodes;
-    tokenize(infix, nodes);
+    tokenize(expression, nodes);
 
     // debugging tokenize!
 #if DEBUG
 
-    // print matched tokensgit
+    // print matched tokens
     int len = nodes.size();
     for(int i = 0; i < len; ++i)
     {
@@ -44,23 +45,9 @@ void parser::parse(const string& infix, /*out*/ vector<token>& tokens, /*out*/ s
 
 #endif
     
+    stack<terminal_node*> nodes_stack;
     parse_tokens(nodes, nodes_stack);
     post_fix((binary_node*)&nodes[0], tokens);
-
-    // delete nodes
-    int len_ = nodes.size();
-    for(int i = 0; i < len_; ++i)
-    {
-        try
-        {
-            binary_node* pbn = dynamic_cast<binary_node*>(nodes[i]);
-            delete pbn;
-        }
-        catch(const std::bad_cast& e)
-        {
-            continue; // not a binary_node
-        }
-    }
 }
 
 void parser::parse_tokens(/*out*/ vector<terminal_node*>& nodes, /*out*/ stack<terminal_node*>& nodes_stack)
@@ -80,12 +67,10 @@ void parser::parse_tokens(/*out*/ vector<terminal_node*>& nodes, /*out*/ stack<t
                     terminal_node multi_op("*");
                     vector<terminal_node*>::iterator iter = nodes.begin();
                     nodes.insert(iter, &multi_op);
-                    len = nodes.size();
                     ++i;
                 }
             }
             sub_parse(i, nodes, nodes_stack);
-            len = nodes.size();
         }
     }
     if (nodes.size() > 1)
@@ -145,8 +130,7 @@ void parser::tokenize(const string& input, /*out*/ vector<terminal_node*>& nodes
         
     auto begin = std::sregex_iterator(input.begin(), input.end(), input_epx);
     auto end = std::sregex_iterator();
-    std::sregex_iterator iter = begin;
-
+  
     for (std::sregex_iterator iter = begin; iter != end; ++iter)
     {
         std::smatch match = *iter;

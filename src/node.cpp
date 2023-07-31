@@ -23,11 +23,7 @@ int node::_prev_id = 0;
 
 node::node() 
 {
-}
-
-node::node(const node& n)
-{
-    _id = ++_prev_id;
+     _id = ++_prev_id;
 }
 
 int node::get_id()

@@ -78,9 +78,8 @@ void test_1()
 
     string s2 = "2+3";
     vector<token> tokens;
-    stack<terminal_node*> sub_nodes;
     parser p;
-    p.parse(s2, tokens, sub_nodes);
+    p.parse(s2, tokens);
 
     // int len = nodes.size();
     // for(int i = 0; i < len; ++i)

@@ -36,7 +36,7 @@ class parser
     
 public:
     
-    void parse(const string& expression, /*out*/ vector<token>& tokens, /*out*/ stack<terminal_node*>& nodes_stack);
+    void parse(const string& expression, /*out*/ vector<token>& tokens);
     string& post_fix_string(/*out*/ vector<token>& postfix);
 
 private:

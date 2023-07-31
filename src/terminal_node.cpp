@@ -34,9 +34,3 @@ token& terminal_node::get_token()
 {
     return _token;
 }
-
-// only to make dynamic cast work!
-void terminal_node::foo()
-{
-    
-}
