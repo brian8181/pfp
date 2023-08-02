@@ -32,7 +32,7 @@ void parser::parse(const string& expression, /*out*/ vector<token>& tokens)
     tokenize(expression, nodes);
 
     // debugging tokenize!
-#if DEBUG
+#ifndef DEBUG
 
     // print matched tokens
     int len = nodes.size();
@@ -41,12 +41,10 @@ void parser::parse(const string& expression, /*out*/ vector<token>& tokens)
         token t = nodes[i]->get_token();
         std::string str_type = (t.get_type() == token_type::Number) ? "Number" : "Operator";
         std::cout << "matched token:" << " type->" << str_type <<  " value->"  << t.get_value() << std::endl;
-    }
-
-#endif
+    }  
     
-    stack<terminal_node*> nodes_stack;
-    parse_tokens(nodes, nodes_stack);
+#endif
+
     post_fix((binary_node*)&nodes[0], tokens);
 }
 
@@ -61,7 +59,7 @@ void parser::parse_tokens(/*out*/ vector<terminal_node*>& nodes, /*out*/ stack<t
             // check for implied mutiplication and create explict
             if (i > 0)
             {
-                if (nodes[i - 1]->get_token().get_type() == token_type::Number)
+                if (nodes[i - 1]->get_token().get_type() == token_type::Operator)
                 {
                     // add a "*" in before expression 3(2 + 2) -> 3*(2+2)
                     terminal_node multi_op("*");
@@ -175,16 +173,7 @@ void parser::sub_parse(const int& beg_i, /*out*/ vector<terminal_node*>& nodes, 
     
     if (nodes_stack.empty())
     {
-        nodes_stack.push(nodes[0]);
-        sub_parse(i + 1, nodes, nodes_stack);
-    }
-}
 
-void parser::operator_scans(/*out*/ vector<terminal_node*>& nodes)
-{
-    int len = _plevels.size();
-    for (int i = 0; i < len; ++i)
-    {
         operator_scan(_plevels[i], nodes);
     }
 }
@@ -195,11 +184,7 @@ void parser::operator_scan(const vector<char> level, /*out*/ vector<terminal_nod
     for (int i = 0; i < len; ++i)
     {
         int len_ops = _plevels.size();
-        for(int j = 0; j < len_ops; ++j)
-        {
-            // find operators
-            //if (nodes[i]->get_token().get_type() == level[j])
-            if (nodes[i]->get_token().get_type() == token_type::Operator)
+        if (nodes[i]->get_token().get_type() == token_type::Operator)
             {
                 // found operator, now create a binary operation
                 string token = nodes[i]->get_token().get_value();
