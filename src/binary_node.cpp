@@ -19,18 +19,18 @@
 
 #include "binary_node.hpp"
 
-binary_node::binary_node(const string& op, terminal_node* left, terminal_node* right) : terminal_node(op)
+binary_node::binary_node(const string& op, node* left, node* right) : node(op)
 {
     _left = left;
     _right = right;
 }
 
-terminal_node* binary_node::get_left()
+node* binary_node::get_left()
 {
     return _left;
 }
 
-terminal_node* binary_node::get_right()
+node* binary_node::get_right()
 {
     return _right;
 }

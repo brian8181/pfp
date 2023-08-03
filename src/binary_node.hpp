@@ -20,22 +20,22 @@
 #ifndef _binary_node_HPP
 #define _binary_node_HPP
 
-#include "terminal_node.hpp"
+#include "node.hpp"
 #include "token.hpp"
 
-class binary_node : public terminal_node
+class binary_node : public node
 {
 
 public:
     
-    binary_node(const string& op, terminal_node* left, terminal_node* right);
-    terminal_node* get_left();
-    terminal_node* get_right();
+    binary_node(const string& op, node* left, node* right);
+    node* get_left();
+    node* get_right();
   
 private:
 
-    terminal_node* _left;
-    terminal_node* _right;
+    node* _left;
+    node* _right;
 };
 
 #endif

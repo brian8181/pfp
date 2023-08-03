@@ -68,26 +68,34 @@ void parser::tokenize(const string& input, /*out*/ vector<node*>& nodes)
     }
 }
 
-void parser::find_sub_expessions(vector<node*>& tokens, /*out*/ vector<vector<node*>>& expressions)
+void parser::find_sub_expessions(vector<node*>& nodes, /*out*/ vector<vector<node*>>& expressions)
 {
-    //stack<vector<node*>> stack;
-    int len = tokens.size();
+    int len = nodes.size();
     for(int i = 0; i < len; ++i)
     {
         int revi = i;
-        if(tokens[i]->get_token().get_value() == ")")
+        if(nodes[i]->get_token().get_value() == ")")
         {
-            vector<token> sub_exp;
-            string v = tokens[--revi]->get_token().get_value();
+            vector<node*> sub_exp;
+            string v = nodes[--revi]->get_token().get_value();
             while(v != "(")
             {
-                sub_exp.push_back(v);
+                node* pn = new node(v);
+                sub_exp.push_back(pn);
+                v = nodes[--revi]->get_token().get_value();
             }
+            // remove nodes & create binary_nodes
+            binary_node* pbn = new binary_node(nodes[revi+2]->get_token().get_value(), nodes[revi+1], nodes[revi+3]);
+            vector<node*>::iterator iter = sub_exp.begin();
+            sub_exp.erase(iter, iter+5);
+            sub_exp.push_back(pbn);
+            expressions.push_back(sub_exp);
+            revi = i;
         }
     }
 }  
 
-void parser::parse_tokens(/*out*/ vector<terminal_node*>& nodes, /*out*/ stack<terminal_node*>& nodes_stack)
+void parser::parse_tokens(/*out*/ vector<node*>& nodes, /*out*/ stack<node*>& nodes_stack)
 {
     //stack<terminal_node> nodes_stack;
     int len = nodes.size();
@@ -101,8 +109,8 @@ void parser::parse_tokens(/*out*/ vector<terminal_node*>& nodes, /*out*/ stack<t
                 if (nodes[i - 1]->get_token().get_type() == token_type::Operator)
                 {
                     // add a "*" in before expression 3(2 + 2) -> 3*(2+2)
-                    terminal_node multi_op("*");
-                    vector<terminal_node*>::iterator iter = nodes.begin();
+                    node multi_op("*");
+                    vector<node*>::iterator iter = nodes.begin();
                     nodes.insert(iter, &multi_op);
                     ++i;
                 }
@@ -160,7 +168,7 @@ string& parser::post_fix_string(/*out*/ vector<token>& postfix)
     return trim(str);
 }
 
-void parser::sub_parse(const int& beg_i, /*out*/ vector<terminal_node*>& nodes, /*out*/ stack<terminal_node*>& nodes_stack)
+void parser::sub_parse(const int& beg_i, /*out*/ vector<node*>& nodes, /*out*/ stack<node*>& nodes_stack)
 {
     // stack
     int i = beg_i;
@@ -171,10 +179,10 @@ void parser::sub_parse(const int& beg_i, /*out*/ vector<terminal_node*>& nodes, 
     }                
     
     // unstack
-    terminal_node* n = nodes_stack.top();
+    node* n = nodes_stack.top();
     nodes_stack.pop();
     --i;
-    vector<terminal_node*> tmp_nodes;
+    vector<node*> tmp_nodes;
 
     while (n->get_token().get_value() != "(")
     {
@@ -189,7 +197,7 @@ void parser::sub_parse(const int& beg_i, /*out*/ vector<terminal_node*>& nodes, 
     std::reverse(tmp_nodes.begin(), tmp_nodes.end());
     operator_scans(tmp_nodes);
 
-    vector<terminal_node*>::iterator it = nodes.begin();
+    vector<node*>::iterator it = nodes.begin();
     nodes.insert(it + i, tmp_nodes[0]);  // put sub list into original
     nodes.erase(it + (i+1), it + (len+2));
     
@@ -199,7 +207,7 @@ void parser::sub_parse(const int& beg_i, /*out*/ vector<terminal_node*>& nodes, 
     }
 }
 
-void parser::operator_scans(/*out*/ vector<terminal_node*>& nodes)
+void parser::operator_scans(/*out*/ vector<node*>& nodes)
 {
     int len = _plevels.size();
     for (int i = 0; i < len; ++i)
@@ -208,7 +216,7 @@ void parser::operator_scans(/*out*/ vector<terminal_node*>& nodes)
     }
 }
 
-void parser::operator_scan(const vector<char> level, /*out*/ vector<terminal_node*>& nodes)
+void parser::operator_scan(const vector<char> level, /*out*/ vector<node*>& nodes)
 {
     int len = nodes.size();
     for (int i = 0; i < len; ++i)
@@ -224,7 +232,7 @@ void parser::operator_scan(const vector<char> level, /*out*/ vector<terminal_nod
                 string token = nodes[i]->get_token().get_value();
                 binary_node* pbn = new binary_node(token, nodes[i-1], nodes[i+1]);
 
-                vector<terminal_node*>::const_iterator iter = nodes.begin();
+                vector<node*>::const_iterator iter = nodes.begin();
                 nodes.insert(iter - (i - 1), pbn); // insert new binary_node
                 nodes.erase(iter, iter+2); // erase terminals
                 len = nodes.size();
