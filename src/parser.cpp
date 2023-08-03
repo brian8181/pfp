@@ -46,8 +46,8 @@ void parser::parse(const string& expression, /*out*/ vector<token>& tokens)
     
 #endif
 
-    // vector<vector<node*>> exps;
-    // find_sub_expessions(nodes, exps);
+    vector<vector<node*>> exps;
+    find_sub_expessions(nodes, exps);
     //post_fix((binary_node*)&nodes[0], tokens);
 }
 
@@ -68,7 +68,7 @@ void parser::tokenize(const string& input, /*out*/ vector<node*>& nodes)
     }
 }
 
-void find_sub_expessions(vector<node*>& tokens, /*out*/ vector<vector<node*>>& expressions)
+void parser::find_sub_expessions(vector<node*>& tokens, /*out*/ vector<vector<node*>>& expressions)
 {
     //stack<vector<node*>> stack;
     int len = tokens.size();
