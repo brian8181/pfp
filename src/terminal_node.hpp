@@ -22,20 +22,15 @@
 
 #include <string>
 #include "node.hpp"
-#include "token.hpp"
+
+using std::string;
 
 class terminal_node : public node
 {
 
 public:
-
-    terminal_node(const std::string& s);
+    terminal_node(const string& s);
     terminal_node(const terminal_node& n);
-    token& get_token();
-    
-protected:
-
-    token _token;
 };
 
 #endif

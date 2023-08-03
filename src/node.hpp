@@ -21,18 +21,23 @@
 #define _node_HPP
 
 #include <string>
+#include "token.hpp"
 
 class node
 {
 public:
 
-    node();
+    //node();
+    node(const std::string& token);
+    node(const node& n);
     int get_id();
+    token& get_token();
   
 private:
 
     int _id;
     static int _prev_id;
+    token _token;
 };
 
 #endif

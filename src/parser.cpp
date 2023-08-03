@@ -23,12 +23,13 @@
 #include "utility.hpp"
 #include "parser.hpp"
 
+using std::string;
 using std::stack;
 
 void parser::parse(const string& expression, /*out*/ vector<token>& tokens)
 {
 
-    vector<terminal_node*> nodes;
+    vector<node*> nodes;
     tokenize(expression, nodes);
 
     // debugging tokenize!
@@ -45,8 +46,46 @@ void parser::parse(const string& expression, /*out*/ vector<token>& tokens)
     
 #endif
 
-    post_fix((binary_node*)&nodes[0], tokens);
+    // vector<vector<node*>> exps;
+    // find_sub_expessions(nodes, exps);
+    //post_fix((binary_node*)&nodes[0], tokens);
 }
+
+void parser::tokenize(const string& input, /*out*/ vector<node*>& nodes)
+{
+    std::regex::flag_type REGX_FLAGS = std::regex::ECMAScript;
+    std::regex input_epx = std::regex("(([0-9]+(\\.[0-9]*)?)|([-+*^/\\(\\)]))", REGX_FLAGS);
+        
+    auto begin = std::sregex_iterator(input.begin(), input.end(), input_epx);
+    auto end = std::sregex_iterator();
+  
+    for (std::sregex_iterator iter = begin; iter != end; ++iter)
+    {
+        std::smatch match = *iter;
+        string s = match.str(0);
+        node* pn = new node(s);
+        nodes.push_back(pn);
+    }
+}
+
+void find_sub_expessions(vector<node*>& tokens, /*out*/ vector<vector<node*>>& expressions)
+{
+    //stack<vector<node*>> stack;
+    int len = tokens.size();
+    for(int i = 0; i < len; ++i)
+    {
+        int revi = i;
+        if(tokens[i]->get_token().get_value() == ")")
+        {
+            vector<token> sub_exp;
+            string v = tokens[--revi]->get_token().get_value();
+            while(v != "(")
+            {
+                sub_exp.push_back(v);
+            }
+        }
+    }
+}  
 
 void parser::parse_tokens(/*out*/ vector<terminal_node*>& nodes, /*out*/ stack<terminal_node*>& nodes_stack)
 {
@@ -119,23 +158,6 @@ string& parser::post_fix_string(/*out*/ vector<token>& postfix)
         str.append(t.get_value() + " ");
     }
     return trim(str);
-}
-
-void parser::tokenize(const string& input, /*out*/ vector<terminal_node*>& nodes)
-{
-    std::regex::flag_type REGX_FLAGS = std::regex::ECMAScript;
-    std::regex input_epx = std::regex("(([0-9]+(\\.[0-9]*)?)|([-+*^/\\(\\)]))", REGX_FLAGS);
-        
-    auto begin = std::sregex_iterator(input.begin(), input.end(), input_epx);
-    auto end = std::sregex_iterator();
-  
-    for (std::sregex_iterator iter = begin; iter != end; ++iter)
-    {
-        std::smatch match = *iter;
-        string s = match.str(0);
-        terminal_node* pn = new terminal_node(s);
-        nodes.push_back(pn);
-    }
 }
 
 void parser::sub_parse(const int& beg_i, /*out*/ vector<terminal_node*>& nodes, /*out*/ stack<terminal_node*>& nodes_stack)

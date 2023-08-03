@@ -21,9 +21,14 @@
 
 int node::_prev_id = 0;
 
-node::node() 
+node::node(const string& s) : _token(s)
 {
      _id = ++_prev_id;
+}
+
+node::node(const node& node) : _token(node._token)
+{
+    
 }
 
 int node::get_id()
@@ -31,3 +36,7 @@ int node::get_id()
     return _id;
 }
 
+token& node::get_token()
+{
+    return _token;
+}
