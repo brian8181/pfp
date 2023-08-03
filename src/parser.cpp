@@ -173,7 +173,15 @@ void parser::sub_parse(const int& beg_i, /*out*/ vector<terminal_node*>& nodes, 
     
     if (nodes_stack.empty())
     {
+        operator_scan(_plevels[i], nodes);
+    }
+}
 
+void parser::operator_scans(/*out*/ vector<terminal_node*>& nodes)
+{
+    int len = _plevels.size();
+    for (int i = 0; i < len; ++i)
+    {
         operator_scan(_plevels[i], nodes);
     }
 }
@@ -184,7 +192,11 @@ void parser::operator_scan(const vector<char> level, /*out*/ vector<terminal_nod
     for (int i = 0; i < len; ++i)
     {
         int len_ops = _plevels.size();
-        if (nodes[i]->get_token().get_type() == token_type::Operator)
+        for(int j = 0; j < len_ops; ++j)
+        {
+            // find operators
+            //if (nodes[i]->get_token().get_type() == level[j])  
+            if (nodes[i]->get_token().get_type() == token_type::Operator)
             {
                 // found operator, now create a binary operation
                 string token = nodes[i]->get_token().get_value();
