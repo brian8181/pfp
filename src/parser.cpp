@@ -47,7 +47,7 @@ void parser::parse(const string& expression, /*out*/ vector<token>& tokens)
 #endif
 
     vector<vector<node*>> exps;
-    find_sub_expessions(nodes, exps);
+    objectify(nodes, exps);
     //post_fix((binary_node*)&nodes[0], tokens);
 }
 
@@ -68,29 +68,24 @@ void parser::tokenize(const string& input, /*out*/ vector<node*>& nodes)
     }
 }
 
-void parser::find_sub_expessions(vector<node*>& nodes, /*out*/ vector<vector<node*>>& expressions)
+void parser::objectify(vector<node*>& nodes, /*out*/ vector<vector<node*>>& expressions)
 {
     int len = nodes.size();
     for(int i = 0; i < len; ++i)
     {
-        int revi = i;
         if(nodes[i]->get_token().get_value() == ")")
         {
-            vector<node*> sub_exp;
-            string v = nodes[--revi]->get_token().get_value();
-            while(v != "(")
+            int rev_i = i;
+            string op = nodes[--rev_i]->get_token().get_value();
+            while(op != "(")
             {
-                node* pn = new node(v);
-                sub_exp.push_back(pn);
-                v = nodes[--revi]->get_token().get_value();
+                op = nodes[--rev_i]->get_token().get_value();
             }
             // remove nodes & create binary_nodes
-            binary_node* pbn = new binary_node(nodes[revi+2]->get_token().get_value(), nodes[revi+1], nodes[revi+3]);
-            vector<node*>::iterator iter = sub_exp.begin();
-            sub_exp.erase(iter, iter+5);
+            binary_node* pbn = new binary_node(nodes[rev_i+2]->get_token().get_value(), nodes[rev_i+1], nodes[rev_i+3]);
+            vector<node*> sub_exp;
             sub_exp.push_back(pbn);
             expressions.push_back(sub_exp);
-            revi = i;
         }
     }
 }  

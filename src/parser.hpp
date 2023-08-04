@@ -42,10 +42,12 @@ public:
 private:
 
     //test
-    void find_sub_expessions(vector<node*>& tokens, /*out*/ vector<vector<node*>>& expressions);
+    void objectify(vector<node*>& tokens, /*out*/ vector<vector<node*>>& expressions);
+    void tokenize(const string& input, /*out*/ vector<node*>& nodes);
+    
     // 
     void post_fix(binary_node* n, /*out*/ vector<token>& tokens);
-    void tokenize(const string& input, /*out*/ vector<node*>& nodes);
+    
     void parse_tokens(/*out*/ vector<node*>& nodes, /*out*/ stack<node*>& nodes_stack);
     void sub_parse(const int& beg_i, /*out*/ vector<node*>& nodes, /*out*/ stack<node*>& nodes_stack);
     void operator_scans(/*out*/ vector<node*>& nodes);
