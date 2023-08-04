@@ -83,6 +83,11 @@ void parser::objectify(vector<node*>& nodes, /*out*/ vector<vector<node*>>& expr
             }
             // remove nodes & create binary_nodes
             binary_node* pbn = new binary_node(nodes[rev_i+2]->get_token().get_value(), nodes[rev_i+1], nodes[rev_i+3]);
+            
+            vector<node*>::iterator iter = nodes.begin();
+            nodes.erase(iter + rev_i, iter + rev_i+5);
+            nodes.insert(iter + rev_i, pbn);
+
             vector<node*> sub_exp;
             sub_exp.push_back(pbn);
             expressions.push_back(sub_exp);

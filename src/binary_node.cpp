@@ -21,6 +21,7 @@
 
 binary_node::binary_node(const string& op, node* left, node* right) : node(op)
 {
+    _type = node_type::terminal;
     _left = left;
     _right = right;
 }

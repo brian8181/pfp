@@ -23,6 +23,7 @@ int node::_prev_id = 0;
 
 node::node(const string& s) : _token(s)
 {
+    _type = node_type::gerneric;
      _id = ++_prev_id;
 }
 

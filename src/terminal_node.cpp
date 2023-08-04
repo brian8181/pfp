@@ -22,7 +22,7 @@
 
 terminal_node::terminal_node(const string& s) : node(s)
 {
-
+    _type = node_type::terminal;
 }
 
 terminal_node::terminal_node(const terminal_node& n) : node(n)

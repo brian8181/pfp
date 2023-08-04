@@ -23,6 +23,13 @@
 #include <string>
 #include "token.hpp"
 
+enum node_type
+{
+    gerneric = 0x1,
+    terminal = 0x2,
+    binary = 0x4
+};
+
 class node
 {
 public:
@@ -32,8 +39,10 @@ public:
     node(const node& n);
     int get_id();
     token& get_token();
+    node_type _type;
   
 private:
+
 
     int _id;
     static int _prev_id;
