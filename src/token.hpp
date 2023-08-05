@@ -34,7 +34,7 @@ class token
 public:
 
     token(const string& value);
-    token(const token& t);
+    //token(const token& t);
     
     int get_id();
     token_type get_type();

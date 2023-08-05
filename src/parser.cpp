@@ -28,13 +28,11 @@ using std::stack;
 
 void parser::parse(const string& expression, /*out*/ vector<token>& tokens)
 {
-
     vector<node*> nodes;
     tokenize(expression, nodes);
 
     // debugging tokenize!
 #ifndef DEBUG
-
     // print matched tokens
     int len = nodes.size();
     for(int i = 0; i < len; ++i)
@@ -43,8 +41,7 @@ void parser::parse(const string& expression, /*out*/ vector<token>& tokens)
         std::string str_type = (t.get_type() == token_type::Number) ? "Number" : "Operator";
         std::cout << "matched token:" << " type->" << str_type <<  " value->"  << t.get_value() << std::endl;
     }  
-    
-#endif
+ #endif
 
     vector<vector<node*>> exps;
     objectify(nodes, exps);
@@ -76,17 +73,25 @@ void parser::objectify(vector<node*>& nodes, /*out*/ vector<vector<node*>>& expr
         if(nodes[i]->get_token().get_value() == ")")
         {
             int rev_i = i;
-            string op = nodes[--rev_i]->get_token().get_value();
-            while(op != "(")
+            string tval = nodes[--rev_i]->get_token().get_value();
+            while(tval != "(")
             {
-                op = nodes[--rev_i]->get_token().get_value();
+                tval = nodes[--rev_i]->get_token().get_value();
             }
+
+            // for (int rev_i = 0; rev_i < i; ++rev_i)
+            // {
+            //     operator_scan(_plevels[rev_i], nodes);
+            // }
+
             // remove nodes & create binary_nodes
-            binary_node* pbn = new binary_node(nodes[rev_i+2]->get_token().get_value(), nodes[rev_i+1], nodes[rev_i+3]);
+            binary_node* pbn = new binary_node(nodes[rev_i+2]->get_token().get_value(), nodes[rev_i+1]->get_token().get_value(), nodes[rev_i+3]->get_token().get_value());
             
+            // remove terminal nodes & replace with binary node
             vector<node*>::iterator iter = nodes.begin();
             nodes.erase(iter + rev_i, iter + rev_i+5);
-            nodes.insert(iter + rev_i, pbn);
+            iter = nodes.begin();
+            nodes.insert(iter + 3, pbn);
 
             vector<node*> sub_exp;
             sub_exp.push_back(pbn);
@@ -140,16 +145,16 @@ void parser::post_fix(binary_node* n, /*out*/ vector<token>& tokens)
             {
                 //ptn = (binary_node*)n->get_parent();
                 // current is parents right move to parents Left
-                if (ptn != 0 && dynamic_cast<binary_node*>(ptn)->get_left()->get_id() != n->get_id())
-                {
-                    // warn not used
-                    ptn = (binary_node*)ptn->get_left();
-                    break;
-                }
-                else // current parents left move to parent.parent
-                {
-                    //ptn = (binary_node*)ptn->get_parent();
-                }
+                // if (ptn != 0 && dynamic_cast<binary_node*>(ptn)->get_left()->get_id() != n->get_id())
+                // {
+                //     // warn not used
+                //     ptn = (binary_node*)ptn->get_left();
+                //     break;
+                // }
+                // else // current parents left move to parent.parent
+                // {
+                //     //ptn = (binary_node*)ptn->get_parent();
+                // }
             }   
         }
     } 
@@ -226,19 +231,19 @@ void parser::operator_scan(const vector<char> level, /*out*/ vector<node*>& node
         {
             // find operators
             //if (nodes[i]->get_token().get_type() == level[j])  
-            if (nodes[i]->get_token().get_type() == token_type::Operator)
-            {
-                // found operator, now create a binary operation
-                string token = nodes[i]->get_token().get_value();
-                binary_node* pbn = new binary_node(token, nodes[i-1], nodes[i+1]);
+            // if (nodes[i]->get_token().get_type() == token_type::Operator)
+            // {
+            //     // found operator, now create a binary operation
+            //     string token = nodes[i]->get_token().get_value();
+            //     binary_node* pbn = new binary_node(token, nodes[i-1], nodes[i+1]);
 
-                vector<node*>::const_iterator iter = nodes.begin();
-                nodes.insert(iter - (i - 1), pbn); // insert new binary_node
-                nodes.erase(iter, iter+2); // erase terminals
-                len = nodes.size();
-                --i;
-                break;
-            }
+            //     vector<node*>::const_iterator iter = nodes.begin();
+            //     nodes.insert(iter - (i - 1), pbn); // insert new binary_node
+            //     nodes.erase(iter, iter+2); // erase terminals
+            //     len = nodes.size();
+            //     --i;
+            //     break;
+            // }
         }
     }
 }

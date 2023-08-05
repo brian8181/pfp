@@ -23,13 +23,8 @@ int node::_prev_id = 0;
 
 node::node(const string& s) : _token(s)
 {
-    _type = node_type::gerneric;
+    _type = node_type::terminal;
      _id = ++_prev_id;
-}
-
-node::node(const node& node) : _token(node._token)
-{
-    
 }
 
 int node::get_id()
@@ -41,3 +36,9 @@ token& node::get_token()
 {
     return _token;
 }
+
+string& node::get_value()
+{
+    return _value;
+}
+

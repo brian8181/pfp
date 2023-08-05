@@ -22,7 +22,7 @@
 
 int token::_prev_id = 0;
 
-token::token(const string& value) :_type(token_type::Operator)
+token::token(const string& value) : _type(token_type::Operator)
 {
     _id = ++_prev_id;
     _value = value;
@@ -33,12 +33,12 @@ token::token(const string& value) :_type(token_type::Operator)
         _type = token_type::Operator;
 }
 
-token::token(const token& t)
-{
-    _id = t._id;
-    _value = t._value;
-    _type = t._type;
-}
+// token::token(const token& t)
+// {
+//     _id = t._id;
+//     _value = t._value;
+//     _type = t._type;
+// }
 
 int token::get_id()
 {

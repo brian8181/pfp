@@ -25,21 +25,23 @@
 
 enum node_type
 {
-    gerneric = 0x1,
-    terminal = 0x2,
-    binary = 0x4
+    unknown          = 0x1,
+    literal          = 0x2,
+    terminal         = 0x4,
+    operation        = 0x8,
+    binary_operation = 0x10,
 };
 
 class node
 {
 public:
 
-    //node();
-    node(const std::string& token);
-    node(const node& n);
+    node(const string& token);
     int get_id();
     token& get_token();
+    string& get_value();
     node_type _type;
+    string _value;
   
 private:
 

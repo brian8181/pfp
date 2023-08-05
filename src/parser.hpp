@@ -41,18 +41,16 @@ public:
 
 private:
 
-    //test
     void objectify(vector<node*>& tokens, /*out*/ vector<vector<node*>>& expressions);
     void tokenize(const string& input, /*out*/ vector<node*>& nodes);
     
-    // 
     void post_fix(binary_node* n, /*out*/ vector<token>& tokens);
-    
     void parse_tokens(/*out*/ vector<node*>& nodes, /*out*/ stack<node*>& nodes_stack);
     void sub_parse(const int& beg_i, /*out*/ vector<node*>& nodes, /*out*/ stack<node*>& nodes_stack);
     void operator_scans(/*out*/ vector<node*>& nodes);
     void operator_scan(const vector<char> level, /*out*/ vector<node*>& nodes);
 
+    //vector<vector<char>> _plevels{{')'}, { '^' }, { '*', '/' }, { '+', '-' }};
     vector<vector<char>> _plevels{{ '^' }, { '*', '/' }, { '+', '-' }};
 };
 

@@ -13,25 +13,25 @@
 
 // License:    GPL
 // Author:     Brian K Preston
-// File Name:  binary_node.hpp
+// File Name:  binary_node.cpp
 // Build Date: Sun Jul 30 04:02:44 PM CDT 2023
 // Version:    0.0.1
 
 #ifndef _binary_node_HPP
 #define _binary_node_HPP
 
+#include <string>
 #include "node.hpp"
-#include "token.hpp"
+
+using std::string;
 
 class binary_node : public node
 {
 
 public:
-    
-    binary_node(const string& op, node* left, node* right);
-    node* get_left();
-    node* get_right();
-  
+    binary_node(const string& s, const string& left, const string& right);
+    binary_node(const binary_node& n);
+
 private:
 
     node* _left;

@@ -18,20 +18,17 @@
 // Version:    0.0.1
 
 #include "binary_node.hpp"
+#include "token.hpp"
 
-binary_node::binary_node(const string& op, node* left, node* right) : node(op)
+binary_node:: binary_node(const string& s, const string& left, const string& right) : node(s)
 {
-    _type = node_type::terminal;
-    _left = left;
-    _right = right;
+    _type = node_type::binary_operation;
+    _left = new node(left);
+    _right = new node(right);
 }
 
-node* binary_node::get_left()
+binary_node::binary_node(const binary_node& n) : node(n)
 {
-    return _left;
+    
 }
 
-node* binary_node::get_right()
-{
-    return _right;
-}
