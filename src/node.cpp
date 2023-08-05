@@ -37,8 +37,7 @@ token& node::get_token()
     return _token;
 }
 
-string& node::get_value()
+node_type& node::get_type()
 {
-    return _value;
+    return _type;
 }
-

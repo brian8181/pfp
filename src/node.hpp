@@ -39,15 +39,15 @@ public:
     node(const string& token);
     int get_id();
     token& get_token();
-    string& get_value();
-    node_type _type;
-    string _value;
+    node_type& get_type();
+    node_type _type; //?
   
 private:
 
 
     int _id;
     static int _prev_id;
+    //? node_type _type;
     token _token;
 };
 
