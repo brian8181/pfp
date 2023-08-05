@@ -85,7 +85,9 @@ void parser::objectify(vector<node*>& nodes, /*out*/ vector<vector<node*>>& expr
             // }
 
             // remove nodes & create binary_nodes
-            binary_node* pbn = new binary_node(nodes[rev_i+2]->get_token().get_value(), nodes[rev_i+1]->get_token().get_value(), nodes[rev_i+3]->get_token().get_value());
+            string left = nodes[rev_i+1]->get_token().get_value();
+            string right =  nodes[rev_i+3]->get_token().get_value();
+            binary_node* pbn = new binary_node(nodes[rev_i+2]->get_token().get_value(), left, right);
             
             // remove terminal nodes & replace with binary node
             vector<node*>::iterator iter = nodes.begin();
@@ -93,9 +95,9 @@ void parser::objectify(vector<node*>& nodes, /*out*/ vector<vector<node*>>& expr
             iter = nodes.begin();
             nodes.insert(iter + 3, pbn);
 
-            vector<node*> sub_exp;
-            sub_exp.push_back(pbn);
-            expressions.push_back(sub_exp);
+            // vector<node*> sub_exp;
+            // sub_exp.push_back(pbn);
+            // expressions.push_back(sub_exp);
         }
     }
 }  
