@@ -44,13 +44,7 @@ void parse(string exp)
 void tokenize(const string& input, /*out*/ map<int, string>& tokens)
 {
 	std::regex::flag_type REGX_FLAGS = std::regex::ECMAScript;
-	string number_ex = "\\d+(\\.\\d*)?";
-	string oper_ex = "[-+*^]";
-	string opers_ex = "(-)|(+)|(*)|(^)";
-	string binary_op_ex = number_ex + "\\s+" + "[-+*^]" + "\\s+" + number_ex;
-	string exp = "(" + number_ex + ")|(" + oper_ex + ")|(" + "[\\)\\(]" + ")";
-
-    std::regex num_regex = std::regex(exp, REGX_FLAGS);
+	std::regex num_regex = std::regex(exp, REGX_FLAGS);
 	auto begin = std::sregex_iterator(input.begin(), input.end(), num_regex);
     auto end = std::sregex_iterator();
   
@@ -64,7 +58,6 @@ void tokenize(const string& input, /*out*/ map<int, string>& tokens)
 				cout << match[i].str() << endl;
 				std::pair<int, string> p(i, match[i].str());
 				tokens.insert(p);
-
 			}
 		}
     }
@@ -73,9 +66,4 @@ void tokenize(const string& input, /*out*/ map<int, string>& tokens)
 void scan_for_opers(map<int, string>& tokens)
 {
 	std::regex::flag_type REGX_FLAGS = std::regex::ECMAScript;
-	string number_ex = "\\d+(\\.\\d*)?";
-	string oper_ex = "[-+*^]";
-	string opers_ex = "(-)|(+)|(*)|(^)";
-	string binary_op_ex = number_ex + "\\s+" + "[-+*^]" + "\\s+" + number_ex;
-	string exp = "(" + number_ex + ")|(" + oper_ex + ")|(" + "[\\)\\(]" + ")";
 }
