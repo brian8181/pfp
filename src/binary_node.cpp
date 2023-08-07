@@ -27,18 +27,6 @@ binary_node:: binary_node(const string& s, const string& left, const string& rig
     _right = new node(right);
 }
 
-// binary_node::binary_node(const binary_node& n) : node(n)
-// {
-//     _type = node_type::binary_operation;
-
-
-//     _left = n._left;
-//     _right = n._right;
-
-//     delete n.left;
-//     delete n._right;
-// }
-
 binary_node::~binary_node()
 {
     delete _left;

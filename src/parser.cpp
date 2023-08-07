@@ -65,11 +65,61 @@ void parser::tokenize(const string& input, /*out*/ vector<node*>& nodes)
     }
 }
 
+void parser::objectify2(vector<node*>& nodes, /*out*/ vector<vector<node*>>& expressions)
+{
+    stack<node*> stack;
+    int len = nodes.size();
+
+    string lhs, op, rhs;
+    for(int i = 0; i < len; ++i)
+    {
+        if(nodes[i]->get_token().get_value() != ")")
+        {
+            if(nodes[i]->get_token().get_type() == token_type::Operator)
+            {
+                binary_node* pn = new binary_node(op, lhs, rhs);
+            }
+        }
+        if(nodes[i]->get_token().get_value() == "(")
+        {
+            continue;
+        }
+        if(nodes[i]->get_token().get_value() == ")")
+        {
+            rhs =  nodes[i]->get_token().get_value();
+        }
+        lhs = nodes[i]->get_token().get_value();
+        // op = nodes[++i]->get_token().get_value();
+        // string& rhs = nodes[++i]->get_token().get_value();
+        // binary_node* pn = new binary_node(op, lhs, rhs);
+
+    }
+}
+
 void parser::objectify(vector<node*>& nodes, /*out*/ vector<vector<node*>>& expressions)
 {
     int len = nodes.size();
     for(int i = 0; i < len; ++i)
     {
+        token_type tok_t;
+        switch(tok_t)
+        {
+            case token_type::Number:
+            {
+
+            }
+            break;
+            case token_type::Operator:
+            {
+
+            }
+            break;
+        }
+        if(nodes[i]->get_token().get_type() == token_type::Operator)
+        {
+            
+        }
+
         if(nodes[i]->get_token().get_value() == ")")
         {
             int rev_i = i;

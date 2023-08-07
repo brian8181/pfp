@@ -24,6 +24,12 @@ int node::_prev_id = 0;
 node::node(const string& s) : _token(s)
 {
     _type = node_type::terminal;
+
+    if(is_numeric(value))
+        _type = node_type::number;
+    else
+        _type = node_type::binary_operation;
+
      _id = ++_prev_id;
 }
 

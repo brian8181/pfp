@@ -28,12 +28,21 @@ enum node_type
     unknown          = 0x1,
     literal          = 0x2,
     terminal         = 0x4,
-    operation        = 0x8,
-    binary_operation = 0x10,
+    number           = 0x8,
+    binary_operator  = 0x10,
+    urnay_operator   = 0x20,
+    open_paren       = 0x40,
+    close_paren      = 0x80,
+    binary_operation = 0x100,
+    unary_operation  = 0x200,
+    end              = 0x400,
+    variable         = 0x800,
+    constant         = 0x1000
 };
 
 class node
 {
+
 public:
 
     node(const string& token);
@@ -43,7 +52,6 @@ public:
     node_type _type; //?
   
 private:
-
 
     int _id;
     static int _prev_id;

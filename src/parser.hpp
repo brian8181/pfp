@@ -41,6 +41,7 @@ public:
 
 private:
 
+    void objectify2(vector<node*>& nodes, /*out*/ vector<vector<node*>>& expressions);
     void objectify(vector<node*>& tokens, /*out*/ vector<vector<node*>>& expressions);
     void tokenize(const string& input, /*out*/ vector<node*>& nodes);
     

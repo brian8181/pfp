@@ -30,7 +30,6 @@ class binary_node : public node
 
 public:
     binary_node(const string& s, const string& left, const string& right);
-    //binary_node(const binary_node& n);
     ~binary_node();
 
 private:
