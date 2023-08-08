@@ -15,7 +15,7 @@ unsigned char option_flags = 0;
 
 const string number_sexpress = "\\d+(\\.\\d*)?";
 const string oper_sexpress = "[-+*^]";
-const string opers_sexpress = "(-)|(+)|(*)|(^)";
+const string opers_sexpress = "((-)|(+)|(*)|(^))";
 const string parens_sexpress = "(\\))|(\\()";
 const string binary_op_sexpress = number_sexpress + "\\s+" + "[-+*^]" + "\\s+" + number_sexpress;
 

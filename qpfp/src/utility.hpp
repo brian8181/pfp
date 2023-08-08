@@ -13,7 +13,7 @@
 using std::string;
 using std::vector;
 
-void tokenize(const string& sexpress, const string& input, /* out */ vector<string>& tokens);
+void qmatch(const string& sexpress, const string& input, /* out */ vector<string>& matches);
 
 #endif
 

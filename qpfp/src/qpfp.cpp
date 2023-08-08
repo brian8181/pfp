@@ -38,47 +38,32 @@ int parse_options(int argc, char* argv[])
 
 void parse(string input)
 {
+	cout << "tokens ..." << endl;
 	const string tokens_sexpress = "(" + number_sexpress + ")|(" + oper_sexpress + ")|(" + "[\\)\\(]" + ")";
 	vector<string> tokens;
-	tokenize(tokens_sexpress, input, tokens);
+	qmatch(tokens_sexpress, input, tokens);
 	int len = tokens.size();
 	for(int i = 0; i < len; ++i)
 	{
 		cout << tokens[i] << endl;
 	}
 
-	// scan_for_opers(exp, tokens);
-	// scan_for_numbers(exp, tokens);
-}
-
-void scan_for_opers(const string& input, /*out*/ map<int, string>& tokens)
-{
-	std::regex::flag_type REGX_FLAGS = std::regex::ECMAScript;
-	std::regex opers_express = std::regex(oper_sexpress, REGX_FLAGS);
-
-	auto begin = std::sregex_iterator(input.begin(), input.end(), opers_express);
-	auto end = std::sregex_iterator();
-
-	cout << "operator scan ..." << endl;
-	for(std::sregex_iterator iter = begin; iter != end; ++iter)
+	cout << "opers ..." << endl;
+	vector<string> opers;
+	qmatch(oper_sexpress, input, opers);
+	len = opers.size();
+	for(int i = 0; i < len; ++i)
 	{
-		std::smatch match = *iter;
-		cout << match.str() << endl;
+		cout << opers[i] << endl;
 	}
-}
 
-void scan_for_numbers(const string& input, /*out*/ map<int, string>& tokens)
-{
-	std::regex::flag_type REGX_FLAGS = std::regex::ECMAScript;
-	std::regex number_express = std::regex(number_sexpress, REGX_FLAGS);
 
-	auto begin = std::sregex_iterator(input.begin(), input.end(), number_express);
-	auto end = std::sregex_iterator();
-
-	cout << "operator scan ..." << endl;
-	for(std::sregex_iterator iter = begin; iter != end; ++iter)
+	cout << "numbers ..." << endl;
+	vector<string> numbers;
+	qmatch(number_sexpress, input, numbers);
+	len = numbers.size();
+	for(int i = 0; i < len; ++i)
 	{
-		std::smatch match = *iter;
-		cout << match.str() << endl;
+		cout << numbers[i] << endl;
 	}
 }

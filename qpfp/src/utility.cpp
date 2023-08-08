@@ -10,7 +10,7 @@
 #include <vector>
 #include "utility.hpp"
 
-void tokenize(const string& sexpress, const string& input, /* out */ vector<string>& tokens)
+void qmatch(const string& sexpress, const string& input, /* out */ vector<string>& tokens)
 {
     std::regex::flag_type REGX_FLAGS = std::regex::ECMAScript;
     std::regex opers_express = std::regex(sexpress, REGX_FLAGS);
