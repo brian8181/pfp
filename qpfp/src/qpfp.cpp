@@ -27,6 +27,7 @@ const int CLOSE_PAREN = 5;
 void parse(string exp);
 void tokenize(const string& input, /*out*/ map<int, string>& tokens);
 void scan_for_opers(const string& input, /*out*/ map<int, string>& tokens);
+void scan_for_numbers(const string& input, /*out*/ map<int, string>& tokens);
 
 int parse_options(int argc, char* argv[])
 {
@@ -39,7 +40,9 @@ void parse(string exp)
 {
 	map<int, string> tokens;
 	tokenize(exp, tokens);
+	//tokenize("", "");
 	scan_for_opers(exp, tokens);
+	scan_for_numbers(exp, tokens);
 }
 
 void tokenize(const string& input, /*out*/ map<int, string>& tokens)
@@ -72,6 +75,22 @@ void scan_for_opers(const string& input, /*out*/ map<int, string>& tokens)
 	std::regex opers_express = std::regex(oper_sexpress, REGX_FLAGS);
 
 	auto begin = std::sregex_iterator(input.begin(), input.end(), opers_express);
+	auto end = std::sregex_iterator();
+
+	cout << "operator scan ..." << endl;
+	for(std::sregex_iterator iter = begin; iter != end; ++iter)
+	{
+		std::smatch match = *iter;
+		cout << match.str() << endl;
+	}
+}
+
+void scan_for_numbers(const string& input, /*out*/ map<int, string>& tokens)
+{
+	std::regex::flag_type REGX_FLAGS = std::regex::ECMAScript;
+	std::regex number_express = std::regex(number_sexpress, REGX_FLAGS);
+
+	auto begin = std::sregex_iterator(input.begin(), input.end(), number_express);
 	auto end = std::sregex_iterator();
 
 	cout << "operator scan ..." << endl;
