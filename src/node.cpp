@@ -18,6 +18,7 @@
 // Version:    0.0.1
 
 #include "node.hpp"
+#include "utility.hpp"
 
 int node::_prev_id = 0;
 
@@ -25,7 +26,7 @@ node::node(const string& s) : _token(s)
 {
     _type = node_type::terminal;
 
-    if(is_numeric(value))
+    if(is_numeric(s))
         _type = node_type::number;
     else
         _type = node_type::binary_operation;

@@ -26,7 +26,7 @@ const int CLOSE_PAREN = 5;
 
 void parse(string exp);
 void tokenize(const string& input, /*out*/ map<int, string>& tokens);
-void scan_for_opers(map<int, string>& tokens);
+void scan_for_opers(const string& input, /*out*/ map<int, string>& tokens);
 
 int parse_options(int argc, char* argv[])
 {
@@ -39,43 +39,45 @@ void parse(string exp)
 {
 	map<int, string> tokens;
 	tokenize(exp, tokens);
+	scan_for_opers(exp, tokens);
 }
 
 void tokenize(const string& input, /*out*/ map<int, string>& tokens)
 {
-	const string exp = "(" + number_ex + ")|(" + oper_ex + ")|(" + "[\\)\\(]" + ")";
+	const string tokens_sexpress = "(" + number_sexpress + ")|(" + oper_sexpress + ")|(" + "[\\)\\(]" + ")";
 	std::regex::flag_type REGX_FLAGS = std::regex::ECMAScript;
-	std::regex num_regex = std::regex(exp, REGX_FLAGS);
-	auto begin = std::sregex_iterator(input.begin(), input.end(), num_regex);
+	std::regex tokens_express = std::regex(tokens_sexpress, REGX_FLAGS);
+	auto begin = std::sregex_iterator(input.begin(), input.end(), tokens_express);
     auto end = std::sregex_iterator();
   
     for(std::sregex_iterator iter = begin; iter != end; ++iter)
     {
         std::smatch match = *iter;
 		cout << match.str() << endl;
-		for(int i = 1; i < 5; ++i)
-		{
-			if(match[i].matched)
-			{
-				cout << match[i].str() << endl;
-				std::pair<int, string> p(i, match[i].str());
-				tokens.insert(p);
-			}
-		}
+		// for(int i = 1; i < 5; ++i)
+		// {
+		// 	if(match[i].matched)
+		// 	{
+		// 		cout << match[i].str() << endl;
+		// 		std::pair<int, string> p(i, match[i].str());
+		// 		tokens.insert(p);
+		// 	}
+		// }
     }
 }
 
-void scan_for_opers(const string& input, map<int, string>& tokens)
+void scan_for_opers(const string& input, /*out*/ map<int, string>& tokens)
 {
-	const string exp = "(" + number_ex + ")|(" + oper_ex + ")|(" + "[\\)\\(]" + ")";
 	std::regex::flag_type REGX_FLAGS = std::regex::ECMAScript;
-	std::regex num_regex = std::regex(exp, REGX_FLAGS);
+	std::regex opers_express = std::regex(oper_sexpress, REGX_FLAGS);
 	
-	auto begin = std::sregex_iterator(input.begin(), input.end(), num_regex);
+	auto begin = std::sregex_iterator(input.begin(), input.end(), opers_express);
     auto end = std::sregex_iterator();
-  
+	
+	cout << "operator scan ..." << endl;
     for(std::sregex_iterator iter = begin; iter != end; ++iter)
 	{
-
+		std::smatch match = *iter;
+		cout << match.str() << endl;
 	}
 }

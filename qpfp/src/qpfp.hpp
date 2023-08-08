@@ -13,11 +13,11 @@
 unsigned char DEFAULTS = 0;
 unsigned char option_flags = 0; 
 
-const string number_ex = "\\d+(\\.\\d*)?";
-const string oper_ex = "[-+*^]";
-const string opers_ex = "(-)|(+)|(*)|(^)";
-const string parens_ex = "(\\))|(\\()";
-const string binary_op_ex = number_ex + "\\s+" + "[-+*^]" + "\\s+" + number_ex;
+const string number_sexpress = "\\d+(\\.\\d*)?";
+const string oper_sexpress = "[-+*^]";
+const string opers_sexpress = "(-)|(+)|(*)|(^)";
+const string parens_sexpress = "(\\))|(\\()";
+const string binary_op_sexpress = number_sexpress + "\\s+" + "[-+*^]" + "\\s+" + number_sexpress;
 
 
 #endif
