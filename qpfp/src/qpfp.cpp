@@ -73,4 +73,13 @@ void parse(string input)
 	{
 		cout << opers_alt[i] << endl;
 	}
+
+	cout << "opers ..." << endl;
+	vector<smatch> opers_sm;
+	qmatch(oper_sexpress, input, opers_sm);
+	len = opers_sm.size();
+	for(int i = 0; i < len; ++i)
+	{
+		cout << opers_sm[i].str() << endl;
+	}
 }
