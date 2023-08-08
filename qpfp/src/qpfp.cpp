@@ -26,8 +26,6 @@ const int OPEN_PAREN = 5;
 const int CLOSE_PAREN = 5;
 
 void parse(string exp);
-void scan_for_opers(const string& input, /*out*/ map<int, string>& tokens);
-void scan_for_numbers(const string& input, /*out*/ map<int, string>& tokens);
 
 int parse_options(int argc, char* argv[])
 {
@@ -38,8 +36,9 @@ int parse_options(int argc, char* argv[])
 
 void parse(string input)
 {
-	cout << "tokens ..." << endl;
 	const string tokens_sexpress = "(" + number_sexpress + ")|(" + oper_sexpress + ")|(" + "[\\)\\(]" + ")";
+
+	cout << "tokens ..." << endl;
 	vector<string> tokens;
 	qmatch(tokens_sexpress, input, tokens);
 	int len = tokens.size();
@@ -56,7 +55,6 @@ void parse(string input)
 	{
 		cout << opers[i] << endl;
 	}
-
 
 	cout << "numbers ..." << endl;
 	vector<string> numbers;

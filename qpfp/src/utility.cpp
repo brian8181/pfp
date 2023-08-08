@@ -13,9 +13,9 @@
 void qmatch(const string& sexpress, const string& input, /* out */ vector<string>& tokens)
 {
     std::regex::flag_type REGX_FLAGS = std::regex::ECMAScript;
-    std::regex opers_express = std::regex(sexpress, REGX_FLAGS);
+    std::regex express = std::regex(sexpress, REGX_FLAGS);
 
-    auto begin = std::sregex_iterator(input.begin(), input.end(), opers_express);
+    auto begin = std::sregex_iterator(input.begin(), input.end(), express);
     auto end = std::sregex_iterator();
 
     for(std::sregex_iterator iter = begin; iter != end; ++iter)
