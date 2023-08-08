@@ -31,15 +31,18 @@ debug: all
 all: $(APPNAME) bash_color_test
 
 # link
-$(APPNAME): $(APPNAME).o main.o #@@PREREQUISTE@@
+$(APPNAME): $(APPNAME).o main.o utility.o #@@PREREQUISTE@@
 	 $(CXX) $(CXXFLAGS) -o $(BUILD)/$(APPNAME) $(BUILD)/$(APPNAME).o $(BUILD)/main.o #@@CLASS_NAME@@
 
 # compile only
-$(APPNAME).o:
+$(APPNAME).o: 
 	$(CXX) $(CXXFLAGS) -c $(SRC)/$(APPNAME).$(EXT) -o $(BUILD)/$(APPNAME).o
 	
 main.o:
 	$(CXX) $(CXXFLAGS) -c $(SRC)/main.$(EXT) -o $(BUILD)/main.o
+
+utility.o: 
+	$(CXX) $(CXXFLAGS) -c $(SRC)/utility.$(EXT) -o $(BUILD)/utility.o
 
 bash_color_test: bash_color_test.o
 	$(CXX) $(CXXFLAGS) $(BUILD)/bash_color_test.o -o $(BUILD)/bash_color_test
