@@ -14,9 +14,16 @@
 			}
 		},
 		{
-			"label": "echo",
+			"label": "MAKE QDEBUGGDB",
 			"type": "shell",
-			"command": "echo ${workspaceFolder}"
+			"command": "make -f ${workspaceFolder}/qpfp/Makefile",
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
 		}
 	]
 }

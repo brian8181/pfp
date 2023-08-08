@@ -26,6 +26,27 @@
             "miDebuggerPath": "/usr/bin/gdb"
         },
         {
+            "name": "Qstd_debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/qpfp/build/qpfp",
+            "args": ["2+2*3"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "MAKE QDEBUGGDB",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
             "name": "std_debug2",
             "type": "cppdbg",
             "request": "launch",

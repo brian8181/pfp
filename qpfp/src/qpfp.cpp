@@ -51,6 +51,7 @@ void tokenize(const string& input, /*out*/ map<int, string>& tokens)
     for(std::sregex_iterator iter = begin; iter != end; ++iter)
     {
         std::smatch match = *iter;
+		cout << match.str() << endl;
 		for(int i = 1; i < 5; ++i)
 		{
 			if(match[i].matched)

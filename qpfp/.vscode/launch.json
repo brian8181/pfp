@@ -22,7 +22,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "MAKE DEBUGGDB",
+            "preLaunchTask": "MAKE QDEBUGGDB",
             "miDebuggerPath": "/usr/bin/gdb"
         }
 
