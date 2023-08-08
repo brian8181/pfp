@@ -66,12 +66,24 @@ void parse(string input)
 		cout << opers_alt[i] << endl;
 	}
 
+	// const int PLUS = 2;
+	// const int EXPONET = 4;
+	// const int MULT = 3;
+	// const vector<int> op_map = {PLUS, EXPONET, MULT};
+
 	cout << "opers ..." << endl;
 	vector<smatch> opers_sm;
-	qmatch(oper_sexpress, input, opers_sm);
+	qmatch(opers_sexpress, input, opers_sm);
 	len = opers_sm.size();
 	for(int i = 0; i < len; ++i)
 	{
-		cout << opers_sm[i].str() << endl;
+		//int jlen = op_map.size();
+		int jlen = opers_sm.size();
+		for(int j = 0; j < jlen; ++j)
+		{
+			if(opers_sm[i][j].matched)
+				cout << "index=" << j << " " << opers_sm[i][j].str() << endl;
+		}
+		//cout << opers_sm[i].str() << endl;
 	}
 }
