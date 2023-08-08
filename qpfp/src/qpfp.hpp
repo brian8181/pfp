@@ -18,7 +18,7 @@ const string oper_ex = "[-+*^]";
 const string opers_ex = "(-)|(+)|(*)|(^)";
 const string parens_ex = "(\\))|(\\()";
 const string binary_op_ex = number_ex + "\\s+" + "[-+*^]" + "\\s+" + number_ex;
-const string exp = "(" + number_ex + ")|(" + oper_ex + ")|(" + "[\\)\\(]" + ")";
+
 
 #endif
 
