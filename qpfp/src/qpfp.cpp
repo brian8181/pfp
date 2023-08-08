@@ -64,4 +64,13 @@ void parse(string input)
 	{
 		cout << numbers[i] << endl;
 	}
+
+	cout << "opers_alt ..." << endl;
+	vector<string> opers_alt;
+	qmatch(opers_sexpress, input, opers_alt);
+	len = opers_alt.size();
+	for(int i = 0; i < len; ++i)
+	{
+		cout << opers_alt[i] << endl;
+	}
 }

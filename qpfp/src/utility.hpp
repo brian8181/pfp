@@ -9,11 +9,14 @@
 
 #include <string>
 #include <vector>
+#include <regex>
 
 using std::string;
 using std::vector;
+using std::smatch;
 
 void qmatch(const string& sexpress, const string& input, /* out */ vector<string>& matches);
+void qmatch(const string& sexpress, const string& input, /* out */  vector<smatch>& matches);
 
 #endif
 
