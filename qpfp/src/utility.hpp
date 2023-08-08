@@ -8,12 +8,12 @@
 #define _utility_HPP
 
 #include <string>
-#include <map>
+#include <vector>
 
 using std::string;
-using std::map;
+using std::vector;
 
-void tokenize(const string& input, /*out*/ map<int, string>& tokens);
+void tokenize(const string& sexpress, const string& input, /* out */ vector<string>& tokens);
 
 #endif
 

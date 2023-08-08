@@ -13,6 +13,7 @@
 #include "main.hpp"
 #include "bash_color.h"
 #include "qpfp.hpp"
+#include "utility.hpp"
 
 using namespace std;
 
@@ -25,48 +26,29 @@ const int OPEN_PAREN = 5;
 const int CLOSE_PAREN = 5;
 
 void parse(string exp);
-void tokenize(const string& input, /*out*/ map<int, string>& tokens);
 void scan_for_opers(const string& input, /*out*/ map<int, string>& tokens);
 void scan_for_numbers(const string& input, /*out*/ map<int, string>& tokens);
 
 int parse_options(int argc, char* argv[])
 {
-	string exp = argv[1];
-	parse(exp);
+	string input = argv[1];
+	parse(input);
 	return 0;
 }
 
-void parse(string exp)
-{
-	map<int, string> tokens;
-	tokenize(exp, tokens);
-	//tokenize("", "");
-	scan_for_opers(exp, tokens);
-	scan_for_numbers(exp, tokens);
-}
-
-void tokenize(const string& input, /*out*/ map<int, string>& tokens)
+void parse(string input)
 {
 	const string tokens_sexpress = "(" + number_sexpress + ")|(" + oper_sexpress + ")|(" + "[\\)\\(]" + ")";
-	std::regex::flag_type REGX_FLAGS = std::regex::ECMAScript;
-	std::regex tokens_express = std::regex(tokens_sexpress, REGX_FLAGS);
-	auto begin = std::sregex_iterator(input.begin(), input.end(), tokens_express);
-	auto end = std::sregex_iterator();
-
-	for(std::sregex_iterator iter = begin; iter != end; ++iter)
+	vector<string> tokens;
+	tokenize(tokens_sexpress, input, tokens);
+	int len = tokens.size();
+	for(int i = 0; i < len; ++i)
 	{
-		std::smatch match = *iter;
-		cout << match.str() << endl;
-		// for(int i = 1; i < 5; ++i)
-		// {
-		// 	if(match[i].matched)
-		// 	{
-		// 		cout << match[i].str() << endl;
-		// 		std::pair<int, string> p(i, match[i].str());
-		// 		tokens.insert(p);
-		// 	}
-		// }
+		cout << tokens[i] << endl;
 	}
+
+	// scan_for_opers(exp, tokens);
+	// scan_for_numbers(exp, tokens);
 }
 
 void scan_for_opers(const string& input, /*out*/ map<int, string>& tokens)

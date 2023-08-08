@@ -6,9 +6,11 @@
 
 #include <iostream>
 #include <regex>
+#include <string>
+#include <vector>
 #include "utility.hpp"
 
-string tokenize(const string& sexpress, const string& input)
+void tokenize(const string& sexpress, const string& input, /* out */ vector<string>& tokens)
 {
     std::regex::flag_type REGX_FLAGS = std::regex::ECMAScript;
     std::regex opers_express = std::regex(sexpress, REGX_FLAGS);
@@ -16,14 +18,11 @@ string tokenize(const string& sexpress, const string& input)
     auto begin = std::sregex_iterator(input.begin(), input.end(), opers_express);
     auto end = std::sregex_iterator();
 
-    std::cout << "operator scan ..." << std::endl;
     for(std::sregex_iterator iter = begin; iter != end; ++iter)
     {
         std::smatch match = *iter;
-        std::cout << match.str() << std::endl;
+        tokens.push_back(match.str());
     }
-
-    return "";
 }
 
 
