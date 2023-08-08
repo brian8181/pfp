@@ -13,6 +13,14 @@
 unsigned char DEFAULTS = 0;
 unsigned char option_flags = 0; 
 
+const int NUMBER = 1;
+const int MULT_DIV = 0;
+const int ADD_SUB = 0;
+const int OPERATOR = 3;
+const int PAREN = 0;
+const int OPEN_PAREN = 5;
+const int CLOSE_PAREN = 5;
+
 const string number_sexpress = "\\d+(\\.\\d*)?";
 const string oper_sexpress = "[-+*^]";
 const string opers_sexpress = "(\\-)|(\\+)|(\\*)|(\\^)";

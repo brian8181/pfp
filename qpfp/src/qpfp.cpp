@@ -17,14 +17,6 @@
 
 using namespace std;
 
-const int NUMBER = 1;
-const int MULT_DIV = 0;
-const int ADD_SUB = 0;
-const int OPERATOR = 3;
-const int PAREN = 0;
-const int OPEN_PAREN = 5;
-const int CLOSE_PAREN = 5;
-
 void parse(string exp);
 
 int parse_options(int argc, char* argv[])
